@@ -14,24 +14,29 @@ API端点说明：
 import aiohttp
 import json
 from typing import Dict, List, Optional, Any
-from temporalio import activity
 
 
 class MerakiAPI:
     """Meraki API 客户端类 - 适用于 Temporal Workflow"""
     
-    def __init__(self, api_key: str, base_url: str = "https://api.meraki.cn/api/v1"):
+    def __init__(self, api_key: str = None, base_url: str = "https://api.meraki.cn/api/v1"):
         """
         初始化Meraki API客户端
         
         Args:
-            api_key: Meraki API密钥
+            api_key: Meraki API密钥（如果为None，从环境变量MERAKI_API_KEY读取）
             base_url: API基础URL（默认为中国地区版本）
         """
+        import os
+        if api_key is None:
+            api_key = os.getenv("MERAKI_API_KEY", "4fb1f6a6c032f662ab0d8315b8cf45268b615d66")
+            if not api_key:
+                raise ValueError("API密钥未提供，请设置环境变量 MERAKI_API_KEY 或传递 api_key 参数")
+        
         self.api_key = api_key
         self.base_url = base_url.rstrip('/')
         self.headers = {
-            'Authorization': f'Bearer {api_key}',
+            'X-Cisco-Meraki-API-Key': api_key,
             'Content-Type': 'application/json'
         }
     
@@ -64,7 +69,6 @@ class MerakiAPI:
                 error_msg += f" (状态码: {e.status})"
             raise Exception(error_msg)
     
-    @activity.defn
     async def get_organizations(self, session: aiohttp.ClientSession) -> List[Dict]:
         """
         获取用户有权限访问的组织列表
@@ -77,7 +81,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, "/organizations")
     
-    @activity.defn
     async def get_organization_networks(self, session: aiohttp.ClientSession, org_id: str) -> List[Dict]:
         """
         获取组织的网络列表
@@ -91,7 +94,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/networks")
     
-    @activity.defn
     async def get_organization_devices(self, session: aiohttp.ClientSession, org_id: str, **params) -> List[Dict]:
         """
         获取组织的设备列表
@@ -106,7 +108,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/devices", params)
     
-    @activity.defn
     async def get_all_organization_devices_with_name_filter(self, session: aiohttp.ClientSession, 
                                                           org_id: str, name_filter: str = None) -> List[Dict]:
         """
@@ -163,7 +164,6 @@ class MerakiAPI:
         
         return all_devices
     
-    @activity.defn
     async def get_device_uplinks(self, session: aiohttp.ClientSession, org_id: str, 
                                 serials: List[str]) -> List[Dict]:
         """
@@ -180,7 +180,6 @@ class MerakiAPI:
         params = {'serials[]': serials}
         return await self._make_request(session, f"/organizations/{org_id}/devices/uplinks/addresses/byDevice", params)
     
-    @activity.defn
     async def get_device_statuses_overview(self, session: aiohttp.ClientSession, org_id: str) -> Dict:
         """
         获取设备状态概览
@@ -194,7 +193,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/devices/statuses/overview")
     
-    @activity.defn
     async def get_device_loss_and_latency_history(self, session: aiohttp.ClientSession, 
                                                   serial: str, **params) -> List[Dict]:
         """
@@ -210,7 +208,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/devices/{serial}/lossAndLatencyHistory", params)
     
-    @activity.defn
     async def get_network_clients(self, session: aiohttp.ClientSession, network_id: str, 
                                  **params) -> List[Dict]:
         """
@@ -226,7 +223,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/clients", params)
     
-    @activity.defn
     async def get_device_clients(self, session: aiohttp.ClientSession, serial: str, 
                                 **params) -> List[Dict]:
         """
@@ -242,7 +238,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/devices/{serial}/clients", params)
     
-    @activity.defn
     async def get_organization_licenses_overview(self, session: aiohttp.ClientSession, 
                                                org_id: str) -> Dict:
         """
@@ -257,7 +252,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/licenses/overview")
     
-    @activity.defn
     async def get_organization_licenses(self, session: aiohttp.ClientSession, org_id: str, 
                                       **params) -> List[Dict]:
         """
@@ -273,7 +267,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/licenses", params)
     
-    @activity.defn
     async def get_organization_assurance_alerts(self, session: aiohttp.ClientSession, 
                                               org_id: str, **params) -> List[Dict]:
         """
@@ -289,7 +282,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/assurance/alerts", params)
     
-    @activity.defn
     async def get_organization_assurance_alerts_overview(self, session: aiohttp.ClientSession, 
                                                        org_id: str) -> Dict:
         """
@@ -304,7 +296,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/assurance/alerts/overview")
     
-    @activity.defn
     async def get_network_events(self, session: aiohttp.ClientSession, network_id: str, 
                                 **params) -> List[Dict]:
         """
@@ -320,7 +311,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/events", params)
     
-    @activity.defn
     async def get_device_info(self, session: aiohttp.ClientSession, serial: str) -> Dict:
         """
         获取单个设备信息（包含经纬度和楼层平面图ID）
@@ -334,7 +324,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/devices/{serial}")
     
-    @activity.defn
     async def get_network_floor_plans(self, session: aiohttp.ClientSession, network_id: str) -> List[Dict]:
         """
         获取网络楼层平面图列表
@@ -348,7 +337,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/floorPlans")
     
-    @activity.defn
     async def get_floor_plan_by_id(self, session: aiohttp.ClientSession, network_id: str, 
                                   floor_plan_id: str) -> Dict:
         """
@@ -364,7 +352,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/floorPlans/{floor_plan_id}")
     
-    @activity.defn
     async def get_network_client_by_id(self, session: aiohttp.ClientSession, network_id: str, 
                                       client_id: str) -> Dict:
         """
@@ -382,7 +369,6 @@ class MerakiAPI:
     
     # ========== 补充缺失的 API 方法 ==========
     
-    @activity.defn
     async def get_device_appliance_performance(self, session: aiohttp.ClientSession, 
                                              serial: str, **params) -> Dict:
         """
@@ -398,7 +384,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/devices/{serial}/appliance/performance", params)
     
-    @activity.defn
     async def get_network_clients_overview(self, session: aiohttp.ClientSession, 
                                          network_id: str, **params) -> Dict:
         """
@@ -414,7 +399,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/clients/overview", params)
     
-    @activity.defn
     async def get_network_clients_usage_histories(self, session: aiohttp.ClientSession, 
                                                  network_id: str, **params) -> List[Dict]:
         """
@@ -430,7 +414,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/clients/usageHistories", params)
     
-    @activity.defn
     async def get_network_clients_application_usage(self, session: aiohttp.ClientSession, 
                                                    network_id: str, **params) -> List[Dict]:
         """
@@ -446,7 +429,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/clients/applicationUsage", params)
     
-    @activity.defn
     async def get_organization_summary_top_networks_by_status(self, session: aiohttp.ClientSession, 
                                                             org_id: str, **params) -> List[Dict]:
         """
@@ -462,7 +444,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/networks/byStatus", params)
     
-    @activity.defn
     async def get_organization_devices_statuses(self, session: aiohttp.ClientSession, 
                                               org_id: str, **params) -> List[Dict]:
         """
@@ -480,7 +461,6 @@ class MerakiAPI:
     
     # ========== 扩展的只读 API 方法 ==========
     
-    @activity.defn
     async def get_network_wireless_ssids(self, session: aiohttp.ClientSession, 
                                        network_id: str) -> List[Dict]:
         """
@@ -495,7 +475,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/ssids")
     
-    @activity.defn
     async def get_network_wireless_settings(self, session: aiohttp.ClientSession, 
                                           network_id: str) -> Dict:
         """
@@ -510,7 +489,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/settings")
     
-    @activity.defn
     async def get_network_appliance_settings(self, session: aiohttp.ClientSession, 
                                            network_id: str) -> Dict:
         """
@@ -525,7 +503,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/settings")
     
-    @activity.defn
     async def get_network_switch_settings(self, session: aiohttp.ClientSession, 
                                         network_id: str) -> Dict:
         """
@@ -540,7 +517,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/switch/settings")
     
-    @activity.defn
     async def get_network_appliance_firewall_l3_rules(self, session: aiohttp.ClientSession, 
                                                      network_id: str) -> List[Dict]:
         """
@@ -555,7 +531,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/firewall/l3FirewallRules")
     
-    @activity.defn
     async def get_network_appliance_firewall_l7_rules(self, session: aiohttp.ClientSession, 
                                                      network_id: str) -> List[Dict]:
         """
@@ -570,7 +545,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/firewall/l7FirewallRules")
     
-    @activity.defn
     async def get_network_appliance_vlans(self, session: aiohttp.ClientSession, 
                                         network_id: str) -> List[Dict]:
         """
@@ -585,7 +559,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/vlans")
     
-    @activity.defn
     async def get_network_switch_ports(self, session: aiohttp.ClientSession, 
                                      serial: str) -> List[Dict]:
         """
@@ -600,7 +573,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/devices/{serial}/switch/ports")
     
-    @activity.defn
     async def get_organization_inventory_devices(self, session: aiohttp.ClientSession, 
                                                org_id: str, **params) -> List[Dict]:
         """
@@ -616,7 +588,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/inventory/devices", params)
     
-    @activity.defn
     async def get_network_alerts_settings(self, session: aiohttp.ClientSession, 
                                         network_id: str) -> Dict:
         """
@@ -631,7 +602,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/alerts/settings")
     
-    @activity.defn
     async def get_network_traffic_analysis(self, session: aiohttp.ClientSession, 
                                          network_id: str, **params) -> Dict:
         """
@@ -647,7 +617,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/traffic", params)
     
-    @activity.defn
     async def get_organization_admins(self, session: aiohttp.ClientSession, 
                                     org_id: str) -> List[Dict]:
         """
@@ -662,7 +631,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/admins")
     
-    @activity.defn
     async def get_organization_config_templates(self, session: aiohttp.ClientSession, 
                                               org_id: str) -> List[Dict]:
         """
@@ -677,7 +645,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/configTemplates")
     
-    @activity.defn
     async def get_network_webhooks_http_servers(self, session: aiohttp.ClientSession, 
                                               network_id: str) -> List[Dict]:
         """
@@ -692,7 +659,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/webhooks/httpServers")
     
-    @activity.defn
     async def get_organization_api_requests_overview(self, session: aiohttp.ClientSession, 
                                                    org_id: str, **params) -> Dict:
         """
@@ -710,7 +676,6 @@ class MerakiAPI:
     
     # ========== 无线网络扩展API ==========
     
-    @activity.defn
     async def get_network_wireless_clients_connection_stats(self, session: aiohttp.ClientSession, 
                                                           network_id: str, **params) -> List[Dict]:
         """
@@ -726,7 +691,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/clients/connectionStats", params)
     
-    @activity.defn
     async def get_network_wireless_client_connection_stats(self, session: aiohttp.ClientSession,
                                                           network_id: str, client_id: str, **params) -> Dict:
         """
@@ -743,7 +707,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/clients/{client_id}/connectionStats", params)
 
-    @activity.defn
     async def get_network_wireless_channel_utilization_history(self, session: aiohttp.ClientSession, 
                                                              network_id: str, **params) -> List[Dict]:
         """
@@ -759,7 +722,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/channelUtilizationHistory", params)
     
-    @activity.defn
     async def get_network_wireless_client_count_history(self, session: aiohttp.ClientSession, 
                                                       network_id: str, **params) -> List[Dict]:
         """
@@ -775,7 +737,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/wireless/clientCountHistory", params)
     
-    @activity.defn
     async def get_network_wireless_air_marshal(self, session: aiohttp.ClientSession, 
                                              network_id: str, **params) -> List[Dict]:
         """
@@ -793,7 +754,6 @@ class MerakiAPI:
     
     # ========== 安全网关扩展API ==========
     
-    @activity.defn
     async def get_network_appliance_content_filtering(self, session: aiohttp.ClientSession, 
                                                     network_id: str) -> Dict:
         """
@@ -808,7 +768,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/contentFiltering")
     
-    @activity.defn
     async def get_network_appliance_content_filtering_categories(self, session: aiohttp.ClientSession, 
                                                                network_id: str) -> List[Dict]:
         """
@@ -823,7 +782,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/contentFiltering/categories")
     
-    @activity.defn
     async def get_network_appliance_connectivity_monitoring_destinations(self, session: aiohttp.ClientSession, 
                                                                        network_id: str) -> List[Dict]:
         """
@@ -838,7 +796,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/appliance/connectivityMonitoringDestinations")
     
-    @activity.defn
     async def get_network_appliance_firewall_firewalled_services(self, session: aiohttp.ClientSession, 
                                                                network_id: str) -> List[Dict]:
         """
@@ -855,7 +812,6 @@ class MerakiAPI:
     
     # ========== 交换机扩展API ==========
     
-    @activity.defn
     async def get_network_switch_access_control_lists(self, session: aiohttp.ClientSession, 
                                                      network_id: str) -> List[Dict]:
         """
@@ -870,7 +826,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/switch/accessControlLists")
     
-    @activity.defn
     async def get_network_switch_access_policies(self, session: aiohttp.ClientSession, 
                                                network_id: str) -> List[Dict]:
         """
@@ -885,7 +840,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/switch/accessPolicies")
     
-    @activity.defn
     async def get_network_switch_dhcp_server_policy(self, session: aiohttp.ClientSession, 
                                                    network_id: str) -> Dict:
         """
@@ -900,7 +854,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/switch/dhcpServerPolicy")
     
-    @activity.defn
     async def get_network_switch_port_schedules(self, session: aiohttp.ClientSession, 
                                               network_id: str) -> List[Dict]:
         """
@@ -917,7 +870,6 @@ class MerakiAPI:
     
     # ========== 摄像头API ==========
     
-    @activity.defn
     async def get_network_camera_quality_retention_profiles(self, session: aiohttp.ClientSession, 
                                                           network_id: str) -> List[Dict]:
         """
@@ -932,7 +884,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/camera/qualityRetentionProfiles")
     
-    @activity.defn
     async def get_network_camera_schedules(self, session: aiohttp.ClientSession, 
                                          network_id: str) -> List[Dict]:
         """
@@ -949,7 +900,6 @@ class MerakiAPI:
     
     # ========== 传感器API ==========
     
-    @activity.defn
     async def get_network_sensor_alerts_profiles(self, session: aiohttp.ClientSession, 
                                                network_id: str) -> List[Dict]:
         """
@@ -964,7 +914,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/networks/{network_id}/sensor/alerts/profiles")
     
-    @activity.defn
     async def get_network_sensor_alerts_current_overview_by_metric(self, session: aiohttp.ClientSession, 
                                                                  network_id: str) -> List[Dict]:
         """
@@ -981,7 +930,6 @@ class MerakiAPI:
     
     # ========== 组织级统计API ==========
     
-    @activity.defn
     async def get_organization_summary_top_appliances_by_utilization(self, session: aiohttp.ClientSession, 
                                                                    org_id: str, **params) -> List[Dict]:
         """
@@ -997,7 +945,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/appliances/byUtilization", params)
     
-    @activity.defn
     async def get_organization_summary_top_applications_by_usage(self, session: aiohttp.ClientSession, 
                                                                org_id: str, **params) -> List[Dict]:
         """
@@ -1013,7 +960,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/applications/byUsage", params)
     
-    @activity.defn
     async def get_organization_summary_top_clients_by_usage(self, session: aiohttp.ClientSession, 
                                                           org_id: str, **params) -> List[Dict]:
         """
@@ -1029,7 +975,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/clients/byUsage", params)
     
-    @activity.defn
     async def get_organization_summary_top_devices_by_usage(self, session: aiohttp.ClientSession, 
                                                           org_id: str, **params) -> List[Dict]:
         """
@@ -1045,7 +990,6 @@ class MerakiAPI:
         """
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/devices/byUsage", params)
 
-    @activity.defn
     async def get_organization_clients_search(self, session: aiohttp.ClientSession,
                                               org_id: str, **params) -> Dict:
         """

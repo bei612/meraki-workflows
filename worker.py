@@ -17,8 +17,22 @@ from temporalio.worker import Worker
 from translate import TranslateActivities
 from greeting import GreetSomeone
 
-# 导入示例工作流
-from example_workflow import OrganizationInventoryWorkflow, DeviceDetailsWorkflow
+# 注意：example_workflow 文件已被删除，这里注释掉相关导入
+# from example_workflow import OrganizationInventoryWorkflow, DeviceDetailsWorkflow
+
+# 导入Concordia业务工作流
+from concordia_workflows import (
+    DeviceStatusWorkflow,
+    APDeviceQueryWorkflow, 
+    ClientCountWorkflow,
+    FirmwareSummaryWorkflow,
+    LicenseDetailsWorkflow,
+    DeviceInspectionWorkflow,
+    FloorplanAPWorkflow,
+    DeviceLocationWorkflow,
+    LostDeviceTraceWorkflow,
+    AlertsLogWorkflow
+)
 
 # 配置日志
 logging.basicConfig(
@@ -48,18 +62,26 @@ async def create_meraki_worker(
     Returns:
         配置好的Worker实例
     """
-    # 所有Meraki工作流（使用重构后的示例工作流）
+    # 所有Meraki工作流（Concordia业务场景）
     meraki_workflows = [
-        OrganizationInventoryWorkflow,
-        DeviceDetailsWorkflow,
+        # Concordia业务工作流 - 对应testConcordia.py的10个场景
+        DeviceStatusWorkflow,
+        APDeviceQueryWorkflow,
+        ClientCountWorkflow,
+        FirmwareSummaryWorkflow,
+        LicenseDetailsWorkflow,
+        DeviceInspectionWorkflow,
+        FloorplanAPWorkflow,
+        DeviceLocationWorkflow,
+        LostDeviceTraceWorkflow,
+        AlertsLogWorkflow,
     ]
     
     # 导入重构后的MerakiActivities
     from meraki import MerakiActivities
     
-    # 创建MerakiActivities实例（使用占位符API密钥）
-    # 注意：在实际使用中，API密钥应该通过Temporal Secrets或环境变量传递
-    meraki_activities = MerakiActivities("placeholder_api_key")
+    # 创建MerakiActivities实例（merakiAPI.py 自己处理认证）
+    meraki_activities = MerakiActivities()
     
     # 获取所有Activity方法
     import inspect

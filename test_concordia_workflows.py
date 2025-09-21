@@ -33,6 +33,23 @@ from concordia_workflows import (
 CONCORDIA_ORG_ID = "850617379619606726"
 
 
+def print_workflow_result(result, workflow_name: str):
+    """打印完整的工作流返回结果"""
+    print(f"\n🔍 {workflow_name} - 完整工作流返回结果:")
+    print("=" * 80)
+    
+    # 将dataclass转换为字典
+    if hasattr(result, '__dict__'):
+        result_dict = {}
+        for key, value in result.__dict__.items():
+            result_dict[key] = value
+    else:
+        result_dict = result
+    
+    print(json.dumps(result_dict, indent=2, ensure_ascii=False, default=str))
+    print("=" * 80)
+
+
 async def test_workflow_1(client: Client, api_key: str):
     """测试工作流1: 告诉我整体设备运行状态"""
     print("\n" + "=" * 80)
@@ -58,6 +75,8 @@ async def test_workflow_1(client: Client, api_key: str):
         print(f"🔴 离线设备: {result.device_status_overview.get('offline_devices', 0)}")
         print(f"⚠️  告警设备: {result.device_status_overview.get('alerting_devices', 0)}")
         print(f"💚 健康度: {result.health_metrics.get('online_percentage', 0)}%")
+        
+        print_workflow_result(result, "设备状态工作流")
         
         return True
         
@@ -96,6 +115,8 @@ async def test_workflow_2(client: Client, api_key: str):
             for device in result.matched_devices_list[:3]:
                 print(f"   - {device.get('name', '')} ({device.get('model', '')})")
         
+        print_workflow_result(result, "AP设备查询工作流")
+        
         return True
         
     except Exception as e:
@@ -127,6 +148,8 @@ async def test_workflow_3(client: Client, api_key: str):
         print(f"🌐 总网络数: {result.query_summary.get('total_networks', 0)}")
         print(f"🔥 重度使用客户端: {result.query_summary.get('total_heavy_usage_clients', 0)}")
         print(f"📊 最活跃网络: {result.client_distribution_analysis.get('most_active_network', 'N/A')}")
+        
+        print_workflow_result(result, "客户端数量统计工作流")
         
         return True
         
@@ -160,6 +183,47 @@ async def test_workflow_4(client: Client, api_key: str):
         print(f"✅ 固件一致型号: {result.firmware_summary.get('models_with_consistent_firmware', 0)}")
         print(f"⚠️  固件不一致型号: {result.firmware_summary.get('models_with_inconsistent_firmware', 0)}")
         print(f"🎯 整体一致性: {result.consistency_analysis.get('overall_consistency', False)}")
+        
+        print_workflow_result(result, "固件版本汇总工作流")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ 工作流执行失败: {e}")
+        return False
+
+
+async def test_workflow_5(client: Client, api_key: str):
+    """测试工作流5: 许可证详情"""
+    print("\n" + "=" * 80)
+    print("5. 测试许可证详情工作流")
+    print("-" * 80)
+    
+    input_data = ConcordiaWorkflowInput(
+        api_key=api_key,
+        org_id=CONCORDIA_ORG_ID
+    )
+    
+    try:
+        result = await client.execute_workflow(
+            LicenseDetailsWorkflow.run,
+            input_data,
+            id=f"test-license-details-{uuid.uuid4().hex[:8]}",
+            task_queue="meraki-workflows-queue",
+        )
+        
+        print("✅ 工作流执行成功")
+        print(f"📄 许可证状态: {result.license_analysis.get('status', 'unknown')}")
+        print(f"🏷️  许可证模式: {result.license_analysis.get('licensing_model', 'unknown')}")
+        print(f"📱 无线许可证数: {result.license_analysis.get('total_wireless_licenses', 0)}")
+        print(f"⏰ 到期时间: {result.license_analysis.get('expiration_date', 'unknown')}")
+        
+        if result.license_details:
+            print("📋 许可证详情:")
+            for license in result.license_details[:3]:
+                print(f"   - {license.get('device_type', 'N/A')}: {license.get('license_count', 0)} 个许可证")
+        
+        print_workflow_result(result, "许可证详情工作流")
         
         return True
         
@@ -198,6 +262,129 @@ async def test_workflow_6(client: Client, api_key: str):
             for action in result.recommendations['immediate_actions']:
                 print(f"   - {action}")
         
+        print_workflow_result(result, "设备巡检报告工作流")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ 工作流执行失败: {e}")
+        return False
+
+
+async def test_workflow_7(client: Client, api_key: str):
+    """测试工作流7: 楼层AP分布"""
+    print("\n" + "=" * 80)
+    print("7. 测试楼层AP分布工作流")
+    print("-" * 80)
+    
+    input_data = FloorplanAPInput(
+        api_key=api_key,
+        org_id=CONCORDIA_ORG_ID,
+        floor_name="一楼"
+    )
+    
+    try:
+        result = await client.execute_workflow(
+            FloorplanAPWorkflow.run,
+            input_data,
+            id=f"test-floorplan-ap-{uuid.uuid4().hex[:8]}",
+            task_queue="meraki-workflows-queue",
+        )
+        
+        print("✅ 工作流执行成功")
+        print(f"🏢 组织: {result.organization_name}")
+        print(f"📋 可用楼层平面图: {len(result.available_floorplans)} 个")
+        print(f"📡 选中楼层AP: {result.selected_floorplan.get('ap_count', 0)} 个")
+        print(f"🌐 AP分布网络: {len(result.ap_distribution_by_network) if hasattr(result, 'ap_distribution_by_network') else 0} 个")
+        
+        if result.available_floorplans:
+            print("📍 可用楼层:")
+            for floorplan in result.available_floorplans[:3]:
+                print(f"   - {floorplan.get('name', 'N/A')}")
+        
+        print_workflow_result(result, "楼层AP分布工作流")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ 工作流执行失败: {e}")
+        return False
+
+
+async def test_workflow_8(client: Client, api_key: str):
+    """测试工作流8: 设备点位图"""
+    print("\n" + "=" * 80)
+    print("8. 测试设备点位图工作流")
+    print("-" * 80)
+    
+    input_data = DeviceLocationInput(
+        api_key=api_key,
+        org_id=CONCORDIA_ORG_ID,
+        search_keyword="MR"
+    )
+    
+    try:
+        result = await client.execute_workflow(
+            DeviceLocationWorkflow.run,
+            input_data,
+            id=f"test-device-location-{uuid.uuid4().hex[:8]}",
+            task_queue="meraki-workflows-queue",
+        )
+        
+        print("✅ 工作流执行成功")
+        print(f"🔍 搜索关键词: {result.search_keyword}")
+        print(f"📱 匹配设备数: {result.total_matched}")
+        print(f"📍 设备详情: {len(result.matched_devices)} 个")
+        print(f"🏢 位置信息: {len(result.selected_device_locations)} 个")
+        
+        if result.matched_devices:
+            print("📍 匹配设备:")
+            for device in result.matched_devices[:3]:
+                print(f"   - {device.get('name', 'N/A')}: {device.get('model', 'N/A')}")
+        
+        print_workflow_result(result, "设备点位图工作流")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ 工作流执行失败: {e}")
+        return False
+
+
+async def test_workflow_9(client: Client, api_key: str):
+    """测试工作流9: 丢失设备追踪"""
+    print("\n" + "=" * 80)
+    print("9. 测试丢失设备追踪工作流")
+    print("-" * 80)
+    
+    input_data = LostDeviceTraceInput(
+        api_key=api_key,
+        org_id=CONCORDIA_ORG_ID,
+        client_mac=None,  # 空MAC地址，让工作流自动发现
+        client_description="test"
+    )
+    
+    try:
+        result = await client.execute_workflow(
+            LostDeviceTraceWorkflow.run,
+            input_data,
+            id=f"test-lost-device-trace-{uuid.uuid4().hex[:8]}",
+            task_queue="meraki-workflows-queue",
+        )
+        
+        print("✅ 工作流执行成功")
+        print(f"🔍 搜索条件: {result.search_criteria}")
+        print(f"👥 发现客户端: {len(result.discovered_clients)}")
+        print(f"📊 连接历史: {len(result.connection_history)} 条记录")
+        print(f"🎯 选中客户端: {result.selected_client_trace.get('description', 'N/A')}")
+        
+        if result.connection_history:
+            print("🔗 连接历史:")
+            for conn in result.connection_history[:3]:
+                print(f"   - {conn.get('description', 'N/A')}")
+        
+        print_workflow_result(result, "丢失设备追踪工作流")
+        
         return True
         
     except Exception as e:
@@ -230,6 +417,8 @@ async def test_workflow_10(client: Client, api_key: str):
         print(f"🟡 警告告警: {result.alerts_summary.get('warning_count', 0)}")
         print(f"ℹ️  信息告警: {result.alerts_summary.get('info_count', 0)}")
         print(f"📋 告警类别: {', '.join(result.alert_categories)}")
+        
+        print_workflow_result(result, "告警日志工作流")
         
         return True
         
@@ -268,7 +457,11 @@ async def main():
         "2": test_workflow_2,
         "3": test_workflow_3,
         "4": test_workflow_4,
+        "5": test_workflow_5,
         "6": test_workflow_6,
+        "7": test_workflow_7,
+        "8": test_workflow_8,
+        "9": test_workflow_9,
         "10": test_workflow_10,
     }
     

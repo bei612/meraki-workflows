@@ -130,7 +130,35 @@ class MerakiActivities:
         """获取网络楼层平面图"""
         api = MerakiAPI()
         async with aiohttp.ClientSession() as session:
-            return await api.get_network_floorplans(session, network_id)
+            return await api.get_network_floor_plans(session, network_id)
+
+    @activity.defn
+    async def get_network_clients_overview(self, network_id: str) -> Dict:
+        """获取网络客户端概览"""
+        api = MerakiAPI()
+        async with aiohttp.ClientSession() as session:
+            return await api.get_network_clients_overview(session, network_id)
+
+    @activity.defn
+    async def get_organization_licenses_overview(self, org_id: str) -> Dict:
+        """获取组织许可证概览"""
+        api = MerakiAPI()
+        async with aiohttp.ClientSession() as session:
+            return await api.get_organization_licenses_overview(session, org_id)
+
+    @activity.defn
+    async def get_floor_plan_by_id(self, network_id: str, floor_plan_id: str) -> Dict:
+        """获取指定楼层平面图详情"""
+        api = MerakiAPI()
+        async with aiohttp.ClientSession() as session:
+            return await api.get_floor_plan_by_id(session, network_id, floor_plan_id)
+
+    @activity.defn
+    async def get_network_wireless_client_connection_stats(self, network_id: str, client_id: str) -> Dict:
+        """获取指定无线客户端连接统计"""
+        api = MerakiAPI()
+        async with aiohttp.ClientSession() as session:
+            return await api.get_network_wireless_client_connection_stats(session, network_id, client_id)
 
     # ==================== 设备级 API ====================
 
@@ -139,7 +167,7 @@ class MerakiActivities:
         """获取设备信息"""
         api = MerakiAPI()
         async with aiohttp.ClientSession() as session:
-            return await api.get_device(session, serial)
+            return await api.get_device_info(session, serial)
 
     @activity.defn
     async def get_device_appliance_uplinks_settings(self, serial: str) -> Dict:

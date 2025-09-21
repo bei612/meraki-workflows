@@ -207,8 +207,9 @@ class DeviceStatusWorkflow:
             
             # 获取设备状态概览
             from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             status_overview = await workflow.execute_activity_method(
-                MerakiActivities.get_device_statuses_overview,
+                meraki_activities.get_device_statuses_overview,
                 input.org_id,
                 start_to_close_timeout=timedelta(seconds=30),
             )
@@ -259,17 +260,27 @@ class APDeviceQueryWorkflow:
     async def run(self, input: APDeviceQueryInput) -> APDeviceQueryResult:
         """查询指定关键词的AP设备状态"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 搜索包含关键词的设备
-            devices = await workflow.execute_activity_method(
+            all_devices = await workflow.execute_activity_method(
                 meraki_activities.get_organization_devices,
                 input.org_id,
-                True,  # use_pagination
-                5000,  # per_page
-                input.search_keyword,  # name_filter
                 start_to_close_timeout=timedelta(seconds=60),
             )
+            
+            # 在工作流中过滤包含关键词的设备
+            devices = []
+            search_keyword_lower = input.search_keyword.lower()
+            for device in all_devices:
+                device_name = (device.get("name") or "").lower()
+                if search_keyword_lower in device_name:
+                    devices.append(device)
             
             # 构建匹配设备列表
             matched_devices_list = []
@@ -286,7 +297,7 @@ class APDeviceQueryWorkflow:
             selected_devices_details = []
             for device in devices[:3]:
                 device_detail = await workflow.execute_activity_method(
-                    meraki_activities.get_device_info,
+                    meraki_activities.get_device,
                     device.get("serial", ""),
                     start_to_close_timeout=timedelta(seconds=30),
                 )
@@ -346,7 +357,12 @@ class ClientCountWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> ClientCountResult:
         """统计组织的客户端数量信息"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 获取所有网络
             networks = await workflow.execute_activity_method(
@@ -446,14 +462,17 @@ class FirmwareSummaryWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> FirmwareSummaryResult:
         """汇总组织内所有设备的固件版本信息"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 获取所有设备
             devices = await workflow.execute_activity_method(
                 meraki_activities.get_organization_devices,
                 input.org_id,
-                True,  # use_pagination
-                5000,  # per_page
                 start_to_close_timeout=timedelta(seconds=120),
             )
             
@@ -539,33 +558,40 @@ class LicenseDetailsWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> LicenseDetailsResult:
         """获取组织的许可证详情"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
             
-            # 获取许可证概览
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
+            
+            # 获取许可证概览（Co-termination licensing模式）
             license_overview = await workflow.execute_activity_method(
                 meraki_activities.get_organization_licenses_overview,
                 input.org_id,
                 start_to_close_timeout=timedelta(seconds=30),
             )
             
-            # 获取许可证详情
-            try:
-                license_details = await workflow.execute_activity_method(
-                    meraki_activities.get_organization_licenses,
-                    input.org_id,
-                    start_to_close_timeout=timedelta(seconds=60),
-                )
-            except Exception:
-                # 如果详情API失败，使用空列表
-                license_details = []
-            
-            # 分析许可证状态
+            # 基于概览数据分析许可证状态
             license_analysis = {
-                "overview_available": bool(license_overview),
-                "details_available": bool(license_details),
-                "total_licenses": len(license_details) if license_details else 0,
-                "status": license_overview.get("status", "unknown") if license_overview else "unknown"
+                "licensing_model": "Co-termination",
+                "status": license_overview.get("status", "unknown"),
+                "expiration_date": license_overview.get("expirationDate", "unknown"),
+                "licensed_device_counts": license_overview.get("licensedDeviceCounts", {}),
+                "total_wireless_licenses": license_overview.get("licensedDeviceCounts", {}).get("wireless", 0),
+                "api_status": "full"
             }
+            
+            # 构建许可证详情（基于概览数据）
+            license_details = []
+            if license_overview.get("licensedDeviceCounts"):
+                for device_type, count in license_overview.get("licensedDeviceCounts", {}).items():
+                    license_details.append({
+                        "device_type": device_type,
+                        "license_count": count,
+                        "status": license_overview.get("status", "unknown"),
+                        "expiration_date": license_overview.get("expirationDate", "unknown")
+                    })
             
             return LicenseDetailsResult(
                 organization_name="Concordia",
@@ -598,7 +624,12 @@ class DeviceInspectionWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> DeviceInspectionResult:
         """生成综合设备巡检报告"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 并发获取多种信息
             status_overview_task = workflow.execute_activity_method(
@@ -719,7 +750,12 @@ class FloorplanAPWorkflow:
     async def run(self, input: FloorplanAPInput) -> FloorplanAPResult:
         """获取楼层的AP分布信息"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 获取所有网络
             networks = await workflow.execute_activity_method(
@@ -737,7 +773,7 @@ class FloorplanAPWorkflow:
                 network_id = network.get("id", "")
                 try:
                     floorplans = await workflow.execute_activity_method(
-                        meraki_activities.get_network_floor_plans,
+                        meraki_activities.get_network_floorplans,
                         network_id,
                         start_to_close_timeout=timedelta(seconds=30),
                     )
@@ -822,17 +858,27 @@ class DeviceLocationWorkflow:
     async def run(self, input: DeviceLocationInput) -> DeviceLocationResult:
         """获取指定设备的点位图信息"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 搜索包含关键词的设备
-            devices = await workflow.execute_activity_method(
+            all_devices = await workflow.execute_activity_method(
                 meraki_activities.get_organization_devices,
                 input.org_id,
-                True,  # use_pagination
-                5000,  # per_page
-                input.search_keyword,  # name_filter
                 start_to_close_timeout=timedelta(seconds=60),
             )
+            
+            # 在工作流中过滤包含关键词的设备
+            devices = []
+            search_keyword_lower = input.search_keyword.lower()
+            for device in all_devices:
+                device_name = (device.get("name") or "").lower()
+                if search_keyword_lower in device_name:
+                    devices.append(device)
             
             # 构建匹配设备列表
             matched_devices = []
@@ -849,7 +895,7 @@ class DeviceLocationWorkflow:
             selected_device_locations = []
             for device in devices[:2]:
                 device_detail = await workflow.execute_activity_method(
-                    meraki_activities.get_device_info,
+                    meraki_activities.get_device,
                     device.get("serial", ""),
                     start_to_close_timeout=timedelta(seconds=30),
                 )
@@ -922,7 +968,12 @@ class LostDeviceTraceWorkflow:
     async def run(self, input: LostDeviceTraceInput) -> LostDeviceTraceResult:
         """追踪丢失设备的连接历史"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 如果没有指定MAC地址，先发现活跃客户端
             discovered_clients = []
@@ -1032,7 +1083,12 @@ class AlertsLogWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> AlertsLogResult:
         """获取组织的告警日志"""
         try:
-            meraki_activities = MerakiActivities(input.api_key)
+            # 设置API密钥环境变量
+            import os
+            os.environ["MERAKI_API_KEY"] = input.api_key
+            
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
             
             # 获取组织告警
             alerts = await workflow.execute_activity_method(

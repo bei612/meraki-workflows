@@ -136,18 +136,17 @@ def get_dark_purple_theme():
     }
 
 def get_purple_color_palette():
-    """获取紫色系调色板"""
+    """获取暗紫色系调色板"""
     return [
-        "#8a2be2",  # 蓝紫色
-        "#9370db",  # 中紫色
-        "#ba55d3",  # 中兰花紫
-        "#da70d6",  # 兰花紫
-        "#dda0dd",  # 梅红色
-        "#ee82ee",  # 紫罗兰
-        "#ff69b4",  # 热粉红
-        "#ff1493",  # 深粉红
-        "#dc143c",  # 深红色
-        "#b22222"   # 火砖色
+        "#4a148c",  # 深紫色
+        "#6a1b9a",  # 暗紫色
+        "#7b1fa2",  # 深紫罗兰
+        "#8e24aa",  # 紫色
+        "#9c27b0",  # 暗紫红
+        "#ab47bc",  # 中紫色
+        "#ba68c8",  # 浅紫色
+        "#ce93d8",  # 淡紫色
+        "#e1bee7"   # 极淡紫色
     ]
 
 def merge_theme_config(base_config, theme_config):
@@ -385,37 +384,43 @@ class DeviceStatusWorkflow:
             theme_config = get_dark_purple_theme()
             
             pie_option = {
-                "title": {"text": "设备状态分布", "left": "center"},
-                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
+                "title": {"text": "状态", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
+                "tooltip": {"trigger": "item", "formatter": "{b}: {c}"},
                 "legend": {
-                    "orient": "vertical", 
-                    "left": "left",
-                    "top": "middle",
-                    "itemGap": 15
+                    "orient": "horizontal", 
+                    "left": "center",
+                    "bottom": "2%",
+                    "itemGap": 15,
+                    "itemWidth": 10,
+                    "itemHeight": 10,
+                    "textStyle": {
+                        "fontSize": 10
+                    }
                 },
                 "series": [{
-                    "name": "设备状态",
+                    "name": "状态",
                     "type": "pie",
-                    "radius": ["30%", "70%"],  # 环形饼图
-                    "center": ["60%", "50%"],
+                    "radius": ["40%", "85%"],  # 环形饼图，最大化半径
+                    "center": ["50%", "50%"],  # 完全居中
                     "data": [
-                        {"name": "在线设备", "value": counts.get("online", 0), "itemStyle": {"color": "#8a2be2"}},
-                        {"name": "离线设备", "value": counts.get("offline", 0), "itemStyle": {"color": "#ff1493"}},
-                        {"name": "告警设备", "value": counts.get("alerting", 0), "itemStyle": {"color": "#ff69b4"}},
-                        {"name": "休眠设备", "value": counts.get("dormant", 0), "itemStyle": {"color": "#9370db"}}
+                        {"name": "在线", "value": counts.get("online", 0), "itemStyle": {"color": "#4a148c"}},
+                        {"name": "离线", "value": counts.get("offline", 0), "itemStyle": {"color": "#6a1b9a"}},
+                        {"name": "告警", "value": counts.get("alerting", 0), "itemStyle": {"color": "#7b1fa2"}},
+                        {"name": "休眠", "value": counts.get("dormant", 0), "itemStyle": {"color": "#8e24aa"}}
                     ],
                     "emphasis": {
                         "itemStyle": {
-                            "shadowBlur": 15,
+                            "shadowBlur": 12,
                             "shadowOffsetX": 0,
-                            "shadowColor": "rgba(138, 43, 226, 0.8)"
+                            "shadowColor": "rgba(74, 20, 140, 0.6)"
                         }
                     },
                     "label": {
                         "show": True,
-                        "formatter": "{b}: {c}\n({d}%)",
-                        "color": "#ffffff",
-                        "fontSize": 12
+                        "formatter": "{c}",
+                        "color": "#e6e6fa",
+                        "fontSize": 12,
+                        "fontWeight": "bold"
                     },
                     "labelLine": {
                         "show": True,
@@ -432,12 +437,12 @@ class DeviceStatusWorkflow:
             echarts_pie_data = [
                 {
                     "type": "pie",
-                    "title": "设备状态分布",
+                    "title": "状态",
                     "data": [
-                        {"name": "在线设备", "value": counts.get("online", 0), "itemStyle": {"color": "#8a2be2"}},
-                        {"name": "离线设备", "value": counts.get("offline", 0), "itemStyle": {"color": "#ff1493"}},
-                        {"name": "告警设备", "value": counts.get("alerting", 0), "itemStyle": {"color": "#ff69b4"}},
-                        {"name": "休眠设备", "value": counts.get("dormant", 0), "itemStyle": {"color": "#9370db"}}
+                        {"name": "在线", "value": counts.get("online", 0), "itemStyle": {"color": "#4a148c"}},
+                        {"name": "离线", "value": counts.get("offline", 0), "itemStyle": {"color": "#6a1b9a"}},
+                        {"name": "告警", "value": counts.get("alerting", 0), "itemStyle": {"color": "#7b1fa2"}},
+                        {"name": "休眠", "value": counts.get("dormant", 0), "itemStyle": {"color": "#8e24aa"}}
                     ],
                     "option": pie_option
                 }
@@ -703,18 +708,18 @@ class ClientCountWorkflow:
                     "type": "bar",
                     "title": "各网络客户端数量统计",
                 "option": merge_theme_config({
-                    "title": {"text": "各网络客户端数量统计", "left": "center"},
+                    "title": {"text": "客户端", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
                     "tooltip": {"trigger": "axis"},
-                    "legend": {"data": ["客户端数量", "重度使用客户端"], "top": "10%"},
+                    "grid": {"left": "8%", "right": "8%", "top": "15%", "bottom": "10%", "containLabel": True},
                         "xAxis": {
                             "type": "category",
                             "data": [n["network_name"] for n in networks_breakdown],
-                            "axisLabel": {"rotate": 45}
+                            "axisLabel": {"rotate": 45, "fontSize": 10}
                         },
-                        "yAxis": {"type": "value", "name": "数量"},
+                        "yAxis": {"type": "value", "axisLabel": {"fontSize": 10}},
                         "series": [
                             {
-                                "name": "客户端数量",
+                                "name": "总数",
                                 "type": "bar",
                                 "data": [n["client_count"] for n in networks_breakdown],
                                 "itemStyle": {
@@ -722,23 +727,23 @@ class ClientCountWorkflow:
                                         "type": "linear",
                                         "x": 0, "y": 0, "x2": 0, "y2": 1,
                                         "colorStops": [
-                                            {"offset": 0, "color": "#8a2be2"},
-                                            {"offset": 1, "color": "#9370db"}
+                                            {"offset": 0, "color": "#4a148c"},
+                                            {"offset": 1, "color": "#6a1b9a"}
                                         ]
                                     },
-                                    "borderColor": "#ffffff",
+                                    "borderColor": "#2e2e4f",
                                     "borderWidth": 1
                                 },
                                 "emphasis": {
                                     "itemStyle": {
-                                        "color": "#ba55d3",
-                                        "shadowBlur": 10,
-                                        "shadowColor": "rgba(138, 43, 226, 0.8)"
+                                        "color": "#7b1fa2",
+                                        "shadowBlur": 8,
+                                        "shadowColor": "rgba(74, 20, 140, 0.6)"
                                     }
                                 }
                             },
                             {
-                                "name": "重度使用客户端",
+                                "name": "重度",
                                 "type": "bar",
                                 "data": [n["heavy_usage_count"] for n in networks_breakdown],
                                 "itemStyle": {
@@ -746,18 +751,18 @@ class ClientCountWorkflow:
                                         "type": "linear",
                                         "x": 0, "y": 0, "x2": 0, "y2": 1,
                                         "colorStops": [
-                                            {"offset": 0, "color": "#ff69b4"},
-                                            {"offset": 1, "color": "#ff1493"}
+                                            {"offset": 0, "color": "#7b1fa2"},
+                                            {"offset": 1, "color": "#8e24aa"}
                                         ]
                                     },
-                                    "borderColor": "#ffffff",
+                                    "borderColor": "#2e2e4f",
                                     "borderWidth": 1
                                 },
                                 "emphasis": {
                                     "itemStyle": {
-                                        "color": "#da70d6",
-                                        "shadowBlur": 10,
-                                        "shadowColor": "rgba(255, 105, 180, 0.8)"
+                                        "color": "#9c27b0",
+                                        "shadowBlur": 8,
+                                        "shadowColor": "rgba(123, 31, 162, 0.6)"
                                     }
                                 }
                             }
@@ -887,18 +892,19 @@ class FirmwareSummaryWorkflow:
                         "type": "bar",
                         "title": "设备型号固件版本分布",
                         "option": merge_theme_config({
-                            "title": {"text": "设备型号固件版本分布", "left": "center"},
+                            "title": {"text": "固件分布", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
                             "tooltip": {"trigger": "axis"},
-                            "legend": {"data": ["设备数量"], "top": "10%"},
+                            "grid": {"left": "8%", "right": "8%", "top": "15%", "bottom": "15%", "containLabel": True},
                             "xAxis": {
                                 "type": "category",
                                 "data": list(model_firmware_breakdown.keys()),
-                                "axisLabel": {"rotate": 0}
+                                "axisLabel": {"rotate": 0, "fontSize": 11}
                             },
-                            "yAxis": {"type": "value", "name": "设备数量"},
+                            "yAxis": {"type": "value", "axisLabel": {"fontSize": 11}},
                             "series": [{
-                                "name": "设备数量",
+                                "name": "数量",
                                 "type": "bar",
+                                "barWidth": "60%",
                                 "data": [
                                     {
                                         "value": info["device_count"],
@@ -907,11 +913,11 @@ class FirmwareSummaryWorkflow:
                                                 "type": "linear",
                                                 "x": 0, "y": 0, "x2": 0, "y2": 1,
                                                 "colorStops": [
-                                                    {"offset": 0, "color": "#8a2be2" if info["is_consistent"] else "#ff1493"},
-                                                    {"offset": 1, "color": "#9370db" if info["is_consistent"] else "#dc143c"}
+                                                    {"offset": 0, "color": "#4a148c" if info["is_consistent"] else "#6a1b9a"},
+                                                    {"offset": 1, "color": "#6a1b9a" if info["is_consistent"] else "#7b1fa2"}
                                                 ]
                                             },
-                                            "borderColor": "#ffffff",
+                                            "borderColor": "#2e2e4f",
                                             "borderWidth": 1
                                         }
                                     } for info in model_firmware_breakdown.values()
@@ -987,7 +993,7 @@ class LicenseDetailsWorkflow:
                     "type": "gauge",
                     "title": "许可证使用状态",
                     "option": merge_theme_config({
-                        "title": {"text": "许可证使用状态", "left": "center"},
+                        "title": {"text": "许可证状态", "left": "center", "textStyle": {"fontSize": 14}},
                         "series": [{
                             "name": "许可证状态",
                             "type": "gauge",
@@ -999,14 +1005,14 @@ class LicenseDetailsWorkflow:
                             }],
                             "axisLine": {
                                 "lineStyle": {
-                                    "width": 30,
-                                    "color": [[0.3, "#ff1493"], [0.7, "#ff69b4"], [1, "#8a2be2"]]
+                                    "width": 25,
+                                    "color": [[0.3, "#6a1b9a"], [0.7, "#7b1fa2"], [1, "#4a148c"]]
                                 }
                             },
                             "pointer": {
                                 "itemStyle": {
-                                    "color": "#ffffff",
-                                    "borderColor": "#8a2be2",
+                                    "color": "#e6e6fa",
+                                    "borderColor": "#4a148c",
                                     "borderWidth": 2
                                 }
                             },

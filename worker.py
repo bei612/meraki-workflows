@@ -13,15 +13,8 @@ from typing import Optional
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-# 导入原有工作流
-from translate import TranslateActivities
-from greeting import GreetSomeone
-
-# 注意：example_workflow 文件已被删除，这里注释掉相关导入
-# from example_workflow import OrganizationInventoryWorkflow, DeviceDetailsWorkflow
-
 # 导入Concordia业务工作流 - ECharts图表版本
-from concordia_workflowse_charts import (
+from concordia_workflows_echarts import (
     DeviceStatusWorkflow,
     APDeviceQueryWorkflow, 
     ClientCountWorkflow,
@@ -45,7 +38,6 @@ logger = logging.getLogger(__name__)
 DEFAULT_TEMPORAL_HOST = "temporal:7233"  # 保持原有配置
 DEFAULT_NAMESPACE = "avaca"  # 保持原有命名空间
 MERAKI_TASK_QUEUE_NAME = "meraki-workflows-queue"
-GREETING_TASK_QUEUE_NAME = "greeting-tasks-queue"
 
 
 async def create_meraki_worker(
@@ -106,36 +98,6 @@ async def create_meraki_worker(
     return worker
 
 
-async def create_greeting_worker(
-    client: Client,
-    task_queue: str = GREETING_TASK_QUEUE_NAME
-) -> Worker:
-    """
-    创建问候工作流Worker（保持向后兼容）
-    
-    Args:
-        client: Temporal客户端
-        task_queue: 任务队列名称
-        
-    Returns:
-        配置好的Worker实例
-    """
-    import aiohttp
-    
-    async with aiohttp.ClientSession() as session:
-        activities = TranslateActivities(session)
-        
-        worker = Worker(
-            client,
-            task_queue=task_queue,
-            workflows=[GreetSomeone],
-            activities=[activities.greet_in_spanish, activities.farewell_in_spanish],
-        )
-        
-        logger.info("创建Greeting Worker（向后兼容）")
-        return worker
-
-
 async def run_meraki_worker(
     temporal_host: str = DEFAULT_TEMPORAL_HOST,
     namespace: str = DEFAULT_NAMESPACE,
@@ -184,61 +146,6 @@ async def run_meraki_worker(
         raise
 
 
-async def run_greeting_worker(
-    temporal_host: str = DEFAULT_TEMPORAL_HOST,
-    namespace: str = "avaca"  # 保持原有命名空间
-):
-    """
-    运行问候工作流Worker（向后兼容）
-    
-    Args:
-        temporal_host: Temporal服务器地址
-        namespace: 命名空间
-    """
-    try:
-        logger.info(f"连接到Temporal服务器: {temporal_host}")
-        logger.info(f"命名空间: {namespace}")
-        
-        client = await Client.connect(temporal_host, namespace=namespace)
-        logger.info("✅ 成功连接到Temporal服务器")
-        
-        worker = await create_greeting_worker(client)
-        
-        logger.info("🚀 启动Greeting Temporal Worker...")
-        logger.info("Worker已准备就绪，等待问候工作流执行请求")
-        
-        await worker.run()
-        
-    except KeyboardInterrupt:
-        logger.info("收到中断信号，正在关闭Worker...")
-    except Exception as e:
-        logger.error(f"Worker运行失败: {str(e)}")
-        raise
-
-
-async def run_all_workers(
-    temporal_host: str = DEFAULT_TEMPORAL_HOST
-):
-    """
-    同时运行所有Worker（并发模式）
-    
-    Args:
-        temporal_host: Temporal服务器地址
-    """
-    logger.info("🚀 启动所有Temporal Workers...")
-    
-    try:
-        # 并发运行两个Worker
-        await asyncio.gather(
-            run_meraki_worker(temporal_host, DEFAULT_NAMESPACE, MERAKI_TASK_QUEUE_NAME),
-            run_greeting_worker(temporal_host, DEFAULT_NAMESPACE),
-            return_exceptions=True
-        )
-    except Exception as e:
-        logger.error(f"运行所有Workers失败: {str(e)}")
-        raise
-
-
 def print_usage():
     """打印使用说明"""
     print("🔧 Meraki Temporal Worker")
@@ -246,8 +153,6 @@ def print_usage():
     print("用法:")
     print("  python worker.py                    # 运行Meraki工作流Worker")
     print("  python worker.py meraki             # 运行Meraki工作流Worker")
-    print("  python worker.py greeting           # 运行问候工作流Worker（向后兼容）")
-    print("  python worker.py all                # 同时运行所有Workers")
     print("  python worker.py --help             # 显示帮助信息")
     print()
     print("环境变量:")
@@ -277,11 +182,7 @@ async def main():
         return
     
     try:
-        if mode == "greeting":
-            await run_greeting_worker(temporal_host, namespace)
-        elif mode == "all":
-            await run_all_workers(temporal_host)
-        elif mode == "meraki":
+        if mode == "meraki":
             await run_meraki_worker(temporal_host, namespace)
         else:
             logger.error(f"未知模式: {mode}")

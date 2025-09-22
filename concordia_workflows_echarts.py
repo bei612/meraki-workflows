@@ -166,7 +166,6 @@ def merge_theme_config(base_config, theme_config):
 @dataclass
 class ConcordiaWorkflowInput:
     """Concordia工作流通用输入"""
-    api_key: str
     org_id: str = "850617379619606726"  # Concordia组织ID
 
 
@@ -188,7 +187,6 @@ class DeviceStatusResult:
 @dataclass
 class APDeviceQueryInput:
     """AP设备查询输入"""
-    api_key: str
     org_id: str = "850617379619606726"
     search_keyword: str = "H330"  # 默认搜索关键词
 
@@ -274,7 +272,6 @@ class DeviceInspectionResult:
 @dataclass
 class FloorplanAPInput:
     """楼层AP分布查询输入"""
-    api_key: str
     org_id: str = "850617379619606726"
     floor_name: Optional[str] = None  # 可选的楼层名称过滤
 
@@ -297,7 +294,6 @@ class FloorplanAPResult:
 @dataclass
 class DeviceLocationInput:
     """设备点位图查询输入"""
-    api_key: str
     org_id: str = "850617379619606726"
     search_keyword: str = "Corr"  # 设备名称关键词
 
@@ -319,7 +315,6 @@ class DeviceLocationResult:
 @dataclass
 class LostDeviceTraceInput:
     """丢失设备追踪输入"""
-    api_key: str
     org_id: str = "850617379619606726"
     client_mac: Optional[str] = None  # 可选的MAC地址
     client_description: Optional[str] = None  # 可选的设备描述
@@ -371,10 +366,6 @@ class DeviceStatusWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> DeviceStatusResult:
         """获取整体设备运行状态"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             # 获取设备状态概览
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
@@ -499,10 +490,6 @@ class APDeviceQueryWorkflow:
     async def run(self, input: APDeviceQueryInput) -> APDeviceQueryResult:
         """查询指定关键词的AP设备状态"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -650,10 +637,6 @@ class ClientCountWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> ClientCountResult:
         """统计组织的客户端数量信息"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -831,10 +814,6 @@ class FirmwareSummaryWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> FirmwareSummaryResult:
         """汇总组织内所有设备的固件版本信息"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -971,10 +950,6 @@ class LicenseDetailsWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> LicenseDetailsResult:
         """获取组织的许可证详情"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -1087,10 +1062,6 @@ class DeviceInspectionWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> DeviceInspectionResult:
         """生成综合设备巡检报告"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -1272,10 +1243,6 @@ class FloorplanAPWorkflow:
     async def run(self, input: FloorplanAPInput) -> FloorplanAPResult:
         """获取楼层的AP分布信息"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -1437,10 +1404,6 @@ class DeviceLocationWorkflow:
     async def run(self, input: DeviceLocationInput) -> DeviceLocationResult:
         """获取指定设备的点位图信息"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -1595,10 +1558,6 @@ class LostDeviceTraceWorkflow:
     async def run(self, input: LostDeviceTraceInput) -> LostDeviceTraceResult:
         """追踪丢失设备的连接历史"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             
@@ -1759,10 +1718,6 @@ class AlertsLogWorkflow:
     async def run(self, input: ConcordiaWorkflowInput) -> AlertsLogResult:
         """获取组织的告警日志"""
         try:
-            # 设置API密钥环境变量
-            import os
-            os.environ["MERAKI_API_KEY"] = input.api_key
-            
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
             

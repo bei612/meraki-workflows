@@ -4,11 +4,13 @@
 测试 Concordia 业务场景的 Temporal Workflow
 
 用法：
-  python test_concordia_workflows.py <API_KEY> [workflow_number]
+  python test_concordia_workflows.py [workflow_number]
 
 示例：
-  python test_concordia_workflows.py 4fb1f6a6c032f662ab0d8315b8cf45268b615d66 1
-  python test_concordia_workflows.py 4fb1f6a6c032f662ab0d8315b8cf45268b615d66 all
+  python test_concordia_workflows.py 1
+  python test_concordia_workflows.py all
+
+注意：API Key 由 merakiAPI.py 自动从环境变量读取
 """
 
 import asyncio
@@ -16,7 +18,7 @@ import sys
 import json
 import uuid
 from temporalio.client import Client
-from concordia_workflowse_charts import (
+from concordia_workflows_echarts import (
     DeviceStatusWorkflow, ConcordiaWorkflowInput,
     APDeviceQueryWorkflow, APDeviceQueryInput,
     ClientCountWorkflow,
@@ -50,14 +52,13 @@ def print_workflow_result(result, workflow_name: str):
     print("=" * 80)
 
 
-async def test_workflow_1(client: Client, api_key: str):
+async def test_workflow_1(client: Client):
     """测试工作流1: 告诉我整体设备运行状态"""
     print("\n" + "=" * 80)
     print("1. 测试设备状态工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -85,14 +86,13 @@ async def test_workflow_1(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_2(client: Client, api_key: str):
+async def test_workflow_2(client: Client):
     """测试工作流2: AP设备状态查询"""
     print("\n" + "=" * 80)
     print("2. 测试AP设备查询工作流")
     print("-" * 80)
     
     input_data = APDeviceQueryInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID,
         search_keyword="H330"
     )
@@ -124,14 +124,13 @@ async def test_workflow_2(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_3(client: Client, api_key: str):
+async def test_workflow_3(client: Client):
     """测试工作流3: 客户端数量统计"""
     print("\n" + "=" * 80)
     print("3. 测试客户端数量统计工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -158,14 +157,13 @@ async def test_workflow_3(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_4(client: Client, api_key: str):
+async def test_workflow_4(client: Client):
     """测试工作流4: 固件版本汇总"""
     print("\n" + "=" * 80)
     print("4. 测试固件版本汇总工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -193,14 +191,13 @@ async def test_workflow_4(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_5(client: Client, api_key: str):
+async def test_workflow_5(client: Client):
     """测试工作流5: 许可证详情"""
     print("\n" + "=" * 80)
     print("5. 测试许可证详情工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -232,14 +229,13 @@ async def test_workflow_5(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_6(client: Client, api_key: str):
+async def test_workflow_6(client: Client):
     """测试工作流6: 设备巡检报告"""
     print("\n" + "=" * 80)
     print("6. 测试设备巡检报告工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -271,14 +267,13 @@ async def test_workflow_6(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_7(client: Client, api_key: str):
+async def test_workflow_7(client: Client):
     """测试工作流7: 楼层AP分布"""
     print("\n" + "=" * 80)
     print("7. 测试楼层AP分布工作流")
     print("-" * 80)
     
     input_data = FloorplanAPInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID,
         floor_name="一楼"
     )
@@ -311,14 +306,13 @@ async def test_workflow_7(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_8(client: Client, api_key: str):
+async def test_workflow_8(client: Client):
     """测试工作流8: 设备点位图"""
     print("\n" + "=" * 80)
     print("8. 测试设备点位图工作流")
     print("-" * 80)
     
     input_data = DeviceLocationInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID,
         search_keyword="MR"
     )
@@ -351,14 +345,13 @@ async def test_workflow_8(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_9(client: Client, api_key: str):
+async def test_workflow_9(client: Client):
     """测试工作流9: 丢失设备追踪"""
     print("\n" + "=" * 80)
     print("9. 测试丢失设备追踪工作流")
     print("-" * 80)
     
     input_data = LostDeviceTraceInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID,
         client_mac=None,  # 空MAC地址，让工作流自动发现
         client_description="test"
@@ -392,14 +385,13 @@ async def test_workflow_9(client: Client, api_key: str):
         return False
 
 
-async def test_workflow_10(client: Client, api_key: str):
+async def test_workflow_10(client: Client):
     """测试工作流10: 告警日志"""
     print("\n" + "=" * 80)
     print("10. 测试告警日志工作流")
     print("-" * 80)
     
     input_data = ConcordiaWorkflowInput(
-        api_key=api_key,
         org_id=CONCORDIA_ORG_ID
     )
     
@@ -429,18 +421,11 @@ async def test_workflow_10(client: Client, api_key: str):
 
 async def main():
     """主函数"""
-    if len(sys.argv) < 2:
-        print("用法: python test_concordia_workflows.py <API_KEY> [workflow_number]")
-        print("示例: python test_concordia_workflows.py your_api_key 1")
-        print("      python test_concordia_workflows.py your_api_key all")
-        sys.exit(1)
-    
-    api_key = sys.argv[1]
-    workflow_number = sys.argv[2] if len(sys.argv) > 2 else "all"
+    workflow_number = sys.argv[1] if len(sys.argv) > 1 else "all"
     
     print("🚀 开始测试 Concordia Temporal Workflows")
-    print(f"🔑 API Key: {api_key[:10]}...")
     print(f"🎯 测试范围: {workflow_number}")
+    print("🔑 API Key: 使用merakiAPI.py中的默认配置")
     
     # 连接到Temporal服务
     try:
@@ -472,12 +457,12 @@ async def main():
         # 测试所有工作流
         for num, test_func in test_functions.items():
             total_count += 1
-            if await test_func(client, api_key):
+            if await test_func(client):
                 success_count += 1
     elif workflow_number in test_functions:
         # 测试指定工作流
         total_count = 1
-        if await test_functions[workflow_number](client, api_key):
+        if await test_functions[workflow_number](client):
             success_count = 1
     else:
         print(f"❌ 不支持的工作流编号: {workflow_number}")

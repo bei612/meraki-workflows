@@ -144,13 +144,12 @@ python test_concordia_workflows.py your_api_key 2  # AP设备查询
 
 ```
 meraki-workflows/
-├── concordia_workflows.py      # 10个业务工作流实现
+├── concordia_workflows_echarts.py # 10个业务工作流实现（ECharts版本）
 ├── meraki.py                   # 61个API Activity实现
+├── merakiAPI.py               # Meraki API客户端
 ├── worker.py                   # Temporal Worker配置
 ├── test_concordia_workflows.py # 工作流测试脚本
-├── testConcordia.py           # 原始业务逻辑（参考）
-├── greeting.py                # Greeting示例工作流
-├── translate.py               # Translation Activities
+├── meraki_dashboard_api_1_61_0.json # 官方API规范
 └── README.md                  # 本文档
 ```
 
@@ -158,7 +157,7 @@ meraki-workflows/
 
 ### 添加新的工作流
 
-1. 在 `concordia_workflows.py` 中定义新的工作流类
+1. 在 `concordia_workflows_echarts.py` 中定义新的工作流类
 2. 使用 `@workflow.defn` 装饰器
 3. 定义输入输出数据类
 4. 在 `worker.py` 中注册新工作流

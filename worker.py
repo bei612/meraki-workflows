@@ -20,8 +20,8 @@ from greeting import GreetSomeone
 # 注意：example_workflow 文件已被删除，这里注释掉相关导入
 # from example_workflow import OrganizationInventoryWorkflow, DeviceDetailsWorkflow
 
-# 导入Concordia业务工作流
-from concordia_workflows import (
+# 导入Concordia业务工作流 - ECharts图表版本
+from concordia_workflowse_charts import (
     DeviceStatusWorkflow,
     APDeviceQueryWorkflow, 
     ClientCountWorkflow,

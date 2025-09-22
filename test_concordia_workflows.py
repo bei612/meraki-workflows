@@ -16,7 +16,7 @@ import sys
 import json
 import uuid
 from temporalio.client import Client
-from concordia_workflows import (
+from concordia_workflowse_charts import (
     DeviceStatusWorkflow, ConcordiaWorkflowInput,
     APDeviceQueryWorkflow, APDeviceQueryInput,
     ClientCountWorkflow,

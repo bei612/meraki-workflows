@@ -15,6 +15,7 @@ from temporalio.worker import Worker
 
 # 导入Concordia业务工作流 - ECharts图表版本
 from concordia_workflows_echarts import (
+    # 基础工作流 (10个)
     DeviceStatusWorkflow,
     APDeviceQueryWorkflow, 
     ClientCountWorkflow,
@@ -24,7 +25,12 @@ from concordia_workflows_echarts import (
     FloorplanAPWorkflow,
     DeviceLocationWorkflow,
     LostDeviceTraceWorkflow,
-    AlertsLogWorkflow
+    AlertsLogWorkflow,
+    # 复杂多Activity组合工作流 (4个)
+    NetworkHealthAnalysisWorkflow,
+    SecurityPostureWorkflow,
+    TroubleshootingWorkflow,
+    CapacityPlanningWorkflow
 )
 
 # 配置日志
@@ -54,9 +60,9 @@ async def create_meraki_worker(
     Returns:
         配置好的Worker实例
     """
-    # 所有Meraki工作流（Concordia业务场景）
+    # 所有Meraki工作流（Concordia业务场景 + 复杂多Activity组合场景）
     meraki_workflows = [
-        # Concordia业务工作流 - 对应testConcordia.py的10个场景
+        # 基础工作流 - 对应testConcordia.py的10个场景
         DeviceStatusWorkflow,
         APDeviceQueryWorkflow,
         ClientCountWorkflow,
@@ -67,6 +73,11 @@ async def create_meraki_worker(
         DeviceLocationWorkflow,
         LostDeviceTraceWorkflow,
         AlertsLogWorkflow,
+        # 复杂多Activity组合工作流 - 4个高级场景
+        NetworkHealthAnalysisWorkflow,
+        SecurityPostureWorkflow,
+        TroubleshootingWorkflow,
+        CapacityPlanningWorkflow,
     ]
     
     # 导入重构后的MerakiActivities
@@ -125,6 +136,7 @@ async def run_meraki_worker(
         logger.info("=" * 60)
         logger.info("Worker已准备就绪，等待工作流执行请求")
         logger.info("支持的工作流场景:")
+        logger.info("📊 基础工作流 (10个):")
         logger.info("  1. 设备状态查询")
         logger.info("  2. AP设备查询")
         logger.info("  3. 客户端统计")
@@ -135,6 +147,11 @@ async def run_meraki_worker(
         logger.info("  8. 设备点位图")
         logger.info("  9. 丢失设备追踪")
         logger.info("  10. 告警日志查询")
+        logger.info("🚀 复杂多Activity组合工作流 (4个):")
+        logger.info("  11. 网络健康全景分析")
+        logger.info("  12. 安全态势感知分析")
+        logger.info("  13. 运维故障诊断")
+        logger.info("  14. 容量规划分析")
         logger.info("=" * 60)
         
         await worker.run()

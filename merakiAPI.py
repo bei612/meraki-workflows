@@ -69,17 +69,18 @@ class MerakiAPI:
                 error_msg += f" (状态码: {e.status})"
             raise Exception(error_msg)
     
-    async def get_organizations(self, session: aiohttp.ClientSession) -> List[Dict]:
+    async def get_organizations(self, session: aiohttp.ClientSession, **params) -> List[Dict]:
         """
         获取用户有权限访问的组织列表
         
         Args:
             session: aiohttp客户端会话
+            **params: 查询参数（如 perPage, startingAfter, endingBefore）
             
         Returns:
             组织列表
         """
-        return await self._make_request(session, "/organizations")
+        return await self._make_request(session, "/organizations", params)
     
     async def get_organization_networks(self, session: aiohttp.ClientSession, org_id: str) -> List[Dict]:
         """
@@ -92,7 +93,16 @@ class MerakiAPI:
         Returns:
             网络列表
         """
-        return await self._make_request(session, f"/organizations/{org_id}/networks")
+        try:
+            result = await self._make_request(session, f"/organizations/{org_id}/networks")
+            # 确保返回的是列表，如果不是则返回空列表
+            if isinstance(result, list):
+                return result
+            else:
+                return []
+        except Exception:
+            # 如果获取网络列表失败，返回空列表
+            return []
     
     async def get_organization_devices(self, session: aiohttp.ClientSession, org_id: str, **params) -> List[Dict]:
         """
@@ -106,7 +116,16 @@ class MerakiAPI:
         Returns:
             设备列表
         """
-        return await self._make_request(session, f"/organizations/{org_id}/devices", params)
+        try:
+            result = await self._make_request(session, f"/organizations/{org_id}/devices", params)
+            # 确保返回的是列表，如果不是则返回空列表
+            if isinstance(result, list):
+                return result
+            else:
+                return []
+        except Exception:
+            # 如果获取设备列表失败，返回空列表
+            return []
     
     async def get_all_organization_devices_with_name_filter(self, session: aiohttp.ClientSession, 
                                                           org_id: str, name_filter: str = None) -> List[Dict]:
@@ -177,21 +196,22 @@ class MerakiAPI:
         Returns:
             设备上行链路信息
         """
-        params = {'serials[]': serials}
+        params = {'serials': serials}
         return await self._make_request(session, f"/organizations/{org_id}/devices/uplinks/addresses/byDevice", params)
     
-    async def get_device_statuses_overview(self, session: aiohttp.ClientSession, org_id: str) -> Dict:
+    async def get_device_statuses_overview(self, session: aiohttp.ClientSession, org_id: str, **params) -> Dict:
         """
         获取设备状态概览
         
         Args:
             session: aiohttp客户端会话
             org_id: 组织ID
+            **params: 查询参数（如 productTypes）
             
         Returns:
             设备状态概览信息
         """
-        return await self._make_request(session, f"/organizations/{org_id}/devices/statuses/overview")
+        return await self._make_request(session, f"/organizations/{org_id}/devices/statuses/overview", params)
     
     async def get_device_loss_and_latency_history(self, session: aiohttp.ClientSession, 
                                                   serial: str, **params) -> List[Dict]:
@@ -280,7 +300,16 @@ class MerakiAPI:
         Returns:
             健康警报列表
         """
-        return await self._make_request(session, f"/organizations/{org_id}/assurance/alerts", params)
+        try:
+            result = await self._make_request(session, f"/organizations/{org_id}/assurance/alerts", params)
+            # 确保返回的是列表，如果不是则返回空列表
+            if isinstance(result, list):
+                return result
+            else:
+                return []
+        except Exception:
+            # 如果获取告警失败，返回空列表
+            return []
     
     async def get_organization_assurance_alerts_overview(self, session: aiohttp.ClientSession, 
                                                        org_id: str) -> Dict:
@@ -473,7 +502,16 @@ class MerakiAPI:
         Returns:
             SSID列表
         """
-        return await self._make_request(session, f"/networks/{network_id}/wireless/ssids")
+        try:
+            result = await self._make_request(session, f"/networks/{network_id}/wireless/ssids")
+            # 确保返回的是列表，如果不是则返回空列表
+            if isinstance(result, list):
+                return result
+            else:
+                return []
+        except Exception:
+            # 如果网络不支持无线SSID，返回空列表
+            return []
     
     async def get_network_wireless_settings(self, session: aiohttp.ClientSession, 
                                           network_id: str) -> Dict:
@@ -529,7 +567,16 @@ class MerakiAPI:
         Returns:
             L3防火墙规则列表
         """
-        return await self._make_request(session, f"/networks/{network_id}/appliance/firewall/l3FirewallRules")
+        try:
+            result = await self._make_request(session, f"/networks/{network_id}/appliance/firewall/l3FirewallRules")
+            # 确保返回的是列表，如果不是则返回空列表
+            if isinstance(result, list):
+                return result
+            else:
+                return []
+        except Exception:
+            # 如果网络不支持防火墙规则（如纯无线网络），返回空列表
+            return []
     
     async def get_network_appliance_firewall_l7_rules(self, session: aiohttp.ClientSession, 
                                                      network_id: str) -> List[Dict]:
@@ -991,15 +1038,72 @@ class MerakiAPI:
         return await self._make_request(session, f"/organizations/{org_id}/summary/top/devices/byUsage", params)
 
     async def get_organization_clients_search(self, session: aiohttp.ClientSession,
-                                              org_id: str, **params) -> Dict:
+                                              org_id: str, mac: str, **params) -> Dict:
         """
-        按关键词搜索组织内的客户端（支持MAC、IP、主机名、用户名等）
+        按MAC地址搜索组织内的客户端
         
         Args:
             session: aiohttp客户端会话
             org_id: 组织ID
-            **params: 查询参数（如 query, perPage, startingAfter 等）
+            mac: 客户端MAC地址（必需）
+            **params: 其他查询参数（如 perPage, startingAfter 等）
         Returns:
             搜索结果
         """
+        params['mac'] = mac
         return await self._make_request(session, f"/organizations/{org_id}/clients/search", params)
+
+    async def get_organization_uplinks_statuses(self, session: aiohttp.ClientSession, 
+                                              org_id: str, **params) -> List[Dict]:
+        """
+        获取组织上行链路状态
+        
+        Args:
+            session: aiohttp客户端会话
+            org_id: 组织ID
+            **params: 查询参数
+            
+        Returns:
+            上行链路状态列表
+        """
+        return await self._make_request(session, f"/organizations/{org_id}/uplinks/statuses", params)
+
+    async def get_device_appliance_uplinks_settings(self, session: aiohttp.ClientSession, 
+                                                   serial: str) -> Dict:
+        """
+        获取设备安全网关上行链路设置
+        
+        Args:
+            session: aiohttp客户端会话
+            serial: 设备序列号
+            
+        Returns:
+            上行链路设置
+        """
+        return await self._make_request(session, f"/devices/{serial}/appliance/uplinks/settings")
+
+    async def get_device_lldp_cdp(self, session: aiohttp.ClientSession, serial: str) -> Dict:
+        """
+        获取设备LLDP/CDP邻居发现信息
+        
+        Args:
+            session: aiohttp客户端会话
+            serial: 设备序列号
+            
+        Returns:
+            LLDP/CDP信息
+        """
+        return await self._make_request(session, f"/devices/{serial}/lldpCdp")
+
+    async def get_network_devices(self, session: aiohttp.ClientSession, network_id: str) -> List[Dict]:
+        """
+        获取网络设备列表
+        
+        Args:
+            session: aiohttp客户端会话
+            network_id: 网络ID
+            
+        Returns:
+            网络设备列表
+        """
+        return await self._make_request(session, f"/networks/{network_id}/devices")

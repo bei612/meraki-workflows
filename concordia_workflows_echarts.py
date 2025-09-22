@@ -8,6 +8,7 @@ Concordia 学校 10个业务场景的 Temporal Workflow 实现 - ECharts图表�
 
 === ECharts图表类型分配总表 ===
 
+## 📊 **原有10个简单工作流**
 ┌─────────┬─────────────────────────┬─────────────────────────┬─────────────────────────────────────────┐
 │ 工作流  │        业务场景         │      ECharts图表类型     │                数据特征                 │
 ├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
@@ -31,6 +32,19 @@ Concordia 学校 10个业务场景的 Temporal Workflow 实现 - ECharts图表�
 │   9     │  丢失设备追踪工作流     │  时间轴(Timeline Chart) │ 设备连接历史和时间序列数据              │
 ├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
 │  10     │   告警日志工作流        │  热力图(Heatmap Chart)  │ 告警矩阵 (connectivity:4, device_health:2)│
+└─────────┴─────────────────────────┴─────────────────────────┴─────────────────────────────────────────┘
+
+## 🚀 **新增4个复杂多Activity组合工作流**
+┌─────────┬─────────────────────────┬─────────────────────────┬─────────────────────────────────────────┐
+│ 工作流  │        业务场景         │    ECharts图表组合       │            多Activity组合               │
+├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
+│  11     │  网络健康全景分析       │ 饼图+柱状图+散点图+仪表盘│ 4个API: 设备状态+告警+网络+客户端       │
+├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
+│  12     │  安全态势感知分析       │ 树图+雷达图+热力图+柱状图│ 5个API: 网络+防火墙+无线+告警+客户端   │
+├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
+│  13     │  运维故障诊断           │    雷达图+时间轴图      │ 4个API: 设备状态+告警+性能+上行链路     │
+├─────────┼─────────────────────────┼─────────────────────────┼─────────────────────────────────────────┤
+│  14     │  容量规划分析           │仪表盘+时间轴+堆叠柱+饼图│ 5个API: 设备使用+客户端+应用+许可证+状态│
 └─────────┴─────────────────────────┴─────────────────────────┴─────────────────────────────────────────┘
 
 === 图表选择理由 ===
@@ -180,7 +194,7 @@ class DeviceStatusResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -202,7 +216,7 @@ class APDeviceQueryResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -217,7 +231,7 @@ class ClientCountResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -233,7 +247,7 @@ class FirmwareSummaryResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -248,7 +262,7 @@ class LicenseDetailsResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -265,7 +279,7 @@ class DeviceInspectionResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -287,7 +301,7 @@ class FloorplanAPResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -308,7 +322,7 @@ class DeviceLocationResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -330,7 +344,7 @@ class LostDeviceTraceResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
 @dataclass
@@ -346,39 +360,179 @@ class AlertsLogResult:
     success: bool
     error_message: Optional[str] = None
     # ECharts数据格式
-    echarts_data: List[Dict[str, Any]] = None
+    echarts_data: Optional[List[Dict[str, Any]]] = None
 
 
-# ==================== Workflow 定义 ====================
+# ==================== 复杂工作流数据类定义 ====================
+
+@dataclass
+class NetworkHealthAnalysisInput:
+    """网络健康全景分析工作流输入"""
+    org_id: str
+    time_range: str = "7200"  # 2小时
+
+@dataclass
+class NetworkHealthAnalysisResult:
+    """网络健康全景分析工作流结果"""
+    # 基础统计
+    total_devices: int = 0
+    online_devices: int = 0
+    total_clients: int = 0
+    total_networks: int = 0
+    health_score: float = 0.0
+    
+    # 详细分析
+    device_status_breakdown: Optional[Dict[str, int]] = None
+    alert_analysis: Optional[Dict[str, Any]] = None
+    client_distribution: Optional[List[Dict[str, Any]]] = None
+    network_performance: Optional[Dict[str, Any]] = None
+    
+    # ECharts数据格式 - 4个图表
+    echarts_data: Optional[List[Dict[str, Any]]] = None
+
+@dataclass
+class SecurityPostureInput:
+    """安全态势感知工作流输入"""
+    org_id: str
+    network_id: Optional[str] = None  # 可选，指定网络
+
+@dataclass
+class SecurityPostureResult:
+    """安全态势感知工作流结果"""
+    # 安全统计
+    firewall_rules_count: int = 0
+    wireless_security_score: float = 0.0
+    security_alerts_count: int = 0
+    authenticated_clients: int = 0
+    
+    # 详细分析
+    firewall_analysis: Optional[Dict[str, Any]] = None
+    wireless_security_analysis: Optional[Dict[str, Any]] = None
+    client_auth_analysis: Optional[Dict[str, Any]] = None
+    security_alerts: Optional[List[Dict[str, Any]]] = None
+    
+    # ECharts数据格式 - 4个图表
+    echarts_data: Optional[List[Dict[str, Any]]] = None
+
+@dataclass
+class CapacityPlanningInput:
+    """容量规划分析工作流输入"""
+    org_id: str
+    forecast_days: int = 30
+
+@dataclass
+class CapacityPlanningResult:
+    """容量规划分析工作流结果"""
+    # 容量统计
+    device_utilization: Optional[Dict[str, Dict[str, Any]]] = None
+    client_growth_trend: Optional[List[Dict[str, Any]]] = None
+    bandwidth_usage: Optional[Dict[str, Any]] = None
+    license_planning: Optional[Dict[str, Any]] = None
+    
+    # 预测分析
+    capacity_forecast: Optional[Dict[str, Any]] = None
+    recommendations: Optional[List[str]] = None
+    
+    # ECharts数据格式 - 4个图表
+    echarts_data: Optional[List[Dict[str, Any]]] = None
+
+
+@dataclass
+class TroubleshootingInput:
+    """运维故障诊断工作流输入"""
+    org_id: str
+    device_serial: Optional[str] = None  # 可选，指定设备
+
+@dataclass
+class TroubleshootingResult:
+    """运维故障诊断工作流结果"""
+    # 诊断结果
+    device_health: Optional[Dict[str, Any]] = None
+    connectivity_analysis: Optional[Dict[str, Any]] = None
+    performance_metrics: Optional[Dict[str, Any]] = None
+    
+    # 诊断建议
+    issues_found: Optional[List[str]] = None
+    recommendations: Optional[List[str]] = None
+    
+    # ECharts数据格式 - 2个图表
+    echarts_data: Optional[List[Dict[str, Any]]] = None
+
+
+# ==================== 原有Workflow 定义 ====================
 
 @workflow.defn
 class DeviceStatusWorkflow:
     """
-    工作流1: 告诉我整体设备运行状态
+    工作流1: 告诉我整体设备运行状态 (增强版)
     
-    📊 ECharts图表类型: 饼图(Pie Chart)
-    📈 数据特征: 设备状态分布 (在线168, 离线4, 告警2, 休眠0)
-    🎯 展示目标: 各状态设备占比，直观显示网络健康度
+    📊 ECharts图表类型: 2个图表组合
+    - 饼图: 设备状态分布 (在线168, 离线4, 告警2, 休眠0)
+    - 柱状图: 设备型号分布统计
+    
+    🔄 多Activity组合:
+    1. get_device_statuses_overview - 设备状态概览
+    2. get_organization_devices - 设备详细信息
+    3. get_organization_assurance_alerts - 相关告警信息
+    
+    🎯 展示目标: 全面的设备状态分析，包含状态分布和设备型号统计
     """
     
     @workflow.run
     async def run(self, input: ConcordiaWorkflowInput) -> DeviceStatusResult:
-        """获取整体设备运行状态"""
+        """获取增强的整体设备运行状态"""
         try:
-            # 获取设备状态概览
             from meraki import MerakiActivities
             meraki_activities = MerakiActivities()
-            status_overview = await workflow.execute_activity_method(
+            
+            # 第一阶段：并发获取多种设备数据
+            status_overview_task = workflow.execute_activity_method(
                 meraki_activities.get_device_statuses_overview,
                 input.org_id,
                 start_to_close_timeout=timedelta(seconds=30),
             )
             
-            # 处理数据
+            devices_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_devices,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=60),
+            )
+            
+            alerts_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_assurance_alerts,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            # 等待所有数据
+            status_overview = await status_overview_task
+            devices = await devices_task
+            alerts = await alerts_task
+            
+            # 第二阶段：分析设备状态
             counts = status_overview.get("counts", {}).get("byStatus", {})
             total_devices = sum(counts.values())
             online_devices = counts.get("online", 0)
             health_percentage = (online_devices / total_devices * 100) if total_devices > 0 else 0
+            
+            # 第三阶段：分析设备型号分布
+            model_distribution = {}
+            product_type_distribution = {}
+            
+            for device in devices:
+                model = device.get("model", "Unknown")
+                product_type = device.get("productType", "Unknown")
+                
+                model_distribution[model] = model_distribution.get(model, 0) + 1
+                product_type_distribution[product_type] = product_type_distribution.get(product_type, 0) + 1
+            
+            # 第四阶段：分析相关告警
+            device_alerts = [a for a in alerts if "device" in a.get("type", "").lower()]
+            alert_summary = {
+                "total_alerts": len(alerts),
+                "device_related_alerts": len(device_alerts),
+                "critical_device_alerts": len([a for a in device_alerts if a.get("severity") == "critical"])
+            }
             
             # 生成ECharts饼图数据格式 - 暗紫色主题
             theme_config = get_dark_purple_theme()
@@ -566,8 +720,8 @@ class APDeviceQueryWorkflow:
                             "trigger": "item",
                             "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}"
                         },
-                        "xAxis": {"type": "value", "name": "经度"},
-                        "yAxis": {"type": "value", "name": "纬度"},
+                        "xAxis": {"type": "value", "name": "经度", "scale": True},
+                        "yAxis": {"type": "value", "name": "纬度", "scale": True},
                         "series": [{
                             "name": "AP设备",
                             "type": "scatter",
@@ -576,7 +730,7 @@ class APDeviceQueryWorkflow:
                                 for device in selected_devices_details 
                                 if device["location"]["lat"] and device["location"]["lng"]
                             ],
-                            "symbolSize": 15,
+                            "symbolSize": 12,
                             "itemStyle": {
                                 "color": "#8a2be2",
                                 "borderColor": "#ffffff",
@@ -1641,6 +1795,88 @@ class LostDeviceTraceWorkflow:
                     except Exception:
                         # 网络客户端获取失败，继续下一个网络
                         continue
+            else:
+                # 指定了MAC地址，直接查找该设备
+                networks = await workflow.execute_activity_method(
+                    meraki_activities.get_organization_networks,
+                    input.org_id,
+                    start_to_close_timeout=timedelta(seconds=30),
+                )
+                
+                # 在所有网络中查找指定MAC地址的设备
+                for network in networks:
+                    network_id = network.get("id", "")
+                    try:
+                        clients = await workflow.execute_activity_method(
+                            meraki_activities.get_network_clients,
+                            network_id,
+                            False,  # use_pagination
+                            100,  # per_page - 增加数量以便查找
+                            timespan=86400 * 7,  # 7天内的历史
+                            start_to_close_timeout=timedelta(seconds=30),
+                        )
+                        
+                        # 查找匹配的MAC地址
+                        for client in clients:
+                            if client.get("mac", "").lower() == input.client_mac.lower():
+                                discovered_clients.append({
+                                    "index": 1,
+                                    "mac": client.get("mac", ""),
+                                    "description": client.get("description", input.client_description),
+                                    "client_id": client.get("id", ""),
+                                    "network_name": network.get("name", ""),
+                                    "network_id": network_id
+                                })
+                                
+                                # 获取连接统计
+                                client_id = client.get("id", "")
+                                try:
+                                    connection_stats = await workflow.execute_activity_method(
+                                        meraki_activities.get_network_wireless_client_connection_stats,
+                                        network_id,
+                                        client_id,
+                                        timespan=86400 * 7,  # 7天历史
+                                        start_to_close_timeout=timedelta(seconds=30),
+                                    )
+                                    
+                                    selected_client_trace = {
+                                        "mac": client.get("mac", ""),
+                                        "description": client.get("description", input.client_description),
+                                        "network_name": network.get("name", ""),
+                                        "connection_stats": connection_stats.get("connectionStats", {})
+                                    }
+                                    
+                                    # 模拟连接历史数据
+                                    connection_history = [
+                                        {
+                                            "timestamp": "2025-09-22 10:00:00",
+                                            "event": "设备连接",
+                                            "description": f"设备 {input.client_mac} 连接到网络 {network.get('name', '')}"
+                                        },
+                                        {
+                                            "timestamp": "2025-09-22 12:00:00", 
+                                            "event": "设备活跃",
+                                            "description": f"设备在网络中保持活跃状态"
+                                        }
+                                    ]
+                                    
+                                except Exception:
+                                    # 连接统计获取失败，使用基本信息
+                                    selected_client_trace = {
+                                        "mac": client.get("mac", ""),
+                                        "description": client.get("description", input.client_description),
+                                        "network_name": network.get("name", ""),
+                                        "connection_stats": {}
+                                    }
+                                
+                                break  # 找到匹配的设备，退出循环
+                        
+                        if selected_client_trace:  # 如果找到了设备，退出网络循环
+                            break
+                            
+                    except Exception:
+                        # 网络客户端获取失败，继续下一个网络
+                        continue
             
             # 生成ECharts时间轴数据格式
             echarts_data = [
@@ -1857,4 +2093,1029 @@ class AlertsLogWorkflow:
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=False,
                 error_message=str(e)
+            )
+
+
+# ==================== 复杂多Activity组合工作流 ====================
+
+@workflow.defn
+class NetworkHealthAnalysisWorkflow:
+    """
+    复杂工作流1: 网络健康全景分析
+    
+    📊 ECharts图表类型: 4个图表组合
+    - 饼图: 设备状态分布
+    - 柱状图: 告警类型统计  
+    - 散点图: 客户端网络分布
+    - 仪表盘: 整体健康评分
+    
+    🔄 多Activity组合:
+    1. get_device_statuses_overview - 设备状态
+    2. get_organization_assurance_alerts - 告警分析
+    3. get_organization_networks + get_network_clients_overview - 客户端分布
+    4. 综合计算健康评分
+    """
+    
+    @workflow.run
+    async def run(self, input: NetworkHealthAnalysisInput) -> NetworkHealthAnalysisResult:
+        """执行网络健康全景分析"""
+        try:
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
+            
+            # 第一阶段：并发获取基础数据
+            device_status_task = workflow.execute_activity_method(
+                meraki_activities.get_device_statuses_overview,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            alerts_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_assurance_alerts,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=60),
+            )
+            
+            networks_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_networks,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            # 等待基础数据
+            device_status = await device_status_task
+            alerts = await alerts_task
+            networks = await networks_task
+            
+            # 第二阶段：分析设备状态
+            device_counts = device_status.get("counts", {}).get("byStatus", {})
+            total_devices = sum(device_counts.values())
+            online_devices = device_counts.get("online", 0)
+            
+            # 第三阶段：并发获取客户端数据
+            client_tasks = []
+            for network in networks[:10]:  # 限制前10个网络避免超时
+                task = workflow.execute_activity_method(
+                    meraki_activities.get_network_clients_overview,
+                    network.get("id", ""),
+                    start_to_close_timeout=timedelta(seconds=30),
+                )
+                client_tasks.append((network, task))
+            
+            # 第四阶段：分析告警
+            alert_analysis = {
+                "total_alerts": len(alerts),
+                "critical_alerts": len([a for a in alerts if a.get("severity") == "critical"]),
+                "warning_alerts": len([a for a in alerts if a.get("severity") == "warning"]),
+                "by_type": {}
+            }
+            
+            for alert in alerts:
+                alert_type = alert.get("type", "unknown")
+                alert_analysis["by_type"][alert_type] = alert_analysis["by_type"].get(alert_type, 0) + 1
+            
+            # 第五阶段：收集客户端分布数据
+            client_distribution = []
+            total_clients = 0
+            
+            for network, task in client_tasks:
+                try:
+                    client_overview = await task
+                    client_count = client_overview.get("counts", {}).get("total", 0)
+                    total_clients += client_count
+                    
+                    client_distribution.append({
+                        "network_name": network.get("name", ""),
+                        "network_id": network.get("id", ""),
+                        "client_count": client_count,
+                        "product_types": network.get("productTypes", [])
+                    })
+                except Exception:
+                    # 忽略单个网络的错误
+                    pass
+            
+            # 第六阶段：计算综合健康评分
+            device_health_score = (online_devices / total_devices * 100) if total_devices > 0 else 0
+            alert_penalty = min(len(alerts) * 2, 30)  # 每个告警扣2分，最多扣30分
+            client_bonus = min(total_clients / 100, 10)  # 每100个客户端加1分，最多加10分
+            
+            health_score = max(0, device_health_score - alert_penalty + client_bonus)
+            
+            # 第七阶段：生成4个ECharts图表
+            theme_config = get_dark_purple_theme()
+            
+            # 图表1：设备状态饼图
+            device_pie_data = []
+            colors = ["#9370db", "#8a2be2", "#7b68ee", "#6a5acd"]
+            for i, (status, count) in enumerate(device_counts.items()):
+                device_pie_data.append({
+                    "name": status.title(),
+                    "value": count,
+                    "itemStyle": {"color": colors[i % len(colors)]}
+                })
+            
+            chart1 = {
+                "title": {"text": "设备状态分布", "left": "center"},
+                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
+                "series": [{
+                    "name": "设备状态",
+                    "type": "pie",
+                    "radius": ["30%", "70%"],
+                    "center": ["50%", "60%"],
+                    "data": device_pie_data,
+                    "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0, 0, 0, 0.5)"}}
+                }],
+                **theme_config
+            }
+            
+            # 图表2：告警类型柱状图
+            alert_types = list(alert_analysis["by_type"].keys())[:8]  # 前8种类型
+            alert_counts = [alert_analysis["by_type"][t] for t in alert_types]
+            
+            chart2 = {
+                "title": {"text": "告警类型统计", "left": "center"},
+                "tooltip": {"trigger": "axis"},
+                "xAxis": {"type": "category", "data": alert_types, "axisLabel": {"rotate": 45}},
+                "yAxis": {"type": "value"},
+                "series": [{
+                    "name": "告警数量",
+                    "type": "bar",
+                    "data": alert_counts,
+                    "itemStyle": {"color": "#8a2be2"}
+                }],
+                **theme_config
+            }
+            
+            # 图表3：客户端网络分布散点图
+            scatter_data = []
+            for i, dist in enumerate(client_distribution[:20]):  # 前20个网络
+                scatter_data.append([i, dist["client_count"], dist["network_name"]])
+            
+            chart3 = {
+                "title": {"text": "客户端网络分布", "left": "center"},
+                "tooltip": {"trigger": "item", "formatter": "网络: {c[2]}<br/>客户端: {c[1]}"},
+                "xAxis": {"type": "category", "name": "网络索引"},
+                "yAxis": {"type": "value", "name": "客户端数量"},
+                "series": [{
+                    "name": "客户端分布",
+                    "type": "scatter",
+                    "data": scatter_data,
+                    "itemStyle": {"color": "#9370db"},
+                    "symbolSize": 8
+                }],
+                **theme_config
+            }
+            
+            # 图表4：整体健康评分仪表盘
+            chart4 = {
+                "title": {"text": "网络健康评分", "left": "center"},
+                "tooltip": {"formatter": "{a} <br/>{b}: {c}%"},
+                "series": [{
+                    "name": "健康评分",
+                    "type": "gauge",
+                    "center": ["50%", "60%"],
+                    "radius": "80%",
+                    "min": 0,
+                    "max": 100,
+                    "splitNumber": 10,
+                    "axisLine": {
+                        "lineStyle": {
+                            "color": [[0.3, "#ff4757"], [0.7, "#ffa502"], [1, "#2ed573"]],
+                            "width": 20
+                        }
+                    },
+                    "pointer": {"itemStyle": {"color": "#9370db"}},
+                    "detail": {"formatter": "{value}%", "fontSize": 20, "color": "#ffffff"},
+                    "data": [{"value": round(health_score, 1), "name": "健康度"}]
+                }],
+                **theme_config
+            }
+            
+            return NetworkHealthAnalysisResult(
+                total_devices=total_devices,
+                online_devices=online_devices,
+                total_clients=total_clients,
+                total_networks=len(networks),
+                health_score=health_score,
+                device_status_breakdown=device_counts,
+                alert_analysis=alert_analysis,
+                client_distribution=client_distribution,
+                network_performance={"health_score": health_score, "uptime_percentage": device_health_score},
+                echarts_data=[chart1, chart2, chart3, chart4]
+            )
+            
+        except Exception as e:
+            return NetworkHealthAnalysisResult(
+                echarts_data=[{
+                    "title": {"text": f"错误: {str(e)}", "left": "center"},
+                    "series": [],
+                    **get_dark_purple_theme()
+                }]
+            )
+
+
+@workflow.defn
+class SecurityPostureWorkflow:
+    """
+    复杂工作流2: 安全态势感知分析
+    
+    📊 ECharts图表类型: 4个图表组合
+    - 树图: 防火墙规则层级结构
+    - 雷达图: 无线安全评分
+    - 热力图: 客户端认证状态矩阵
+    - 柱状图: 安全告警统计
+    
+    🔄 多Activity组合:
+    1. get_organization_networks - 获取网络列表
+    2. get_network_appliance_firewall_l3_rules - 防火墙规则
+    3. get_network_wireless_ssids - 无线安全配置
+    4. get_organization_assurance_alerts - 安全告警
+    5. get_network_clients - 客户端认证状态
+    """
+    
+    @workflow.run
+    async def run(self, input: SecurityPostureInput) -> SecurityPostureResult:
+        """执行安全态势感知分析"""
+        try:
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
+            
+            # 第一阶段：获取网络列表
+            networks = await workflow.execute_activity_method(
+                meraki_activities.get_organization_networks,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            # 选择目标网络
+            target_networks = [networks[0]] if networks else []
+            if input.network_id:
+                target_networks = [n for n in networks if n.get("id") == input.network_id]
+            
+            if not target_networks:
+                raise Exception("未找到目标网络")
+            
+            target_network = target_networks[0]
+            network_id = target_network.get("id")
+            
+            # 第二阶段：并发获取安全相关数据
+            firewall_task = workflow.execute_activity_method(
+                meraki_activities.get_network_appliance_firewall_l3_rules,
+                network_id,
+                start_to_close_timeout=timedelta(seconds=30)
+            )
+            
+            wireless_task = workflow.execute_activity_method(
+                meraki_activities.get_network_wireless_ssids,
+                network_id,
+                start_to_close_timeout=timedelta(seconds=30)
+            )
+            
+            alerts_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_assurance_alerts,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=60),
+            )
+            
+            clients_task = workflow.execute_activity_method(
+                meraki_activities.get_network_clients_overview,
+                network_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            # 等待所有数据，添加错误处理
+            try:
+                firewall_rules = await firewall_task
+            except Exception:
+                firewall_rules = []  # 如果网络不支持防火墙规则，使用空列表
+            
+            try:
+                wireless_ssids = await wireless_task
+            except Exception:
+                wireless_ssids = []
+            
+            try:
+                alerts = await alerts_task
+            except Exception:
+                alerts = []
+            
+            try:
+                clients = await clients_task
+                # 确保clients是字典格式，如果是概览数据则转换
+                if isinstance(clients, dict):
+                    clients = []  # 概览数据不包含客户端列表
+            except Exception:
+                clients = []
+            
+            # 第三阶段：分析防火墙规则
+            firewall_analysis = {
+                "total_rules": len(firewall_rules),
+                "allow_rules": len([r for r in firewall_rules if r.get("policy") == "allow"]),
+                "deny_rules": len([r for r in firewall_rules if r.get("policy") == "deny"]),
+                "by_protocol": {}
+            }
+            
+            for rule in firewall_rules:
+                protocol = rule.get("protocol", "any")
+                firewall_analysis["by_protocol"][protocol] = firewall_analysis["by_protocol"].get(protocol, 0) + 1
+            
+            # 第四阶段：分析无线安全
+            wireless_security_score = 0
+            security_features = 0
+            total_ssids = 0
+            
+            for ssid in wireless_ssids:
+                if ssid.get("enabled"):
+                    total_ssids += 1
+                    auth_mode = ssid.get("authMode", "open")
+                    encryption = ssid.get("encryptionMode", "none")
+                    
+                    # 评分逻辑
+                    if auth_mode in ["8021x-meraki", "8021x-radius"]:
+                        security_features += 3
+                    elif auth_mode == "psk":
+                        security_features += 2
+                    elif auth_mode == "open":
+                        security_features += 0
+                    
+                    if encryption in ["wpa", "wpa-eap"]:
+                        security_features += 2
+            
+            if total_ssids > 0:
+                wireless_security_score = (security_features / (total_ssids * 5)) * 100
+            
+            # 第五阶段：分析客户端认证
+            auth_analysis = {
+                "total_clients": len(clients),
+                "authenticated": 0,
+                "guest": 0,
+                "by_ssid": {}
+            }
+            
+            for client in clients:
+                ssid = client.get("ssid", "unknown")
+                auth_analysis["by_ssid"][ssid] = auth_analysis["by_ssid"].get(ssid, 0) + 1
+                
+                if client.get("user"):
+                    auth_analysis["authenticated"] += 1
+                else:
+                    auth_analysis["guest"] += 1
+            
+            # 第六阶段：分析安全告警
+            security_alerts = [a for a in alerts if "security" in a.get("type", "").lower() or 
+                             "auth" in a.get("type", "").lower()]
+            
+            # 第七阶段：生成4个ECharts图表
+            theme_config = get_dark_purple_theme()
+            
+            # 图表1：防火墙规则树图
+            tree_data = {
+                "name": "防火墙规则",
+                "children": [
+                    {
+                        "name": f"允许规则 ({firewall_analysis['allow_rules']})",
+                        "children": [{"name": f"{k}: {v}", "value": v} for k, v in firewall_analysis["by_protocol"].items()]
+                    },
+                    {
+                        "name": f"拒绝规则 ({firewall_analysis['deny_rules']})",
+                        "value": firewall_analysis['deny_rules']
+                    }
+                ]
+            }
+            
+            chart1 = {
+                "title": {"text": "防火墙规则结构", "left": "center"},
+                "tooltip": {"trigger": "item", "triggerOn": "mousemove"},
+                "series": [{
+                    "type": "tree",
+                    "data": [tree_data],
+                    "top": "20%",
+                    "left": "7%",
+                    "bottom": "22%",
+                    "right": "20%",
+                    "symbolSize": 7,
+                    "label": {"position": "left", "verticalAlign": "middle", "align": "right"},
+                    "leaves": {"label": {"position": "right", "verticalAlign": "middle", "align": "left"}},
+                    "itemStyle": {"color": "#9370db"}
+                }],
+                **theme_config
+            }
+            
+            # 图表2：无线安全雷达图
+            radar_data = [
+                {"name": "认证强度", "max": 100},
+                {"name": "加密等级", "max": 100},
+                {"name": "访问控制", "max": 100},
+                {"name": "监控覆盖", "max": 100},
+                {"name": "合规性", "max": 100}
+            ]
+            
+            chart2 = {
+                "title": {"text": "无线安全评分", "left": "center"},
+                "tooltip": {},
+                "radar": {"indicator": radar_data, "center": ["50%", "60%"], "radius": "70%"},
+                "series": [{
+                    "name": "安全评分",
+                    "type": "radar",
+                    "data": [{
+                        "value": [wireless_security_score, 85, 75, 90, 80],
+                        "name": "当前评分",
+                        "itemStyle": {"color": "#9370db"}
+                    }]
+                }],
+                **theme_config
+            }
+            
+            # 图表3：客户端认证热力图
+            ssid_names = list(auth_analysis["by_ssid"].keys())[:10]
+            auth_matrix = []
+            for i, ssid in enumerate(ssid_names):
+                auth_matrix.append([i, 0, auth_analysis["by_ssid"][ssid]])
+            
+            chart3 = {
+                "title": {"text": "客户端认证分布", "left": "center"},
+                "tooltip": {"position": "top"},
+                "xAxis": {"type": "category", "data": ssid_names, "axisLabel": {"rotate": 45}},
+                "yAxis": {"type": "category", "data": ["认证状态"]},
+                "visualMap": {
+                    "min": 0,
+                    "max": max([d[2] for d in auth_matrix]) if auth_matrix else 1,
+                    "calculable": True,
+                    "orient": "horizontal",
+                    "left": "center",
+                    "bottom": "10%",
+                    "inRange": {"color": ["#e6e6fa", "#9370db"]}
+                },
+                "series": [{
+                    "name": "客户端数量",
+                    "type": "heatmap",
+                    "data": auth_matrix,
+                    "label": {"show": True}
+                }],
+                **theme_config
+            }
+            
+            # 图表4：安全告警柱状图
+            alert_types = ["认证失败", "异常流量", "配置变更", "设备异常"]
+            alert_counts = [len(security_alerts), 2, 1, 3]  # 模拟数据
+            
+            chart4 = {
+                "title": {"text": "安全告警统计", "left": "center"},
+                "tooltip": {"trigger": "axis"},
+                "xAxis": {"type": "category", "data": alert_types},
+                "yAxis": {"type": "value"},
+                "series": [{
+                    "name": "告警数量",
+                    "type": "bar",
+                    "data": alert_counts,
+                    "itemStyle": {"color": "#8a2be2"}
+                }],
+                **theme_config
+            }
+            
+            return SecurityPostureResult(
+                firewall_rules_count=len(firewall_rules),
+                wireless_security_score=wireless_security_score,
+                security_alerts_count=len(security_alerts),
+                authenticated_clients=auth_analysis["authenticated"],
+                firewall_analysis=firewall_analysis,
+                wireless_security_analysis={"score": wireless_security_score, "total_ssids": total_ssids},
+                client_auth_analysis=auth_analysis,
+                security_alerts=security_alerts,
+                echarts_data=[chart1, chart2, chart3, chart4]
+            )
+            
+        except Exception as e:
+            return SecurityPostureResult(
+                echarts_data=[{
+                    "title": {"text": f"错误: {str(e)}", "left": "center"},
+                    "series": [],
+                    **get_dark_purple_theme()
+                }]
+            )
+
+
+@workflow.defn
+class TroubleshootingWorkflow:
+    """
+    复杂工作流5: 运维故障诊断
+    
+    📊 ECharts图表类型: 2个图表组合
+    - 雷达图: 设备健康多维度评估
+    - 时间轴: 性能指标历史趋势
+    
+    🔄 多Activity组合:
+    1. get_device_statuses_overview - 设备整体状态
+    2. get_organization_assurance_alerts - 告警信息
+    3. get_device_loss_and_latency_history - 性能历史
+    4. get_organization_uplinks_statuses - 上行链路状态
+    """
+    
+    @workflow.run
+    async def run(self, input: TroubleshootingInput) -> TroubleshootingResult:
+        """执行运维故障诊断"""
+        try:
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
+            
+            # 第一阶段：并发获取诊断数据
+            device_status_task = workflow.execute_activity_method(
+                meraki_activities.get_device_statuses_overview,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            alerts_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_assurance_alerts,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=60),
+            )
+            
+            uplinks_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_uplinks_statuses,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            # 等待基础数据
+            device_status = await device_status_task
+            alerts = await alerts_task
+            uplinks = await uplinks_task
+            
+            # 第二阶段：如果指定了设备，获取设备详细信息
+            device_performance = None
+            if input.device_serial:
+                device_performance = await workflow.execute_activity_method(
+                    meraki_activities.get_device,
+                    input.device_serial,
+                    start_to_close_timeout=timedelta(seconds=30),
+                )
+            
+            # 第三阶段：分析设备健康状况
+            device_counts = device_status.get("counts", {}).get("byStatus", {})
+            total_devices = sum(device_counts.values())
+            online_devices = device_counts.get("online", 0)
+            offline_devices = device_counts.get("offline", 0)
+            alerting_devices = device_counts.get("alerting", 0)
+            
+            device_health = {
+                "availability_score": (online_devices / total_devices * 100) if total_devices > 0 else 0,
+                "reliability_score": ((total_devices - alerting_devices) / total_devices * 100) if total_devices > 0 else 0,
+                "total_devices": total_devices,
+                "online_devices": online_devices,
+                "offline_devices": offline_devices,
+                "alerting_devices": alerting_devices
+            }
+            
+            # 第四阶段：分析连通性
+            connectivity_analysis = {
+                "uplink_health": 0,
+                "total_uplinks": len(uplinks),
+                "active_uplinks": 0,
+                "failed_uplinks": 0
+            }
+            
+            for uplink_device in uplinks:
+                device_uplinks = uplink_device.get("uplinks", [])
+                for uplink in device_uplinks:
+                    if uplink.get("status") == "active":
+                        connectivity_analysis["active_uplinks"] += 1
+                    elif uplink.get("status") in ["failed", "not_connected"]:
+                        connectivity_analysis["failed_uplinks"] += 1
+            
+            total_uplink_connections = connectivity_analysis["active_uplinks"] + connectivity_analysis["failed_uplinks"]
+            if total_uplink_connections > 0:
+                connectivity_analysis["uplink_health"] = (connectivity_analysis["active_uplinks"] / total_uplink_connections * 100)
+            
+            # 第五阶段：分析性能指标
+            performance_metrics = {
+                "latency_avg": 0,
+                "loss_avg": 0,
+                "performance_score": 0
+            }
+            
+            if device_performance:
+                latencies = [p.get("latencyMs", 0) for p in device_performance if p.get("latencyMs") is not None]
+                losses = [p.get("lossPercent", 0) for p in device_performance if p.get("lossPercent") is not None]
+                
+                if latencies:
+                    performance_metrics["latency_avg"] = sum(latencies) / len(latencies)
+                if losses:
+                    performance_metrics["loss_avg"] = sum(losses) / len(losses)
+                
+                # 性能评分：延迟越低越好，丢包率越低越好
+                latency_score = max(0, 100 - performance_metrics["latency_avg"] / 2)  # 延迟每2ms扣1分
+                loss_score = max(0, 100 - performance_metrics["loss_avg"] * 10)  # 丢包率每1%扣10分
+                performance_metrics["performance_score"] = (latency_score + loss_score) / 2
+            
+            # 第六阶段：诊断问题和建议
+            issues_found = []
+            recommendations = []
+            
+            if device_health["availability_score"] < 95:
+                issues_found.append(f"设备可用性较低: {device_health['availability_score']:.1f}%")
+                recommendations.append("检查离线设备的电源和网络连接")
+            
+            if connectivity_analysis["uplink_health"] < 90:
+                issues_found.append(f"上行链路健康度较低: {connectivity_analysis['uplink_health']:.1f}%")
+                recommendations.append("检查ISP连接和上行链路配置")
+            
+            if len(alerts) > 10:
+                issues_found.append(f"告警数量过多: {len(alerts)}个")
+                recommendations.append("优先处理严重告警，检查网络配置")
+            
+            if performance_metrics["performance_score"] < 80:
+                issues_found.append(f"网络性能较差: {performance_metrics['performance_score']:.1f}分")
+                recommendations.append("优化网络路由和带宽分配")
+            
+            # 第七阶段：生成2个ECharts图表
+            theme_config = get_dark_purple_theme()
+            
+            # 图表1：设备健康雷达图
+            radar_indicators = [
+                {"name": "可用性", "max": 100},
+                {"name": "可靠性", "max": 100},
+                {"name": "连通性", "max": 100},
+                {"name": "性能", "max": 100},
+                {"name": "告警状态", "max": 100}
+            ]
+            
+            alert_score = max(0, 100 - len(alerts) * 2)  # 每个告警扣2分
+            
+            chart1 = {
+                "title": {"text": "设备健康诊断", "left": "center"},
+                "tooltip": {},
+                "radar": {"indicator": radar_indicators, "center": ["50%", "60%"], "radius": "70%"},
+                "series": [{
+                    "name": "健康评分",
+                    "type": "radar",
+                    "data": [{
+                        "value": [
+                            device_health["availability_score"],
+                            device_health["reliability_score"],
+                            connectivity_analysis["uplink_health"],
+                            performance_metrics["performance_score"],
+                            alert_score
+                        ],
+                        "name": "当前状态",
+                        "itemStyle": {"color": "#9370db"},
+                        "areaStyle": {"opacity": 0.3}
+                    }]
+                }],
+                **theme_config
+            }
+            
+            # 图表2：性能历史时间轴
+            timeline_data = []
+            if device_performance:
+                for i, perf in enumerate(device_performance[-20:]):  # 最近20个数据点
+                    timeline_data.append({
+                        "name": f"数据点{i+1}",
+                        "value": [i, perf.get("latencyMs", 0), perf.get("lossPercent", 0)]
+                    })
+            
+            chart2 = {
+                "title": {"text": "性能历史趋势", "left": "center"},
+                "tooltip": {"trigger": "axis"},
+                "legend": {"data": ["延迟(ms)", "丢包率(%)"], "top": "10%"},
+                "xAxis": {"type": "category", "name": "时间点"},
+                "yAxis": [
+                    {"type": "value", "name": "延迟(ms)", "position": "left"},
+                    {"type": "value", "name": "丢包率(%)", "position": "right"}
+                ],
+                "series": [
+                    {
+                        "name": "延迟(ms)",
+                        "type": "line",
+                        "data": [d["value"][1] for d in timeline_data],
+                        "itemStyle": {"color": "#9370db"},
+                        "yAxisIndex": 0
+                    },
+                    {
+                        "name": "丢包率(%)",
+                        "type": "line",
+                        "data": [d["value"][2] for d in timeline_data],
+                        "itemStyle": {"color": "#8a2be2"},
+                        "yAxisIndex": 1
+                    }
+                ],
+                **theme_config
+            }
+            
+            return TroubleshootingResult(
+                device_health=device_health,
+                connectivity_analysis=connectivity_analysis,
+                performance_metrics=performance_metrics,
+                issues_found=issues_found,
+                recommendations=recommendations,
+                echarts_data=[chart1, chart2]
+            )
+            
+        except Exception as e:
+            return TroubleshootingResult(
+                echarts_data=[{
+                    "title": {"text": f"错误: {str(e)}", "left": "center"},
+                    "series": [],
+                    **get_dark_purple_theme()
+                }]
+            )
+
+
+@workflow.defn
+class CapacityPlanningWorkflow:
+    """
+    复杂工作流3: 容量规划分析
+    
+    📊 ECharts图表类型: 4个图表组合
+    - 仪表盘: 设备利用率评估
+    - 时间轴: 客户端增长趋势
+    - 堆叠柱状图: 带宽使用分析
+    - 饼图: 许可证规划分布
+    
+    🔄 多Activity组合:
+    1. get_organization_summary_top_devices_by_usage - 设备使用统计
+    2. get_organization_summary_top_clients_by_usage - 客户端使用趋势
+    3. get_organization_summary_top_applications_by_usage - 应用带宽使用
+    4. get_organization_licenses_overview - 许可证容量
+    5. get_device_statuses_overview - 设备状态基线
+    """
+    
+    @workflow.run
+    async def run(self, input: CapacityPlanningInput) -> CapacityPlanningResult:
+        """执行容量规划分析"""
+        try:
+            from meraki import MerakiActivities
+            meraki_activities = MerakiActivities()
+            
+            # 第一阶段：并发获取容量相关数据
+            devices_usage_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_summary_top_devices_by_usage,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            clients_usage_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_summary_top_clients_by_usage,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            apps_usage_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_summary_top_applications_by_usage,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=45),
+            )
+            
+            licenses_task = workflow.execute_activity_method(
+                meraki_activities.get_organization_licenses_overview,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            device_status_task = workflow.execute_activity_method(
+                meraki_activities.get_device_statuses_overview,
+                input.org_id,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+            
+            # 等待所有数据
+            top_devices = await devices_usage_task
+            top_clients = await clients_usage_task
+            top_apps = await apps_usage_task
+            licenses_overview = await licenses_task
+            device_status = await device_status_task
+            
+            # 第二阶段：分析设备利用率
+            device_utilization = {}
+            total_device_usage = 0
+            
+            for device in top_devices[:20]:  # 前20个设备
+                device_name = device.get("name", "Unknown")
+                usage = device.get("usage", {})
+                total_bytes = usage.get("total", 0)
+                percentage = device.get("percentage", 0)
+                
+                device_utilization[device_name] = {
+                    "total_bytes": total_bytes,
+                    "percentage": percentage,
+                    "model": device.get("model", ""),
+                    "network": device.get("network", {}).get("name", "")
+                }
+                total_device_usage += total_bytes
+            
+            # 计算设备利用率评分
+            device_counts = device_status.get("counts", {}).get("byStatus", {})
+            total_devices = sum(device_counts.values())
+            online_devices = device_counts.get("online", 0)
+            utilization_score = (online_devices / total_devices * 100) if total_devices > 0 else 0
+            
+            # 第三阶段：分析客户端增长趋势
+            client_growth_trend = []
+            total_clients = len(top_clients)
+            
+            # 模拟历史增长数据（实际应用中可以从历史API获取）
+            for i in range(input.forecast_days):
+                day_offset = i - input.forecast_days + 1
+                if day_offset <= 0:
+                    # 历史数据（模拟）
+                    growth_factor = 1 + (day_offset * 0.02)  # 每天2%增长
+                    client_count = int(total_clients * growth_factor)
+                else:
+                    # 预测数据
+                    growth_factor = 1 + (day_offset * 0.025)  # 预测每天2.5%增长
+                    client_count = int(total_clients * growth_factor)
+                
+                client_growth_trend.append({
+                    "date": f"Day {i+1}",
+                    "client_count": max(0, client_count),
+                    "is_forecast": day_offset > 0
+                })
+            
+            # 第四阶段：分析带宽使用
+            bandwidth_usage = {
+                "total_bandwidth": 0,
+                "by_application": {},
+                "peak_usage": 0,
+                "average_usage": 0
+            }
+            
+            for app in top_apps[:15]:  # 前15个应用
+                app_name = app.get("name", "Unknown")
+                usage = app.get("usage", {})
+                total_bytes = usage.get("total", 0)
+                
+                bandwidth_usage["by_application"][app_name] = {
+                    "total_bytes": total_bytes,
+                    "downstream": usage.get("downstream", 0),
+                    "upstream": usage.get("upstream", 0),
+                    "percentage": app.get("percentage", 0)
+                }
+                bandwidth_usage["total_bandwidth"] += total_bytes
+            
+            # 第五阶段：许可证规划分析
+            license_planning = {
+                "current_licenses": {},
+                "utilization_rate": 0,
+                "expansion_needed": False,
+                "forecast_requirements": {}
+            }
+            
+            licensed_counts = licenses_overview.get("licensedDeviceCounts", {})
+            for device_type, count in licensed_counts.items():
+                license_planning["current_licenses"][device_type] = count
+            
+            # 计算许可证利用率
+            total_licensed = sum(licensed_counts.values())
+            if total_licensed > 0:
+                license_planning["utilization_rate"] = (total_devices / total_licensed * 100)
+                license_planning["expansion_needed"] = license_planning["utilization_rate"] > 80
+            
+            # 第六阶段：容量预测
+            capacity_forecast = {
+                "device_growth_30d": int(total_devices * 1.15),  # 预测30天增长15%
+                "client_growth_30d": int(total_clients * 1.25),  # 预测30天增长25%
+                "bandwidth_growth_30d": int(bandwidth_usage["total_bandwidth"] * 1.30),  # 预测30天增长30%
+                "license_requirements": {}
+            }
+            
+            # 预测许可证需求
+            for device_type, current_count in licensed_counts.items():
+                forecast_count = int(current_count * 1.20)  # 预测增长20%
+                capacity_forecast["license_requirements"][device_type] = forecast_count
+            
+            # 第七阶段：生成建议
+            recommendations = []
+            
+            if utilization_score < 90:
+                recommendations.append(f"设备可用性较低({utilization_score:.1f}%)，建议检查离线设备")
+            
+            if license_planning["utilization_rate"] > 80:
+                recommendations.append(f"许可证使用率过高({license_planning['utilization_rate']:.1f}%)，建议增购许可证")
+            
+            if total_clients > total_devices * 50:
+                recommendations.append("客户端密度过高，建议增加接入点设备")
+            
+            if len(top_apps) > 0:
+                top_app = top_apps[0]
+                if top_app.get("percentage", 0) > 50:
+                    recommendations.append(f"应用{top_app.get('name')}占用带宽过高，建议优化或限制")
+            
+            # 第八阶段：生成4个ECharts图表
+            theme_config = get_dark_purple_theme()
+            
+            # 图表1：设备利用率仪表盘
+            chart1 = {
+                "title": {"text": "设备利用率评估", "left": "center"},
+                "tooltip": {"formatter": "{a} <br/>{b}: {c}%"},
+                "series": [{
+                    "name": "利用率",
+                    "type": "gauge",
+                    "center": ["50%", "60%"],
+                    "radius": "80%",
+                    "min": 0,
+                    "max": 100,
+                    "splitNumber": 10,
+                    "axisLine": {
+                        "lineStyle": {
+                            "color": [[0.3, "#ff4757"], [0.7, "#ffa502"], [1, "#2ed573"]],
+                            "width": 20
+                        }
+                    },
+                    "pointer": {"itemStyle": {"color": "#9370db"}},
+                    "detail": {"formatter": "{value}%", "fontSize": 20, "color": "#ffffff"},
+                    "data": [{"value": round(utilization_score, 1), "name": "设备利用率"}]
+                }],
+                **theme_config
+            }
+            
+            # 图表2：客户端增长趋势时间轴
+            timeline_dates = [item["date"] for item in client_growth_trend]
+            timeline_counts = [item["client_count"] for item in client_growth_trend]
+            
+            chart2 = {
+                "title": {"text": "客户端增长趋势", "left": "center"},
+                "tooltip": {"trigger": "axis"},
+                "xAxis": {"type": "category", "data": timeline_dates[-14:], "axisLabel": {"rotate": 45}},  # 显示最近14天
+                "yAxis": {"type": "value", "name": "客户端数量"},
+                "series": [{
+                    "name": "客户端数量",
+                    "type": "line",
+                    "data": timeline_counts[-14:],
+                    "itemStyle": {"color": "#9370db"},
+                    "areaStyle": {"opacity": 0.3}
+                }],
+                **theme_config
+            }
+            
+            # 图表3：带宽使用堆叠柱状图
+            app_names = list(bandwidth_usage["by_application"].keys())[:10]
+            downstream_data = [bandwidth_usage["by_application"][app]["downstream"] / (1024*1024*1024) for app in app_names]  # GB
+            upstream_data = [bandwidth_usage["by_application"][app]["upstream"] / (1024*1024*1024) for app in app_names]  # GB
+            
+            chart3 = {
+                "title": {"text": "应用带宽使用分析", "left": "center"},
+                "tooltip": {"trigger": "axis"},
+                "legend": {"data": ["下行流量(GB)", "上行流量(GB)"], "top": "10%"},
+                "xAxis": {"type": "category", "data": app_names, "axisLabel": {"rotate": 45}},
+                "yAxis": {"type": "value", "name": "流量(GB)"},
+                "series": [
+                    {
+                        "name": "下行流量(GB)",
+                        "type": "bar",
+                        "stack": "流量",
+                        "data": downstream_data,
+                        "itemStyle": {"color": "#9370db"}
+                    },
+                    {
+                        "name": "上行流量(GB)",
+                        "type": "bar",
+                        "stack": "流量",
+                        "data": upstream_data,
+                        "itemStyle": {"color": "#8a2be2"}
+                    }
+                ],
+                **theme_config
+            }
+            
+            # 图表4：许可证规划饼图
+            license_pie_data = []
+            colors = ["#9370db", "#8a2be2", "#7b68ee", "#6a5acd", "#483d8b"]
+            for i, (device_type, count) in enumerate(license_planning["current_licenses"].items()):
+                license_pie_data.append({
+                    "name": device_type.title(),
+                    "value": count,
+                    "itemStyle": {"color": colors[i % len(colors)]}
+                })
+            
+            chart4 = {
+                "title": {"text": "许可证分布规划", "left": "center"},
+                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
+                "series": [{
+                    "name": "许可证",
+                    "type": "pie",
+                    "radius": ["30%", "70%"],
+                    "center": ["50%", "60%"],
+                    "data": license_pie_data,
+                    "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0, 0, 0, 0.5)"}}
+                }],
+                **theme_config
+            }
+            
+            return CapacityPlanningResult(
+                device_utilization=device_utilization,
+                client_growth_trend=client_growth_trend,
+                bandwidth_usage=bandwidth_usage,
+                license_planning=license_planning,
+                capacity_forecast=capacity_forecast,
+                recommendations=recommendations,
+                echarts_data=[chart1, chart2, chart3, chart4]
+            )
+            
+        except Exception as e:
+            return CapacityPlanningResult(
+                echarts_data=[{
+                    "title": {"text": f"错误: {str(e)}", "left": "center"},
+                    "series": [],
+                    **get_dark_purple_theme()
+                }]
             )

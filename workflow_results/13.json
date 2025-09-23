@@ -1,0 +1,163 @@
+{
+  "workflow_number": 13,
+  "workflow_name": "运维故障诊断",
+  "execution_time": "2025-09-23 11:02:55",
+  "success": true,
+  "result": {
+    "device_health": {
+      "alerting_devices": 2,
+      "availability_score": 96.55172413793103,
+      "offline_devices": 4,
+      "online_devices": 168,
+      "reliability_score": 98.85057471264368,
+      "total_devices": 174
+    },
+    "connectivity_analysis": {
+      "active_uplinks": 0,
+      "failed_uplinks": 0,
+      "total_uplinks": 0,
+      "uplink_health": 0
+    },
+    "performance_metrics": {
+      "latency_avg": 0,
+      "loss_avg": 0,
+      "performance_score": 0
+    },
+    "issues_found": [
+      "上行链路健康度较低: 0.0%",
+      "网络性能较差: 0.0分"
+    ],
+    "recommendations": [
+      "检查ISP连接和上行链路配置",
+      "优化网络路由和带宽分配"
+    ],
+    "echarts_data": [
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "radar": {
+          "center": [
+            "50%",
+            "60%"
+          ],
+          "indicator": [
+            {
+              "max": 100,
+              "name": "可用性"
+            },
+            {
+              "max": 100,
+              "name": "可靠性"
+            },
+            {
+              "max": 100,
+              "name": "连通性"
+            },
+            {
+              "max": 100,
+              "name": "性能"
+            },
+            {
+              "max": 100,
+              "name": "告警状态"
+            }
+          ],
+          "radius": "70%"
+        },
+        "series": [
+          {
+            "data": [
+              {
+                "areaStyle": {
+                  "opacity": 0.3
+                },
+                "itemStyle": {
+                  "color": "#9370db"
+                },
+                "name": "当前状态",
+                "value": [
+                  96.55172413793103,
+                  98.85057471264368,
+                  0,
+                  0,
+                  88
+                ]
+              }
+            ],
+            "name": "健康评分",
+            "type": "radar"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "data": [],
+            "itemStyle": {
+              "color": "#9370db"
+            },
+            "name": "延迟(ms)",
+            "type": "line",
+            "yAxisIndex": 0
+          },
+          {
+            "data": [],
+            "itemStyle": {
+              "color": "#8a2be2"
+            },
+            "name": "丢包率(%)",
+            "type": "line",
+            "yAxisIndex": 1
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "xAxis": {
+          "name": "时间点",
+          "type": "category"
+        },
+        "yAxis": [
+          {
+            "name": "延迟(ms)",
+            "position": "left",
+            "type": "value"
+          },
+          {
+            "name": "丢包率(%)",
+            "position": "right",
+            "type": "value"
+          }
+        ]
+      }
+    ]
+  },
+  "error": null
+}

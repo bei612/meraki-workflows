@@ -1,0 +1,499 @@
+{
+  "workflow_number": 14,
+  "workflow_name": "容量规划分析",
+  "execution_time": "2025-09-23 11:02:58",
+  "success": true,
+  "result": {
+    "device_utilization": {
+      "LB2F-E203-MR44-003": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 17245.537109375
+      },
+      "LB4F-E402-MR44-002": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 26627.712890625
+      },
+      "LB4F-E404-MR44-004": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 19042.47265625
+      },
+      "UB1F-H133B-MR44-007": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 24456.203125
+      },
+      "UB1F-H133C-MR44-008": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 50320.505859375
+      },
+      "UB2F-H218-MR44-008": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 19104.0625
+      },
+      "UB2F-H227A-MR57-006": {
+        "model": "MR57",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 35714.3349609375
+      },
+      "UB2F-H227C-MR57-007": {
+        "model": "MR57",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 21941.4248046875
+      },
+      "UB2F-Lib-MR57-005": {
+        "model": "MR57",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 29571.7861328125
+      },
+      "UB3F-H330H-MR44-010": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 20062.185546875
+      }
+    },
+    "client_growth_trend": [
+      {
+        "client_count": 4,
+        "date": "Day 1",
+        "is_forecast": false
+      },
+      {
+        "client_count": 4,
+        "date": "Day 2",
+        "is_forecast": false
+      },
+      {
+        "client_count": 4,
+        "date": "Day 3",
+        "is_forecast": false
+      },
+      {
+        "client_count": 4,
+        "date": "Day 4",
+        "is_forecast": false
+      },
+      {
+        "client_count": 5,
+        "date": "Day 5",
+        "is_forecast": false
+      },
+      {
+        "client_count": 5,
+        "date": "Day 6",
+        "is_forecast": false
+      },
+      {
+        "client_count": 5,
+        "date": "Day 7",
+        "is_forecast": false
+      },
+      {
+        "client_count": 5,
+        "date": "Day 8",
+        "is_forecast": false
+      },
+      {
+        "client_count": 5,
+        "date": "Day 9",
+        "is_forecast": false
+      },
+      {
+        "client_count": 6,
+        "date": "Day 10",
+        "is_forecast": false
+      },
+      {
+        "client_count": 6,
+        "date": "Day 11",
+        "is_forecast": false
+      },
+      {
+        "client_count": 6,
+        "date": "Day 12",
+        "is_forecast": false
+      },
+      {
+        "client_count": 6,
+        "date": "Day 13",
+        "is_forecast": false
+      },
+      {
+        "client_count": 6,
+        "date": "Day 14",
+        "is_forecast": false
+      },
+      {
+        "client_count": 7,
+        "date": "Day 15",
+        "is_forecast": false
+      },
+      {
+        "client_count": 7,
+        "date": "Day 16",
+        "is_forecast": false
+      },
+      {
+        "client_count": 7,
+        "date": "Day 17",
+        "is_forecast": false
+      },
+      {
+        "client_count": 7,
+        "date": "Day 18",
+        "is_forecast": false
+      },
+      {
+        "client_count": 7,
+        "date": "Day 19",
+        "is_forecast": false
+      },
+      {
+        "client_count": 8,
+        "date": "Day 20",
+        "is_forecast": false
+      },
+      {
+        "client_count": 8,
+        "date": "Day 21",
+        "is_forecast": false
+      },
+      {
+        "client_count": 8,
+        "date": "Day 22",
+        "is_forecast": false
+      },
+      {
+        "client_count": 8,
+        "date": "Day 23",
+        "is_forecast": false
+      },
+      {
+        "client_count": 8,
+        "date": "Day 24",
+        "is_forecast": false
+      },
+      {
+        "client_count": 9,
+        "date": "Day 25",
+        "is_forecast": false
+      },
+      {
+        "client_count": 9,
+        "date": "Day 26",
+        "is_forecast": false
+      },
+      {
+        "client_count": 9,
+        "date": "Day 27",
+        "is_forecast": false
+      },
+      {
+        "client_count": 9,
+        "date": "Day 28",
+        "is_forecast": false
+      },
+      {
+        "client_count": 9,
+        "date": "Day 29",
+        "is_forecast": false
+      },
+      {
+        "client_count": 10,
+        "date": "Day 30",
+        "is_forecast": false
+      }
+    ],
+    "bandwidth_usage": {
+      "average_usage": 0,
+      "by_application": {
+        "Unknown": {
+          "downstream": 0,
+          "percentage": 4.30641738075764,
+          "total_bytes": 0,
+          "upstream": 0
+        }
+      },
+      "peak_usage": 0,
+      "total_bandwidth": 0
+    },
+    "license_planning": {
+      "current_licenses": {
+        "wireless": 178
+      },
+      "expansion_needed": true,
+      "forecast_requirements": {},
+      "utilization_rate": 97.75280898876404
+    },
+    "capacity_forecast": {
+      "bandwidth_growth_30d": 0,
+      "client_growth_30d": 12,
+      "device_growth_30d": 200,
+      "license_requirements": {
+        "wireless": 213
+      }
+    },
+    "recommendations": [
+      "许可证使用率过高(97.8%)，建议增购许可证"
+    ],
+    "echarts_data": [
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "axisLine": {
+              "lineStyle": {
+                "color": [
+                  [
+                    0.3,
+                    "#ff4757"
+                  ],
+                  [
+                    0.7,
+                    "#ffa502"
+                  ],
+                  [
+                    1,
+                    "#2ed573"
+                  ]
+                ],
+                "width": 20
+              }
+            },
+            "center": [
+              "50%",
+              "60%"
+            ],
+            "data": [
+              {
+                "name": "设备利用率",
+                "value": 96.6
+              }
+            ],
+            "detail": {
+              "color": "#ffffff",
+              "fontSize": 20,
+              "formatter": "{value}%"
+            },
+            "max": 100,
+            "min": 0,
+            "name": "利用率",
+            "pointer": {
+              "itemStyle": {
+                "color": "#9370db"
+              }
+            },
+            "radius": "80%",
+            "splitNumber": 10,
+            "type": "gauge"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "areaStyle": {
+              "opacity": 0.3
+            },
+            "data": [
+              7,
+              7,
+              7,
+              8,
+              8,
+              8,
+              8,
+              8,
+              9,
+              9,
+              9,
+              9,
+              9,
+              10
+            ],
+            "itemStyle": {
+              "color": "#9370db"
+            },
+            "name": "客户端数量",
+            "type": "line"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "xAxis": {
+          "axisLabel": {
+            "rotate": 45
+          },
+          "data": [
+            "Day 17",
+            "Day 18",
+            "Day 19",
+            "Day 20",
+            "Day 21",
+            "Day 22",
+            "Day 23",
+            "Day 24",
+            "Day 25",
+            "Day 26",
+            "Day 27",
+            "Day 28",
+            "Day 29",
+            "Day 30"
+          ],
+          "type": "category"
+        },
+        "yAxis": {
+          "name": "客户端数量",
+          "type": "value"
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "data": [
+              0.0
+            ],
+            "itemStyle": {
+              "color": "#9370db"
+            },
+            "name": "下行流量(GB)",
+            "stack": "流量",
+            "type": "bar"
+          },
+          {
+            "data": [
+              0.0
+            ],
+            "itemStyle": {
+              "color": "#8a2be2"
+            },
+            "name": "上行流量(GB)",
+            "stack": "流量",
+            "type": "bar"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "xAxis": {
+          "axisLabel": {
+            "rotate": 45
+          },
+          "data": [
+            "Unknown"
+          ],
+          "type": "category"
+        },
+        "yAxis": {
+          "name": "流量(GB)",
+          "type": "value"
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "center": [
+              "50%",
+              "45%"
+            ],
+            "data": [
+              {
+                "itemStyle": {
+                  "color": "#9370db"
+                },
+                "name": "Wireless",
+                "value": 178
+              }
+            ],
+            "emphasis": {
+              "itemStyle": {
+                "shadowBlur": 10,
+                "shadowColor": "rgba(0, 0, 0, 0.5)",
+                "shadowOffsetX": 0
+              }
+            },
+            "name": "许可证",
+            "radius": [
+              "30%",
+              "60%"
+            ],
+            "type": "pie"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        }
+      }
+    ]
+  },
+  "error": null
+}

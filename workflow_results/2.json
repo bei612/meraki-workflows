@@ -1,0 +1,313 @@
+{
+  "workflow_number": 2,
+  "workflow_name": "AP设备搜索",
+  "execution_time": "2025-09-23 11:02:36",
+  "success": true,
+  "result": {
+    "query_keyword": "MR",
+    "search_summary": {
+      "details_retrieved": 3,
+      "search_scope": "全组织设备",
+      "total_matched": 174
+    },
+    "matched_devices_list": [
+      {
+        "index": 1,
+        "model": "MR44",
+        "name": "UB3F-H330H-MR44-010",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2C2Q-74MQ"
+      },
+      {
+        "index": 2,
+        "model": "MR44",
+        "name": "PC2F-P210-MR44-012",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2F5C-CYJM"
+      },
+      {
+        "index": 3,
+        "model": "MR44",
+        "name": "PC1F-P138-MR44-004",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2PRG-LGTV"
+      },
+      {
+        "index": 4,
+        "model": "MR44",
+        "name": "IB1F-109-MR44-011",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2R6T-YJ4E"
+      },
+      {
+        "index": 5,
+        "model": "MR44",
+        "name": "LB1F-E105-MR44-004",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2Z7A-CE6W"
+      },
+      {
+        "index": 6,
+        "model": "MR44",
+        "name": "LB2F-E209-MR44-009",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-36EM-7WQ9"
+      },
+      {
+        "index": 7,
+        "model": "MR44",
+        "name": "LB4F-E406-MR44-006",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-3L7B-Z8NS"
+      },
+      {
+        "index": 8,
+        "model": "MR44",
+        "name": "GHHY-MR44-001",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-3NER-KKXR"
+      },
+      {
+        "index": 9,
+        "model": "MR44",
+        "name": "IB1F-105-MR44-007",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-3PTF-6FS2"
+      },
+      {
+        "index": 10,
+        "model": "MR44",
+        "name": "LB1F-E101E-MR44-002",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-4EYX-HVBS"
+      }
+    ],
+    "selected_devices_details": [
+      {
+        "firmware": "wireless-31-1-7",
+        "lan_ip": "172.29.30.222",
+        "location": {
+          "address": "",
+          "lat": 31.244121048582006,
+          "lng": 121.58285565351153
+        },
+        "model": "MR44",
+        "name": "UB3F-H330H-MR44-010",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2C2Q-74MQ",
+        "status": "online",
+        "tags": []
+      },
+      {
+        "firmware": "wireless-31-1-7",
+        "lan_ip": "172.29.31.135",
+        "location": {
+          "address": "",
+          "lat": 31.326217047177742,
+          "lng": 120.70811264244455
+        },
+        "model": "MR44",
+        "name": "PC2F-P210-MR44-012",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2F5C-CYJM",
+        "status": "online",
+        "tags": []
+      },
+      {
+        "firmware": "wireless-31-1-7",
+        "lan_ip": "172.29.31.122",
+        "location": {
+          "address": "",
+          "lat": 31.323112609502875,
+          "lng": 120.70735847478758
+        },
+        "model": "MR44",
+        "name": "PC1F-P138-MR44-004",
+        "network_id": "N_851743279526505448",
+        "serial": "Q3AL-2PRG-LGTV",
+        "status": "online",
+        "tags": []
+      }
+    ],
+    "user_interaction": {
+      "action": "用户可从匹配列表中选择任意设备查看详情",
+      "available_selections": 174,
+      "demonstration_count": 3
+    },
+    "query_time": "2025-09-23 11:02:36",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "columns": [
+          "序号",
+          "设备名称",
+          "型号",
+          "序列号",
+          "网络ID"
+        ],
+        "data": [
+          [
+            1,
+            "UB3F-H330H-MR44-010",
+            "MR44",
+            "Q3AL-2C2Q-74MQ",
+            "N_851743279526505448"
+          ],
+          [
+            2,
+            "PC2F-P210-MR44-012",
+            "MR44",
+            "Q3AL-2F5C-CYJM",
+            "N_851743279526505448"
+          ],
+          [
+            3,
+            "PC1F-P138-MR44-004",
+            "MR44",
+            "Q3AL-2PRG-LGTV",
+            "N_851743279526505448"
+          ],
+          [
+            4,
+            "IB1F-109-MR44-011",
+            "MR44",
+            "Q3AL-2R6T-YJ4E",
+            "N_851743279526505448"
+          ],
+          [
+            5,
+            "LB1F-E105-MR44-004",
+            "MR44",
+            "Q3AL-2Z7A-CE6W",
+            "N_851743279526505448"
+          ],
+          [
+            6,
+            "LB2F-E209-MR44-009",
+            "MR44",
+            "Q3AL-36EM-7WQ9",
+            "N_851743279526505448"
+          ],
+          [
+            7,
+            "LB4F-E406-MR44-006",
+            "MR44",
+            "Q3AL-3L7B-Z8NS",
+            "N_851743279526505448"
+          ],
+          [
+            8,
+            "GHHY-MR44-001",
+            "MR44",
+            "Q3AL-3NER-KKXR",
+            "N_851743279526505448"
+          ],
+          [
+            9,
+            "IB1F-105-MR44-007",
+            "MR44",
+            "Q3AL-3PTF-6FS2",
+            "N_851743279526505448"
+          ],
+          [
+            10,
+            "LB1F-E101E-MR44-002",
+            "MR44",
+            "Q3AL-4EYX-HVBS",
+            "N_851743279526505448"
+          ]
+        ],
+        "title": "AP设备列表",
+        "type": "table"
+      },
+      {
+        "option": {
+          "series": [
+            {
+              "data": [
+                [
+                  121.58285565351153,
+                  31.244121048582006,
+                  "UB3F-H330H-MR44-010"
+                ],
+                [
+                  120.70811264244455,
+                  31.326217047177742,
+                  "PC2F-P210-MR44-012"
+                ],
+                [
+                  120.70735847478758,
+                  31.323112609502875,
+                  "PC1F-P138-MR44-004"
+                ]
+              ],
+              "emphasis": {
+                "itemStyle": {
+                  "borderColor": "#ffffff",
+                  "borderWidth": 3,
+                  "color": "#ff69b4",
+                  "shadowBlur": 15,
+                  "shadowColor": "rgba(138, 43, 226, 0.8)"
+                }
+              },
+              "itemStyle": {
+                "borderColor": "#ffffff",
+                "borderWidth": 2,
+                "color": "#8a2be2"
+              },
+              "name": "AP设备",
+              "symbolSize": 12,
+              "type": "scatter"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "AP设备地理分布",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "borderColor": "#ffffff",
+            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "item"
+          },
+          "xAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 10
+            },
+            "name": "经度",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "scale": true,
+            "type": "value"
+          },
+          "yAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 10
+            },
+            "name": "纬度",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "scale": true,
+            "type": "value"
+          }
+        },
+        "title": "设备地理分布",
+        "type": "scatter"
+      }
+    ]
+  },
+  "error": null
+}

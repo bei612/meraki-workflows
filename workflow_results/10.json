@@ -1,0 +1,395 @@
+{
+  "workflow_number": 10,
+  "workflow_name": "告警日志",
+  "execution_time": "2025-09-23 11:02:48",
+  "success": true,
+  "result": {
+    "organization_name": "Concordia",
+    "organization_id": "850617379619606726",
+    "alerts_summary": {
+      "critical_count": 6,
+      "info_count": 0,
+      "total_alerts": 6,
+      "unresolved_count": 6,
+      "warning_count": 0
+    },
+    "critical_alerts": [
+      {
+        "categoryType": "connectivity",
+        "cursor": "14634261",
+        "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "14634261",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "mac": "e4:55:a8:6a:f1:6d",
+              "name": "ODAP-MR86-004",
+              "nodeId": 251056548933997,
+              "productType": "wireless",
+              "serial": "Q3KG-ZUKK-DKSR",
+              "tags": [],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548933997"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-09-19T03:40:14Z",
+        "title": "Unreachable device",
+        "type": "unreachable"
+      },
+      {
+        "categoryType": "connectivity",
+        "cursor": "14634034",
+        "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "14634034",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "mac": "e4:55:a8:6a:f1:e3",
+              "name": "ODAP-MR86-003",
+              "nodeId": 251056548934115,
+              "productType": "wireless",
+              "serial": "Q3KG-9KWY-8MG5",
+              "tags": [],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934115"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-09-19T03:28:03Z",
+        "title": "Unreachable device",
+        "type": "unreachable"
+      },
+      {
+        "categoryType": "connectivity",
+        "cursor": "14633632",
+        "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "14633632",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "mac": "e4:55:a8:6a:f1:d2",
+              "name": "ODAP-MR86-002",
+              "nodeId": 251056548934098,
+              "productType": "wireless",
+              "serial": "Q3KG-RXF9-LKP2",
+              "tags": [],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934098"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-09-19T03:11:54Z",
+        "title": "Unreachable device",
+        "type": "unreachable"
+      },
+      {
+        "categoryType": "connectivity",
+        "cursor": "14633355",
+        "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "14633355",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "mac": "e4:55:a8:6a:f1:82",
+              "name": "ODAP-MR86-001",
+              "nodeId": 251056548934018,
+              "productType": "wireless",
+              "serial": "Q3KG-K9M4-8RVZ",
+              "tags": [],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934018"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-09-19T03:01:05Z",
+        "title": "Unreachable device",
+        "type": "unreachable"
+      },
+      {
+        "categoryType": "device_health",
+        "cursor": "14478409",
+        "description": null,
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "14478409",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "ethernetNegotiation": {
+                "duplex": "full duplex",
+                "linkNegotiation": "auto",
+                "speed": 100
+              },
+              "mac": "e4:55:a8:9d:e1:e8",
+              "name": "IB2F-Corr-MR57-002",
+              "nodeId": 251056552272360,
+              "portIdentifier": 0,
+              "productType": "wireless",
+              "serial": "Q3AP-DUWQ-6AB9",
+              "tags": [
+                "IB"
+              ],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056552272360"
+            },
+            {
+              "lldpCdpPacket": {
+                "address": "172.28.30.21",
+                "capabilities": "Switch, IGMP conditional filtering",
+                "deviceId": "CISS-MS2F-C9200-001",
+                "managementAddress": "172.28.30.21",
+                "nativeVlan": 1300,
+                "platform": "cisco C9200-48P",
+                "portId": "GigabitEthernet1/0/3",
+                "uDI": "PID:C9200-48P,VID:C1,SN:JAE242002PQ",
+                "version": "Cisco IOS Software [Cupertino], Catalyst L3 Switch Software (CAT9K_LITE_IOSXE), Version 17.9.5, RELEASE SOFTWARE (fc1)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2024 by Cisco Systems, Inc.\nCompiled Tue 30-Jan-24 15:36 by mcpre"
+              },
+              "portIdentifier": "GigabitEthernet1/0/3"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-09-12T06:38:52Z",
+        "title": "Ethernet uplink speed degraded",
+        "type": "ethernet_negotiation_failure"
+      },
+      {
+        "categoryType": "device_health",
+        "cursor": "13590530",
+        "description": null,
+        "deviceType": "MR",
+        "dismissedAt": null,
+        "expiresAt": null,
+        "id": "13590530",
+        "network": {
+          "id": "N_851743279526505448",
+          "name": "CISS Network"
+        },
+        "resolvedAt": null,
+        "schemaVersion": "org-alert-api",
+        "scope": {
+          "applications": [],
+          "devices": [
+            {
+              "ethernetNegotiation": {
+                "duplex": "full duplex",
+                "linkNegotiation": "auto",
+                "speed": 100
+              },
+              "mac": "e4:55:a8:9d:e2:18",
+              "name": "PC2F-P228-MR57-011",
+              "nodeId": 251056552272408,
+              "portIdentifier": 0,
+              "productType": "wireless",
+              "serial": "Q3AP-GXV3-ZMV2",
+              "tags": [],
+              "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056552272408"
+            },
+            {
+              "lldpCdpPacket": {
+                "address": "172.28.30.51",
+                "capabilities": "Switch, IGMP conditional filtering",
+                "deviceId": "CISS-PC1F-C3850-001.concordia.org",
+                "managementAddress": "172.28.30.51",
+                "nativeVlan": 1300,
+                "platform": "cisco WS-C3850-48P",
+                "portId": "GigabitEthernet1/0/10",
+                "uDI": "PID:WS-C3850-48F-L,VID:V07,SN:FOC2126L311",
+                "vTPManagementDomain": "PCDS_Vtpdomain",
+                "version": "Cisco IOS Software [Gibraltar], Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 16.12.11, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2024 by Cisco Systems, Inc.\nCompiled Sun 31-Mar-24 12:30 by mcpre"
+              },
+              "portIdentifier": "GigabitEthernet1/0/10"
+            }
+          ],
+          "others": [],
+          "peers": []
+        },
+        "severity": "critical",
+        "startedAt": "2025-08-03T05:47:32Z",
+        "title": "Ethernet uplink speed degraded",
+        "type": "ethernet_negotiation_failure"
+      }
+    ],
+    "network_events_sample": [],
+    "alert_categories": [
+      "device_health",
+      "connectivity"
+    ],
+    "query_time": "2025-09-23 11:02:48",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "grid": {
+            "bottom": "15%",
+            "containLabel": true,
+            "left": "8%",
+            "right": "8%"
+          },
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                [
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  2,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2,
+                  0
+                ]
+              ],
+              "label": {
+                "show": true
+              },
+              "name": "告警数量",
+              "type": "heatmap"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "告警分布热力图",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "position": "top",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "visualMap": {
+            "bottom": "15%",
+            "calculable": true,
+            "inRange": {
+              "color": [
+                "#1a1a2e",
+                "#8a2be2",
+                "#ff69b4",
+                "#ff1493"
+              ]
+            },
+            "left": "center",
+            "max": 4,
+            "min": 0,
+            "orient": "horizontal",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "xAxis": {
+            "data": [
+              "device_health",
+              "connectivity"
+            ],
+            "splitArea": {
+              "show": true
+            },
+            "type": "category"
+          },
+          "yAxis": {
+            "data": [
+              "critical",
+              "warning",
+              "info"
+            ],
+            "splitArea": {
+              "show": true
+            },
+            "type": "category"
+          }
+        },
+        "title": "告警类型与严重程度热力图",
+        "type": "heatmap"
+      }
+    ]
+  },
+  "error": null
+}

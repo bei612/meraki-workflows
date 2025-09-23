@@ -19,6 +19,7 @@ import asyncio
 import sys
 import json
 import uuid
+import os
 from datetime import datetime
 from temporalio.client import Client
 
@@ -54,6 +55,44 @@ def print_separator(title: str, char: str = "=", width: int = 80):
     print(f"\n{char * width}")
     print(f"{title:^{width}}")
     print(f"{char * width}")
+
+def save_workflow_result(workflow_number: int, workflow_name: str, result, success: bool):
+    """保存workflow结果到JSON文件"""
+    try:
+        # 创建结果目录
+        os.makedirs("workflow_results", exist_ok=True)
+        
+        # 准备保存的数据
+        save_data = {
+            "workflow_number": workflow_number,
+            "workflow_name": workflow_name,
+            "execution_time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            "success": success,
+            "result": None,
+            "error": None
+        }
+        
+        if success and result:
+            # 将结果转换为字典格式
+            if hasattr(result, '__dict__'):
+                save_data["result"] = {
+                    key: value for key, value in result.__dict__.items()
+                    if not key.startswith('_')
+                }
+            else:
+                save_data["result"] = result
+        else:
+            save_data["error"] = str(result) if result else "Unknown error"
+        
+        # 保存到文件
+        filename = f"workflow_results/{workflow_number}.json"
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(save_data, f, ensure_ascii=False, indent=2, default=str)
+        
+        print(f"   💾 结果已保存到: {filename}")
+        
+    except Exception as e:
+        print(f"   ⚠️  保存结果失败: {str(e)}")
 
 def print_workflow_result(result, workflow_name: str, workflow_number: int):
     """打印完整的工作流返回结果"""
@@ -213,6 +252,9 @@ async def test_basic_workflows(client: Client, org_id: str):
             # 打印完整结果
             print_workflow_result(result, test_case['name'], i)
             
+            # 保存结果到JSON文件
+            save_workflow_result(i, test_case['name'], result, True)
+            
             results.append({
                 "workflow_number": i,
                 "name": test_case['name'],
@@ -222,6 +264,10 @@ async def test_basic_workflows(client: Client, org_id: str):
             
         except Exception as e:
             print(f"❌ 工作流 {i} 执行失败: {str(e)}")
+            
+            # 保存错误结果到JSON文件
+            save_workflow_result(i, test_case['name'], str(e), False)
+            
             results.append({
                 "workflow_number": i,
                 "name": test_case['name'],
@@ -283,6 +329,9 @@ async def test_complex_workflows(client: Client, org_id: str):
             # 打印完整结果
             print_workflow_result(result, test_case['name'], i)
             
+            # 保存结果到JSON文件
+            save_workflow_result(i, test_case['name'], result, True)
+            
             results.append({
                 "workflow_number": i,
                 "name": test_case['name'],
@@ -292,6 +341,10 @@ async def test_complex_workflows(client: Client, org_id: str):
             
         except Exception as e:
             print(f"❌ 工作流 {i} 执行失败: {str(e)}")
+            
+            # 保存错误结果到JSON文件
+            save_workflow_result(i, test_case['name'], str(e), False)
+            
             results.append({
                 "workflow_number": i,
                 "name": test_case['name'],
@@ -381,6 +434,7 @@ async def main():
     print(f"🔧 Temporal服务: {TEMPORAL_HOST}")
     print(f"📦 命名空间: {TEMPORAL_NAMESPACE}")
     print(f"🎯 任务队列: {TASK_QUEUE}")
+    print(f"💾 结果保存: workflow_results/1-14.json")
     
     try:
         # 连接Temporal服务

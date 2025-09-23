@@ -1,0 +1,382 @@
+{
+  "workflow_number": 6,
+  "workflow_name": "设备巡检报告",
+  "execution_time": "2025-09-23 11:02:41",
+  "success": true,
+  "result": {
+    "organization_name": "Concordia",
+    "organization_id": "850617379619606726",
+    "report_metadata": {
+      "data_sources": [
+        "设备状态",
+        "组织告警",
+        "网络事件"
+      ],
+      "report_time": "2025-09-23 11:02:41",
+      "report_type": "综合设备巡检报告"
+    },
+    "device_status_analysis": {
+      "alerting_devices": 2,
+      "dormant_devices": 0,
+      "health_percentage": 96.55,
+      "offline_devices": 4,
+      "online_devices": 168,
+      "status_distribution": {
+        "alerting": 2,
+        "dormant": 0,
+        "offline": 4,
+        "online": 168
+      },
+      "total_devices": 174
+    },
+    "alerts_analysis": {
+      "alert_categories": [
+        "device_health",
+        "connectivity"
+      ],
+      "critical_alerts": 6,
+      "info_alerts": 0,
+      "recent_critical_alerts": [
+        {
+          "categoryType": "connectivity",
+          "cursor": "14634261",
+          "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+          "deviceType": "MR",
+          "dismissedAt": null,
+          "expiresAt": null,
+          "id": "14634261",
+          "network": {
+            "id": "N_851743279526505448",
+            "name": "CISS Network"
+          },
+          "resolvedAt": null,
+          "schemaVersion": "org-alert-api",
+          "scope": {
+            "applications": [],
+            "devices": [
+              {
+                "mac": "e4:55:a8:6a:f1:6d",
+                "name": "ODAP-MR86-004",
+                "nodeId": 251056548933997,
+                "productType": "wireless",
+                "serial": "Q3KG-ZUKK-DKSR",
+                "tags": [],
+                "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548933997"
+              }
+            ],
+            "others": [],
+            "peers": []
+          },
+          "severity": "critical",
+          "startedAt": "2025-09-19T03:40:14Z",
+          "title": "Unreachable device",
+          "type": "unreachable"
+        },
+        {
+          "categoryType": "connectivity",
+          "cursor": "14634034",
+          "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+          "deviceType": "MR",
+          "dismissedAt": null,
+          "expiresAt": null,
+          "id": "14634034",
+          "network": {
+            "id": "N_851743279526505448",
+            "name": "CISS Network"
+          },
+          "resolvedAt": null,
+          "schemaVersion": "org-alert-api",
+          "scope": {
+            "applications": [],
+            "devices": [
+              {
+                "mac": "e4:55:a8:6a:f1:e3",
+                "name": "ODAP-MR86-003",
+                "nodeId": 251056548934115,
+                "productType": "wireless",
+                "serial": "Q3KG-9KWY-8MG5",
+                "tags": [],
+                "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934115"
+              }
+            ],
+            "others": [],
+            "peers": []
+          },
+          "severity": "critical",
+          "startedAt": "2025-09-19T03:28:03Z",
+          "title": "Unreachable device",
+          "type": "unreachable"
+        },
+        {
+          "categoryType": "connectivity",
+          "cursor": "14633632",
+          "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+          "deviceType": "MR",
+          "dismissedAt": null,
+          "expiresAt": null,
+          "id": "14633632",
+          "network": {
+            "id": "N_851743279526505448",
+            "name": "CISS Network"
+          },
+          "resolvedAt": null,
+          "schemaVersion": "org-alert-api",
+          "scope": {
+            "applications": [],
+            "devices": [
+              {
+                "mac": "e4:55:a8:6a:f1:d2",
+                "name": "ODAP-MR86-002",
+                "nodeId": 251056548934098,
+                "productType": "wireless",
+                "serial": "Q3KG-RXF9-LKP2",
+                "tags": [],
+                "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934098"
+              }
+            ],
+            "others": [],
+            "peers": []
+          },
+          "severity": "critical",
+          "startedAt": "2025-09-19T03:11:54Z",
+          "title": "Unreachable device",
+          "type": "unreachable"
+        },
+        {
+          "categoryType": "connectivity",
+          "cursor": "14633355",
+          "description": "Unreachable for 4 days - <a href='https://documentation.meraki.com/General_Administration/Cross-Platform_Content/Alerts_and_Notifications/Dashboard_Alerts_-_Connectivity_Issues#Unreachable_device(s)' target='_blank'>How to resolve this error</a>",
+          "deviceType": "MR",
+          "dismissedAt": null,
+          "expiresAt": null,
+          "id": "14633355",
+          "network": {
+            "id": "N_851743279526505448",
+            "name": "CISS Network"
+          },
+          "resolvedAt": null,
+          "schemaVersion": "org-alert-api",
+          "scope": {
+            "applications": [],
+            "devices": [
+              {
+                "mac": "e4:55:a8:6a:f1:82",
+                "name": "ODAP-MR86-001",
+                "nodeId": 251056548934018,
+                "productType": "wireless",
+                "serial": "Q3KG-K9M4-8RVZ",
+                "tags": [],
+                "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056548934018"
+              }
+            ],
+            "others": [],
+            "peers": []
+          },
+          "severity": "critical",
+          "startedAt": "2025-09-19T03:01:05Z",
+          "title": "Unreachable device",
+          "type": "unreachable"
+        },
+        {
+          "categoryType": "device_health",
+          "cursor": "14478409",
+          "description": null,
+          "deviceType": "MR",
+          "dismissedAt": null,
+          "expiresAt": null,
+          "id": "14478409",
+          "network": {
+            "id": "N_851743279526505448",
+            "name": "CISS Network"
+          },
+          "resolvedAt": null,
+          "schemaVersion": "org-alert-api",
+          "scope": {
+            "applications": [],
+            "devices": [
+              {
+                "ethernetNegotiation": {
+                  "duplex": "full duplex",
+                  "linkNegotiation": "auto",
+                  "speed": 100
+                },
+                "mac": "e4:55:a8:9d:e1:e8",
+                "name": "IB2F-Corr-MR57-002",
+                "nodeId": 251056552272360,
+                "portIdentifier": 0,
+                "productType": "wireless",
+                "serial": "Q3AP-DUWQ-6AB9",
+                "tags": [
+                  "IB"
+                ],
+                "url": "https://n3.meraki.cn/CISS-Network/n/AUr45dbi/manage/nodes/new_list/251056552272360"
+              },
+              {
+                "lldpCdpPacket": {
+                  "address": "172.28.30.21",
+                  "capabilities": "Switch, IGMP conditional filtering",
+                  "deviceId": "CISS-MS2F-C9200-001",
+                  "managementAddress": "172.28.30.21",
+                  "nativeVlan": 1300,
+                  "platform": "cisco C9200-48P",
+                  "portId": "GigabitEthernet1/0/3",
+                  "uDI": "PID:C9200-48P,VID:C1,SN:JAE242002PQ",
+                  "version": "Cisco IOS Software [Cupertino], Catalyst L3 Switch Software (CAT9K_LITE_IOSXE), Version 17.9.5, RELEASE SOFTWARE (fc1)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2024 by Cisco Systems, Inc.\nCompiled Tue 30-Jan-24 15:36 by mcpre"
+                },
+                "portIdentifier": "GigabitEthernet1/0/3"
+              }
+            ],
+            "others": [],
+            "peers": []
+          },
+          "severity": "critical",
+          "startedAt": "2025-09-12T06:38:52Z",
+          "title": "Ethernet uplink speed degraded",
+          "type": "ethernet_negotiation_failure"
+        }
+      ],
+      "total_alerts": 6,
+      "warning_alerts": 0
+    },
+    "network_events_analysis": {
+      "events_sampled": 0,
+      "networks_checked": 4,
+      "recent_events": [],
+      "sample_network": "WAB Demo"
+    },
+    "health_assessment": {
+      "critical_issues": 6,
+      "devices_needing_attention": 6,
+      "network_stability": "不稳定",
+      "overall_health": "良好"
+    },
+    "recommendations": {
+      "immediate_actions": [
+        "检查 4 台离线设备",
+        "处理 2 台告警设备",
+        "优先处理严重告警"
+      ],
+      "maintenance_suggestions": []
+    },
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "legend": {
+            "data": [
+              "当前状态"
+            ],
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "radar": {
+            "axisLine": {
+              "lineStyle": {
+                "color": "rgba(230, 230, 250, 0.3)"
+              }
+            },
+            "center": [
+              "50%",
+              "60%"
+            ],
+            "indicator": [
+              {
+                "max": 100,
+                "name": "设备健康度"
+              },
+              {
+                "max": 100,
+                "name": "网络稳定性"
+              },
+              {
+                "max": 100,
+                "name": "告警控制"
+              },
+              {
+                "max": 100,
+                "name": "在线率"
+              },
+              {
+                "max": 100,
+                "name": "响应速度"
+              }
+            ],
+            "name": {
+              "textStyle": {
+                "color": "#ffffff",
+                "fontSize": 12
+              }
+            },
+            "radius": "70%",
+            "splitLine": {
+              "lineStyle": {
+                "color": "rgba(230, 230, 250, 0.2)"
+              }
+            }
+          },
+          "series": [
+            {
+              "data": [
+                {
+                  "areaStyle": {
+                    "color": {
+                      "colorStops": [
+                        {
+                          "color": "rgba(138, 43, 226, 0.3)",
+                          "offset": 0
+                        },
+                        {
+                          "color": "rgba(138, 43, 226, 0.1)",
+                          "offset": 1
+                        }
+                      ],
+                      "r": 0.5,
+                      "type": "radial",
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  },
+                  "itemStyle": {
+                    "color": "rgba(138, 43, 226, 0.8)"
+                  },
+                  "lineStyle": {
+                    "color": "#8a2be2",
+                    "width": 3
+                  },
+                  "name": "当前状态",
+                  "value": [
+                    96.55,
+                    50,
+                    40,
+                    96.55,
+                    80
+                  ]
+                }
+              ],
+              "name": "健康指标",
+              "type": "radar"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "系统健康状况雷达图",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          }
+        },
+        "title": "系统健康状况雷达图",
+        "type": "radar"
+      }
+    ]
+  },
+  "error": null
+}

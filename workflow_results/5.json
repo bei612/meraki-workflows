@@ -1,0 +1,145 @@
+{
+  "workflow_number": 5,
+  "workflow_name": "许可证详情",
+  "execution_time": "2025-09-23 11:02:41",
+  "success": true,
+  "result": {
+    "organization_name": "Concordia",
+    "organization_id": "850617379619606726",
+    "license_overview": {
+      "expirationDate": "Jul 27, 2031 UTC",
+      "licensedDeviceCounts": {
+        "wireless": 178
+      },
+      "status": "OK"
+    },
+    "license_details": [
+      {
+        "device_type": "wireless",
+        "expiration_date": "Jul 27, 2031 UTC",
+        "license_count": 178,
+        "status": "OK"
+      }
+    ],
+    "license_analysis": {
+      "api_status": "full",
+      "expiration_date": "Jul 27, 2031 UTC",
+      "licensed_device_counts": {
+        "wireless": 178
+      },
+      "licensing_model": "Co-termination",
+      "status": "OK",
+      "total_wireless_licenses": 178
+    },
+    "query_time": "2025-09-23 11:02:41",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "axisLabel": {
+                "color": "#ffffff",
+                "distance": 40,
+                "fontSize": 12
+              },
+              "axisLine": {
+                "lineStyle": {
+                  "color": [
+                    [
+                      0.3,
+                      "#6a1b9a"
+                    ],
+                    [
+                      0.7,
+                      "#7b1fa2"
+                    ],
+                    [
+                      1,
+                      "#4a148c"
+                    ]
+                  ],
+                  "width": 25
+                }
+              },
+              "axisTick": {
+                "distance": -30,
+                "length": 8,
+                "lineStyle": {
+                  "color": "#ffffff",
+                  "width": 2
+                }
+              },
+              "data": [
+                {
+                  "name": "健康度",
+                  "value": 100
+                }
+              ],
+              "detail": {
+                "color": "#ffffff",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "formatter": "{value}%",
+                "offsetCenter": [
+                  0,
+                  "40%"
+                ]
+              },
+              "name": "许可证状态",
+              "pointer": {
+                "itemStyle": {
+                  "borderColor": "#4a148c",
+                  "borderWidth": 2,
+                  "color": "#ffffff"
+                }
+              },
+              "progress": {
+                "show": true
+              },
+              "splitLine": {
+                "distance": -30,
+                "length": 30,
+                "lineStyle": {
+                  "color": "#ffffff",
+                  "width": 4
+                }
+              },
+              "title": {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "offsetCenter": [
+                  0,
+                  "80%"
+                ]
+              },
+              "type": "gauge"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "许可证使用状态",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          }
+        },
+        "title": "许可证使用状态",
+        "type": "gauge"
+      }
+    ]
+  },
+  "error": null
+}

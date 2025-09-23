@@ -1,0 +1,239 @@
+{
+  "workflow_number": 3,
+  "workflow_name": "客户端统计",
+  "execution_time": "2025-09-23 11:02:40",
+  "success": true,
+  "result": {
+    "organization_name": "Concordia",
+    "organization_id": "850617379619606726",
+    "query_summary": {
+      "avg_clients_per_network": 360.75,
+      "networks_with_clients": 1,
+      "total_clients_in_org": 1443,
+      "total_heavy_usage_clients": 25,
+      "total_networks": 4
+    },
+    "networks_breakdown": [
+      {
+        "client_count": 0,
+        "heavy_usage_count": 0,
+        "network_id": "L_851743279526457662",
+        "network_name": "WAB Demo",
+        "product_types": [
+          "appliance",
+          "sensor",
+          "switch",
+          "wireless"
+        ],
+        "timezone": "Asia/Chongqing"
+      },
+      {
+        "client_count": 0,
+        "heavy_usage_count": 0,
+        "network_id": "L_851743279526458278",
+        "network_name": "Sammy Testing",
+        "product_types": [
+          "appliance",
+          "sensor",
+          "switch",
+          "wireless"
+        ],
+        "timezone": "America/Los_Angeles"
+      },
+      {
+        "client_count": 0,
+        "heavy_usage_count": 0,
+        "network_id": "L_851743279526459432",
+        "network_name": "Concorida Demo",
+        "product_types": [
+          "appliance",
+          "wireless"
+        ],
+        "timezone": "Asia/Shanghai"
+      },
+      {
+        "client_count": 1443,
+        "heavy_usage_count": 25,
+        "network_id": "N_851743279526505448",
+        "network_name": "CISS Network",
+        "product_types": [
+          "wireless"
+        ],
+        "timezone": "Asia/Shanghai"
+      }
+    ],
+    "client_distribution_analysis": {
+      "heavy_usage_ratio": 1.73,
+      "most_active_network": "CISS Network",
+      "networks_without_clients": [
+        "WAB Demo",
+        "Sammy Testing",
+        "Concorida Demo"
+      ]
+    },
+    "query_time": "2025-09-23 11:02:40",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "grid": {
+            "bottom": "15%",
+            "containLabel": true,
+            "left": "8%",
+            "right": "8%"
+          },
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                0,
+                0,
+                0,
+                1443
+              ],
+              "emphasis": {
+                "itemStyle": {
+                  "color": "#7b1fa2",
+                  "shadowBlur": 8,
+                  "shadowColor": "rgba(74, 20, 140, 0.6)"
+                }
+              },
+              "itemStyle": {
+                "borderColor": "#2e2e4f",
+                "borderWidth": 1,
+                "color": {
+                  "colorStops": [
+                    {
+                      "color": "#4a148c",
+                      "offset": 0
+                    },
+                    {
+                      "color": "#6a1b9a",
+                      "offset": 1
+                    }
+                  ],
+                  "type": "linear",
+                  "x": 0,
+                  "x2": 0,
+                  "y": 0,
+                  "y2": 1
+                }
+              },
+              "label": {
+                "color": "#ffffff",
+                "fontSize": 11,
+                "formatter": "{c}",
+                "position": "top",
+                "show": true
+              },
+              "name": "总数",
+              "type": "bar"
+            },
+            {
+              "data": [
+                0,
+                0,
+                0,
+                25
+              ],
+              "emphasis": {
+                "itemStyle": {
+                  "color": "#9c27b0",
+                  "shadowBlur": 8,
+                  "shadowColor": "rgba(123, 31, 162, 0.6)"
+                }
+              },
+              "itemStyle": {
+                "borderColor": "#2e2e4f",
+                "borderWidth": 1,
+                "color": {
+                  "colorStops": [
+                    {
+                      "color": "#7b1fa2",
+                      "offset": 0
+                    },
+                    {
+                      "color": "#8e24aa",
+                      "offset": 1
+                    }
+                  ],
+                  "type": "linear",
+                  "x": 0,
+                  "x2": 0,
+                  "y": 0,
+                  "y2": 1
+                }
+              },
+              "label": {
+                "color": "#ffffff",
+                "fontSize": 11,
+                "formatter": "{c}",
+                "position": "top",
+                "show": true
+              },
+              "name": "重度",
+              "type": "bar"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "各网络客户端数量统计",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "borderColor": "#ffffff",
+            "formatter": "{b0}<br/>{a0}: {c0}个<br/>{a1}: {c1}个",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "axis"
+          },
+          "xAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 11,
+              "interval": 0,
+              "rotate": 45
+            },
+            "data": [
+              "WAB Demo",
+              "Sammy Testing",
+              "Concorida Demo",
+              "CISS Network"
+            ],
+            "name": "网络名称",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "category"
+          },
+          "yAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 11,
+              "formatter": "{value}个"
+            },
+            "name": "客户端数量",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "value"
+          }
+        },
+        "title": "各网络客户端数量统计",
+        "type": "bar"
+      }
+    ]
+  },
+  "error": null
+}

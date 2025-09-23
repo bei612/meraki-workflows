@@ -70,83 +70,14 @@ from temporalio import workflow
 with workflow.unsafe.imports_passed_through():
     from meraki import MerakiActivities
 
-
 # ==================== 暗紫色主题配置 ====================
 
 def get_dark_purple_theme():
-    """获取统一的暗紫色主题配置"""
+    """极简暗紫色主题 - 只保留核心配置，不包含坐标轴"""
     return {
-        "backgroundColor": "transparent",  # 透明背景，由外层容器控制
-        "textStyle": {
-            "color": "#e6e6fa",  # 淡紫色文字
-            "fontFamily": "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-        },
-        "title": {
-            "textStyle": {
-                "color": "#ffffff",
-                "fontSize": 16,
-                "fontWeight": "bold"
-            }
-        },
-        "legend": {
-            "textStyle": {
-                "color": "#b8b8d4"
-            }
-        },
-        "tooltip": {
-            "backgroundColor": "rgba(26, 26, 46, 0.95)",
-            "borderColor": "#6a5acd",
-            "borderWidth": 1,
-            "textStyle": {
-                "color": "#ffffff"
-            }
-        },
-        "grid": {
-            "borderColor": "#483d8b",
-            "borderWidth": 1
-        },
-        "xAxis": {
-            "axisLine": {
-                "lineStyle": {
-                    "color": "#6a5acd"
-                }
-            },
-            "axisTick": {
-                "lineStyle": {
-                    "color": "#6a5acd"
-                }
-            },
-            "axisLabel": {
-                "color": "#b8b8d4"
-            },
-            "splitLine": {
-                "lineStyle": {
-                    "color": "#2e2e4f",
-                    "type": "dashed"
-                }
-            }
-        },
-        "yAxis": {
-            "axisLine": {
-                "lineStyle": {
-                    "color": "#6a5acd"
-                }
-            },
-            "axisTick": {
-                "lineStyle": {
-                    "color": "#6a5acd"
-                }
-            },
-            "axisLabel": {
-                "color": "#b8b8d4"
-            },
-            "splitLine": {
-                "lineStyle": {
-                    "color": "#2e2e4f",
-                    "type": "dashed"
-                }
-            }
-        }
+        "title": {"textStyle": {"color": "#ffffff"}},
+        "legend": {"textStyle": {"color": "#ffffff"}},
+        "tooltip": {"backgroundColor": "rgba(0,0,0,0.8)", "textStyle": {"color": "#ffffff"}}
     }
 
 def get_purple_color_palette():
@@ -173,6 +104,27 @@ def merge_theme_config(base_config, theme_config):
             result[key] = value
     return result
 
+def force_clean_text_style(echarts_data):
+    """极简文字样式处理 - 只设置白色文字，不添加坐标轴"""
+    if isinstance(echarts_data, list):
+        for chart in echarts_data:
+            if isinstance(chart, dict) and "option" in chart:
+                # 只设置最基本的白色文字
+                if "title" in chart["option"]:
+                    chart["option"]["title"]["textStyle"] = {"color": "#ffffff"}
+                if "legend" in chart["option"]:
+                    chart["option"]["legend"]["textStyle"] = {"color": "#ffffff"}
+                if "tooltip" in chart["option"]:
+                    chart["option"]["tooltip"]["textStyle"] = {"color": "#ffffff"}
+                    chart["option"]["tooltip"]["backgroundColor"] = "rgba(0,0,0,0.8)"
+                
+                # 只处理已存在的坐标轴，不创建新的
+                for axis in ["xAxis", "yAxis"]:
+                    if axis in chart["option"] and isinstance(chart["option"][axis], dict):
+                        if "axisLabel" in chart["option"][axis]:
+                            chart["option"][axis]["axisLabel"]["color"] = "#ffffff"
+    
+    return echarts_data
 
 # ==================== 数据类定义 ====================
 
@@ -180,7 +132,6 @@ def merge_theme_config(base_config, theme_config):
 class ConcordiaWorkflowInput:
     """Concordia工作流通用输入"""
     org_id: str = "850617379619606726"  # Concordia组织ID
-
 
 @dataclass
 class DeviceStatusResult:
@@ -196,13 +147,11 @@ class DeviceStatusResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class APDeviceQueryInput:
     """AP设备查询输入"""
     org_id: str = "850617379619606726"
     search_keyword: str = "H330"  # 默认搜索关键词
-
 
 @dataclass
 class APDeviceQueryResult:
@@ -218,7 +167,6 @@ class APDeviceQueryResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class ClientCountResult:
     """客户端数量统计结果"""
@@ -232,7 +180,6 @@ class ClientCountResult:
     error_message: Optional[str] = None
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
-
 
 @dataclass
 class FirmwareSummaryResult:
@@ -249,7 +196,6 @@ class FirmwareSummaryResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class LicenseDetailsResult:
     """许可证详情结果"""
@@ -263,7 +209,6 @@ class LicenseDetailsResult:
     error_message: Optional[str] = None
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
-
 
 @dataclass
 class DeviceInspectionResult:
@@ -281,13 +226,11 @@ class DeviceInspectionResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class FloorplanAPInput:
     """楼层AP分布查询输入"""
     org_id: str = "850617379619606726"
     floor_name: Optional[str] = None  # 可选的楼层名称过滤
-
 
 @dataclass
 class FloorplanAPResult:
@@ -303,13 +246,11 @@ class FloorplanAPResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class DeviceLocationInput:
     """设备点位图查询输入"""
     org_id: str = "850617379619606726"
     search_keyword: str = "Corr"  # 设备名称关键词
-
 
 @dataclass
 class DeviceLocationResult:
@@ -324,14 +265,12 @@ class DeviceLocationResult:
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class LostDeviceTraceInput:
     """丢失设备追踪输入"""
     org_id: str = "850617379619606726"
     client_mac: Optional[str] = None  # 可选的MAC地址
     client_description: Optional[str] = None  # 可选的设备描述
-
 
 @dataclass
 class LostDeviceTraceResult:
@@ -345,7 +284,6 @@ class LostDeviceTraceResult:
     error_message: Optional[str] = None
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
-
 
 @dataclass
 class AlertsLogResult:
@@ -361,7 +299,6 @@ class AlertsLogResult:
     error_message: Optional[str] = None
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
-
 
 # ==================== 复杂工作流数据类定义 ====================
 
@@ -436,7 +373,6 @@ class CapacityPlanningResult:
     # ECharts数据格式 - 4个图表
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
-
 @dataclass
 class TroubleshootingInput:
     """运维故障诊断工作流输入"""
@@ -457,7 +393,6 @@ class TroubleshootingResult:
     
     # ECharts数据格式 - 2个图表
     echarts_data: Optional[List[Dict[str, Any]]] = None
-
 
 # ==================== 原有Workflow 定义 ====================
 
@@ -538,24 +473,30 @@ class DeviceStatusWorkflow:
             theme_config = get_dark_purple_theme()
             
             pie_option = {
-                "title": {"text": "状态", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
-                "tooltip": {"trigger": "item", "formatter": "{b}: {c}"},
-                "legend": {
-                    "orient": "horizontal", 
-                    "left": "center",
-                    "bottom": "2%",
-                    "itemGap": 15,
-                    "itemWidth": 10,
-                    "itemHeight": 10,
+                "title": {
+                    "text": "设备状态分布", 
+                    "left": "center", "textStyle": {
+                        "color": "#ffffff"
+                    }},
+                "tooltip": {
+                    "trigger": "item", 
+                    "formatter": "{a}<br/>{b}: {c}台 ({d}%)",
+                    "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                    "borderColor": "#ffffff",
                     "textStyle": {
-                        "fontSize": 10
+                        "color": "#ffffff"
                     }
+                },
+                "legend": {
+                    "left": "center",
+                    "bottom": "5%",
+                    "textStyle": {"color": "#ffffff"}
                 },
                 "series": [{
                     "name": "状态",
                     "type": "pie",
-                    "radius": ["40%", "85%"],  # 环形饼图，最大化半径
-                    "center": ["50%", "50%"],  # 完全居中
+                    "radius": ["30%", "60%"],  # 缩小图表大小
+                    "center": ["50%", "45%"],  # 稍微上移，为图例留空间
                     "data": [
                         {"name": "在线", "value": counts.get("online", 0), "itemStyle": {"color": "#4a148c"}},
                         {"name": "离线", "value": counts.get("offline", 0), "itemStyle": {"color": "#6a1b9a"}},
@@ -571,22 +512,27 @@ class DeviceStatusWorkflow:
                     },
                     "label": {
                         "show": True,
-                        "formatter": "{c}",
-                        "color": "#e6e6fa",
-                        "fontSize": 12,
-                        "fontWeight": "bold"
+                        "formatter": "{b}<br/>{c}台",
+                        "color": "#ffffff",
+                        "fontSize": 11,
+                        "position": "outside"
                     },
                     "labelLine": {
                         "show": True,
-                        "lineStyle": {
-                            "color": "#6a5acd"
-                        }
+                        "length": 8,
+                        "length2": 5,
+                        "lineStyle": {"color": "#6a5acd"}
                     }
                 }]
             }
             
             # 合并主题配置
             pie_option = merge_theme_config(pie_option, theme_config)
+            
+            # 强制覆盖所有文字样式，禁用阴影
+            pie_option["textStyle"] = {
+                "color": "#ffffff"
+            }
             
             echarts_pie_data = [
                 {
@@ -619,7 +565,7 @@ class DeviceStatusWorkflow:
                 raw_counts=counts,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_pie_data
+                echarts_data=force_clean_text_style(echarts_pie_data)
             )
             
         except Exception as e:
@@ -633,7 +579,6 @@ class DeviceStatusWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class APDeviceQueryWorkflow:
@@ -715,13 +660,43 @@ class APDeviceQueryWorkflow:
                     "type": "scatter",
                     "title": "设备地理分布",
                     "option": {
-                        "title": {"text": "AP设备地理分布", "left": "center"},
+                        "title": {
+                            "text": "AP设备地理分布", 
+                            "left": "center", "textStyle": {
+                                "fontSize": 16, 
+                                "fontWeight": "bold", 
+                                "color": "#ffffff"
+                            }
+                        },
                         "tooltip": {
                             "trigger": "item",
-                            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}"
+                            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}",
+                            "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                            "borderColor": "#ffffff",
+                            "textStyle": {
+                        "color": "#ffffff"
+                    }
                         },
-                        "xAxis": {"type": "value", "name": "经度", "scale": True},
-                        "yAxis": {"type": "value", "name": "纬度", "scale": True},
+                        "xAxis": {
+                            "type": "value", 
+                            "name": "经度", 
+                            "scale": True,
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12},
+                            "axisLabel": {
+                                "color": "#ffffff", 
+                                "fontSize": 10
+                            }
+                        },
+                        "yAxis": {
+                            "type": "value", 
+                            "name": "纬度", 
+                            "scale": True,
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12},
+                            "axisLabel": {
+                                "color": "#ffffff", 
+                                "fontSize": 10
+                            }
+                        },
                         "series": [{
                             "name": "AP设备",
                             "type": "scatter",
@@ -766,7 +741,7 @@ class APDeviceQueryWorkflow:
                 },
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -780,7 +755,6 @@ class APDeviceQueryWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class ClientCountWorkflow:
@@ -862,15 +836,46 @@ class ClientCountWorkflow:
                     "type": "bar",
                     "title": "各网络客户端数量统计",
                 "option": merge_theme_config({
-                    "title": {"text": "客户端", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
-                    "tooltip": {"trigger": "axis"},
-                    "grid": {"left": "8%", "right": "8%", "top": "15%", "bottom": "10%", "containLabel": True},
+                    "title": {
+                        "text": "各网络客户端数量统计", 
+                        "left": "center", "textStyle": {
+                        "fontSize": 16, 
+                        "fontWeight": "bold", 
+                        "color": "#ffffff"
+                    }
+                    },
+                    "tooltip": {
+                        "trigger": "axis",
+                        "formatter": "{b0}<br/>{a0}: {c0}个<br/>{a1}: {c1}个",
+                        "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                        "borderColor": "#ffffff",
+                        "textStyle": {
+                        "color": "#ffffff"
+                    }
+                    },
+                    "grid": {"left": "8%", "right": "8%", "bottom": "15%", "containLabel": True},
                         "xAxis": {
                             "type": "category",
                             "data": [n["network_name"] for n in networks_breakdown],
-                            "axisLabel": {"rotate": 45, "fontSize": 10}
+                            "axisLabel": {
+                                "rotate": 45, 
+                                "fontSize": 11,
+                                "color": "#ffffff",
+                                "interval": 0
+                            },
+                            "name": "网络名称",
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
                         },
-                        "yAxis": {"type": "value", "axisLabel": {"fontSize": 10}},
+                        "yAxis": {
+                            "type": "value", 
+                            "axisLabel": {
+                                "fontSize": 11,
+                                "color": "#ffffff",
+                                "formatter": "{value}个"
+                            },
+                            "name": "客户端数量",
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
+                        },
                         "series": [
                             {
                                 "name": "总数",
@@ -894,6 +899,13 @@ class ClientCountWorkflow:
                                         "shadowBlur": 8,
                                         "shadowColor": "rgba(74, 20, 140, 0.6)"
                                     }
+                                },
+                                "label": {
+                                    "show": True,
+                                    "position": "top",
+                                    "formatter": "{c}",
+                                    "fontSize": 11,
+                                    "color": "#ffffff"
                                 }
                             },
                             {
@@ -918,6 +930,13 @@ class ClientCountWorkflow:
                                         "shadowBlur": 8,
                                         "shadowColor": "rgba(123, 31, 162, 0.6)"
                                     }
+                                },
+                                "label": {
+                                    "show": True,
+                                    "position": "top",
+                                    "formatter": "{c}",
+                                    "fontSize": 11,
+                                    "color": "#ffffff"
                                 }
                             }
                         ]
@@ -943,7 +962,7 @@ class ClientCountWorkflow:
                 },
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -957,7 +976,6 @@ class ClientCountWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class FirmwareSummaryWorkflow:
@@ -1046,15 +1064,44 @@ class FirmwareSummaryWorkflow:
                         "type": "bar",
                         "title": "设备型号固件版本分布",
                         "option": merge_theme_config({
-                            "title": {"text": "固件分布", "left": "center", "textStyle": {"fontSize": 14}, "top": "2%"},
-                            "tooltip": {"trigger": "axis"},
-                            "grid": {"left": "8%", "right": "8%", "top": "15%", "bottom": "15%", "containLabel": True},
+                            "title": {
+                                "text": "设备型号固件版本分布", 
+                                "left": "center", "textStyle": {
+                        "fontSize": 16, 
+                        "fontWeight": "bold", 
+                        "color": "#ffffff"
+                    }},
+                            "tooltip": {
+                                "trigger": "axis",
+                                "formatter": "{b}<br/>设备数量: {c}台",
+                                "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                                "borderColor": "#ffffff",
+                                "textStyle": {
+                        "color": "#ffffff"
+                    }
+                            },
+                            "grid": {"left": "8%", "right": "8%", "bottom": "15%", "containLabel": True},
                             "xAxis": {
                                 "type": "category",
                                 "data": list(model_firmware_breakdown.keys()),
-                                "axisLabel": {"rotate": 0, "fontSize": 11}
+                                "axisLabel": {
+                                    "rotate": 0, 
+                                    "fontSize": 12,
+                                    "color": "#ffffff"
+                                },
+                                "name": "设备型号",
+                                "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
                             },
-                            "yAxis": {"type": "value", "axisLabel": {"fontSize": 11}},
+                            "yAxis": {
+                                "type": "value", 
+                                "axisLabel": {
+                                    "fontSize": 11,
+                                    "color": "#ffffff",
+                                    "formatter": "{value}台"
+                                },
+                                "name": "设备数量",
+                                "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
+                            },
                             "series": [{
                                 "name": "数量",
                                 "type": "bar",
@@ -1075,7 +1122,14 @@ class FirmwareSummaryWorkflow:
                                             "borderWidth": 1
                                         }
                                     } for info in model_firmware_breakdown.values()
-                                ]
+                                ],
+                                "label": {
+                                    "show": True,
+                                    "position": "top",
+                                    "formatter": "{c}台",
+                                    "fontSize": 11,
+                                    "color": "#ffffff"
+                                }
                             }]
                         }, get_dark_purple_theme())
                     }
@@ -1094,7 +1148,6 @@ class FirmwareSummaryWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class LicenseDetailsWorkflow:
@@ -1147,7 +1200,13 @@ class LicenseDetailsWorkflow:
                     "type": "gauge",
                     "title": "许可证使用状态",
                     "option": merge_theme_config({
-                        "title": {"text": "许可证状态", "left": "center", "textStyle": {"fontSize": 14}},
+                        "title": {
+                            "text": "许可证使用状态", 
+                            "left": "center", "textStyle": {
+                        "fontSize": 16, 
+                        "fontWeight": "bold", 
+                        "color": "#ffffff"
+                    }},
                         "series": [{
                             "name": "许可证状态",
                             "type": "gauge",
@@ -1165,19 +1224,43 @@ class LicenseDetailsWorkflow:
                             },
                             "pointer": {
                                 "itemStyle": {
-                                    "color": "#e6e6fa",
+                                    "color": "#ffffff",
                                     "borderColor": "#4a148c",
                                     "borderWidth": 2
                                 }
                             },
                             "title": {
                                 "color": "#ffffff",
-                                "fontSize": 14
+                                "fontSize": 14,
+                                "offsetCenter": [0, "80%"]
                             },
                             "detail": {
                                 "color": "#ffffff",
-                                "fontSize": 16,
-                                "fontWeight": "bold"
+                                "fontSize": 18,
+                                "fontWeight": "bold",
+                                "formatter": "{value}%",
+                                "offsetCenter": [0, "40%"]
+                            },
+                            "axisTick": {
+                                "distance": -30,
+                                "length": 8,
+                                "lineStyle": {
+                                    "color": "#ffffff",
+                                    "width": 2
+                                }
+                            },
+                            "splitLine": {
+                                "distance": -30,
+                                "length": 30,
+                                "lineStyle": {
+                                    "color": "#ffffff",
+                                    "width": 4
+                                }
+                            },
+                            "axisLabel": {
+                                "color": "#ffffff",
+                                "distance": 40,
+                                "fontSize": 12
                             }
                         }]
                     }, get_dark_purple_theme())
@@ -1192,7 +1275,7 @@ class LicenseDetailsWorkflow:
                 license_analysis=license_analysis,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -1206,7 +1289,6 @@ class LicenseDetailsWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class DeviceInspectionWorkflow:
@@ -1311,8 +1393,20 @@ class DeviceInspectionWorkflow:
                     "type": "radar",
                     "title": "系统健康状况雷达图",
                     "option": merge_theme_config({
-                        "title": {"text": "系统健康状况雷达图", "left": "center"},
-                        "legend": {"data": ["当前状态"], "top": "10%"},
+                        "title": {
+                            "text": "系统健康状况雷达图", 
+                            "left": "center", "textStyle": {
+                        "fontSize": 16, 
+                        "fontWeight": "bold", 
+                        "color": "#ffffff"
+                    }},
+                        "legend": {
+                            "data": ["当前状态"],
+                            "textStyle": {
+                                "color": "#ffffff", 
+                                "fontSize": 12
+                            }
+                        },
                         "radar": {
                             "indicator": [
                                 {"name": "设备健康度", "max": 100},
@@ -1320,7 +1414,25 @@ class DeviceInspectionWorkflow:
                                 {"name": "告警控制", "max": 100},
                                 {"name": "在线率", "max": 100},
                                 {"name": "响应速度", "max": 100}
-                            ]
+                            ],
+                            "center": ["50%", "60%"],
+                            "radius": "70%",
+                            "name": {
+                                "textStyle": {
+                                    "color": "#ffffff",
+                                    "fontSize": 12
+                                }
+                            },
+                            "axisLine": {
+                                "lineStyle": {
+                                    "color": "rgba(230, 230, 250, 0.3)"
+                                }
+                            },
+                            "splitLine": {
+                                "lineStyle": {
+                                    "color": "rgba(230, 230, 250, 0.2)"
+                                }
+                            }
                         },
                         "series": [{
                             "name": "健康指标",
@@ -1371,7 +1483,7 @@ class DeviceInspectionWorkflow:
                 health_assessment=health_assessment,
                 recommendations=recommendations,
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -1387,7 +1499,6 @@ class DeviceInspectionWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class FloorplanAPWorkflow:
@@ -1496,8 +1607,7 @@ class FloorplanAPWorkflow:
                                 ]
                             }],
                             "left": "2%",
-                            "right": "2%", 
-                            "top": "8%",
+                            "right": "2%",
                             "bottom": "20%",
                             "symbol": "emptyCircle",
                             "orient": "vertical",
@@ -1534,7 +1644,7 @@ class FloorplanAPWorkflow:
                 ap_distribution=ap_distribution,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -1548,7 +1658,6 @@ class FloorplanAPWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class DeviceLocationWorkflow:
@@ -1689,7 +1798,7 @@ class DeviceLocationWorkflow:
                 selected_device_locations=selected_device_locations,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -1702,7 +1811,6 @@ class DeviceLocationWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class LostDeviceTraceWorkflow:
@@ -1931,7 +2039,7 @@ class LostDeviceTraceWorkflow:
                 connection_history=connection_history,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -1944,7 +2052,6 @@ class LostDeviceTraceWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 @workflow.defn
 class AlertsLogWorkflow:
@@ -2031,7 +2138,7 @@ class AlertsLogWorkflow:
                     "option": merge_theme_config({
                         "title": {"text": "告警分布热力图", "left": "center"},
                         "tooltip": {"position": "top"},
-                        "grid": {"height": "50%", "top": "10%"},
+                        "grid": {"left": "8%", "right": "8%", "bottom": "15%", "containLabel": True},
                         "xAxis": {
                             "type": "category",
                             "data": list(set([alert.get("categoryType", "unknown") for alert in critical_alerts])),
@@ -2079,7 +2186,7 @@ class AlertsLogWorkflow:
                 alert_categories=alert_categories,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
-                echarts_data=echarts_data
+                echarts_data=force_clean_text_style(echarts_data)
             )
             
         except Exception as e:
@@ -2094,7 +2201,6 @@ class AlertsLogWorkflow:
                 success=False,
                 error_message=str(e)
             )
-
 
 # ==================== 复杂多Activity组合工作流 ====================
 
@@ -2215,13 +2321,24 @@ class NetworkHealthAnalysisWorkflow:
                 })
             
             chart1 = {
-                "title": {"text": "设备状态分布", "left": "center"},
-                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
+                "title": {
+                    "text": "设备状态分布", 
+                    "left": "center", "textStyle": {"fontSize": 16, "fontWeight": "bold", "color": "#ffffff"}
+                },
+                "tooltip": {
+                    "trigger": "item", 
+                    "formatter": "{a}<br/>{b}: {c}台 ({d}%)",
+                    "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                    "borderColor": "#ffffff",
+                    "textStyle": {
+                        "color": "#ffffff"
+                    }
+                },
                 "series": [{
                     "name": "设备状态",
                     "type": "pie",
-                    "radius": ["30%", "70%"],
-                    "center": ["50%", "60%"],
+                    "radius": ["30%", "60%"],
+                    "center": ["50%", "45%"],
                     "data": device_pie_data,
                     "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0, 0, 0, 0.5)"}}
                 }],
@@ -2233,8 +2350,19 @@ class NetworkHealthAnalysisWorkflow:
             alert_counts = [alert_analysis["by_type"][t] for t in alert_types]
             
             chart2 = {
-                "title": {"text": "告警类型统计", "left": "center"},
-                "tooltip": {"trigger": "axis"},
+                "title": {
+                    "text": "告警类型统计", 
+                    "left": "center", "textStyle": {"fontSize": 16, "fontWeight": "bold", "color": "#ffffff"}
+                },
+                "tooltip": {
+                    "trigger": "axis",
+                    "formatter": "{b}<br/>告警数量: {c}个",
+                    "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                    "borderColor": "#ffffff",
+                    "textStyle": {
+                        "color": "#ffffff"
+                    }
+                },
                 "xAxis": {"type": "category", "data": alert_types, "axisLabel": {"rotate": 45}},
                 "yAxis": {"type": "value"},
                 "series": [{
@@ -2312,7 +2440,6 @@ class NetworkHealthAnalysisWorkflow:
                     **get_dark_purple_theme()
                 }]
             )
-
 
 @workflow.defn
 class SecurityPostureWorkflow:
@@ -2489,7 +2616,6 @@ class SecurityPostureWorkflow:
                 "series": [{
                     "type": "tree",
                     "data": [tree_data],
-                    "top": "20%",
                     "left": "7%",
                     "bottom": "22%",
                     "right": "20%",
@@ -2593,7 +2719,6 @@ class SecurityPostureWorkflow:
                     **get_dark_purple_theme()
                 }]
             )
-
 
 @workflow.defn
 class TroubleshootingWorkflow:
@@ -2777,7 +2902,7 @@ class TroubleshootingWorkflow:
             chart2 = {
                 "title": {"text": "性能历史趋势", "left": "center"},
                 "tooltip": {"trigger": "axis"},
-                "legend": {"data": ["延迟(ms)", "丢包率(%)"], "top": "10%"},
+                "legend": {"data": ["延迟(ms)", "丢包率(%)"]},
                 "xAxis": {"type": "category", "name": "时间点"},
                 "yAxis": [
                     {"type": "value", "name": "延迟(ms)", "position": "left"},
@@ -2819,7 +2944,6 @@ class TroubleshootingWorkflow:
                     **get_dark_purple_theme()
                 }]
             )
-
 
 @workflow.defn
 class CapacityPlanningWorkflow:
@@ -3055,7 +3179,7 @@ class CapacityPlanningWorkflow:
             chart3 = {
                 "title": {"text": "应用带宽使用分析", "left": "center"},
                 "tooltip": {"trigger": "axis"},
-                "legend": {"data": ["下行流量(GB)", "上行流量(GB)"], "top": "10%"},
+                "legend": {"data": ["下行流量(GB)", "上行流量(GB)"]},
                 "xAxis": {"type": "category", "data": app_names, "axisLabel": {"rotate": 45}},
                 "yAxis": {"type": "value", "name": "流量(GB)"},
                 "series": [
@@ -3093,8 +3217,8 @@ class CapacityPlanningWorkflow:
                 "series": [{
                     "name": "许可证",
                     "type": "pie",
-                    "radius": ["30%", "70%"],
-                    "center": ["50%", "60%"],
+                    "radius": ["30%", "60%"],
+                    "center": ["50%", "45%"],
                     "data": license_pie_data,
                     "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0, 0, 0, 0.5)"}}
                 }],

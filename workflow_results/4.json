@@ -1,0 +1,213 @@
+{
+  "workflow_number": 4,
+  "workflow_name": "固件版本汇总",
+  "execution_time": "2025-09-23 11:02:40",
+  "success": true,
+  "result": {
+    "organization_name": "Concordia",
+    "organization_id": "850617379619606726",
+    "firmware_summary": {
+      "models_with_consistent_firmware": 3,
+      "models_with_inconsistent_firmware": 0,
+      "total_devices": 174,
+      "total_models": 3
+    },
+    "model_firmware_breakdown": {
+      "MR44": {
+        "device_count": 141,
+        "firmware_versions": [
+          "wireless-31-1-7"
+        ],
+        "is_consistent": true,
+        "version_count": 1
+      },
+      "MR57": {
+        "device_count": 29,
+        "firmware_versions": [
+          "wireless-31-1-7"
+        ],
+        "is_consistent": true,
+        "version_count": 1
+      },
+      "MR86": {
+        "device_count": 4,
+        "firmware_versions": [
+          "wireless-31-1-7"
+        ],
+        "is_consistent": true,
+        "version_count": 1
+      }
+    },
+    "consistency_analysis": {
+      "consistent_models": [
+        "MR44",
+        "MR57",
+        "MR86"
+      ],
+      "inconsistent_models": [],
+      "overall_consistency": true
+    },
+    "firmware_upgrade_recommendations": {
+      "models_needing_attention": [],
+      "total_devices_needing_upgrade": 0
+    },
+    "query_time": "2025-09-23 11:02:40",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "grid": {
+            "bottom": "15%",
+            "containLabel": true,
+            "left": "8%",
+            "right": "8%"
+          },
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "barWidth": "60%",
+              "data": [
+                {
+                  "itemStyle": {
+                    "borderColor": "#2e2e4f",
+                    "borderWidth": 1,
+                    "color": {
+                      "colorStops": [
+                        {
+                          "color": "#4a148c",
+                          "offset": 0
+                        },
+                        {
+                          "color": "#6a1b9a",
+                          "offset": 1
+                        }
+                      ],
+                      "type": "linear",
+                      "x": 0,
+                      "x2": 0,
+                      "y": 0,
+                      "y2": 1
+                    }
+                  },
+                  "value": 141
+                },
+                {
+                  "itemStyle": {
+                    "borderColor": "#2e2e4f",
+                    "borderWidth": 1,
+                    "color": {
+                      "colorStops": [
+                        {
+                          "color": "#4a148c",
+                          "offset": 0
+                        },
+                        {
+                          "color": "#6a1b9a",
+                          "offset": 1
+                        }
+                      ],
+                      "type": "linear",
+                      "x": 0,
+                      "x2": 0,
+                      "y": 0,
+                      "y2": 1
+                    }
+                  },
+                  "value": 29
+                },
+                {
+                  "itemStyle": {
+                    "borderColor": "#2e2e4f",
+                    "borderWidth": 1,
+                    "color": {
+                      "colorStops": [
+                        {
+                          "color": "#4a148c",
+                          "offset": 0
+                        },
+                        {
+                          "color": "#6a1b9a",
+                          "offset": 1
+                        }
+                      ],
+                      "type": "linear",
+                      "x": 0,
+                      "x2": 0,
+                      "y": 0,
+                      "y2": 1
+                    }
+                  },
+                  "value": 4
+                }
+              ],
+              "label": {
+                "color": "#ffffff",
+                "fontSize": 11,
+                "formatter": "{c}台",
+                "position": "top",
+                "show": true
+              },
+              "name": "数量",
+              "type": "bar"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "设备型号固件版本分布",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "borderColor": "#ffffff",
+            "formatter": "{b}<br/>设备数量: {c}台",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "axis"
+          },
+          "xAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 12,
+              "rotate": 0
+            },
+            "data": [
+              "MR44",
+              "MR57",
+              "MR86"
+            ],
+            "name": "设备型号",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "category"
+          },
+          "yAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 11,
+              "formatter": "{value}台"
+            },
+            "name": "设备数量",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "value"
+          }
+        },
+        "title": "设备型号固件版本分布",
+        "type": "bar"
+      }
+    ]
+  },
+  "error": null
+}

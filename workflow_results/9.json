@@ -1,0 +1,94 @@
+{
+  "workflow_number": 9,
+  "workflow_name": "丢失设备追踪",
+  "execution_time": "2025-09-23 11:02:47",
+  "success": true,
+  "result": {
+    "search_criteria": {
+      "client_description": null,
+      "client_mac": "d0:88:0c:69:5c:0f",
+      "search_method": "指定MAC"
+    },
+    "discovered_clients": [],
+    "selected_client_trace": {},
+    "connection_history": [],
+    "query_time": "2025-09-23 11:02:47",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "areaStyle": {
+                "color": {
+                  "colorStops": [
+                    {
+                      "color": "rgba(138, 43, 226, 0.3)",
+                      "offset": 0
+                    },
+                    {
+                      "color": "rgba(138, 43, 226, 0.1)",
+                      "offset": 1
+                    }
+                  ],
+                  "type": "linear",
+                  "x": 0,
+                  "x2": 0,
+                  "y": 0,
+                  "y2": 1
+                }
+              },
+              "data": [],
+              "itemStyle": {
+                "borderColor": "#ffffff",
+                "borderWidth": 2,
+                "color": "#ff69b4"
+              },
+              "lineStyle": {
+                "color": "#8a2be2",
+                "width": 3
+              },
+              "name": "连接事件",
+              "step": "end",
+              "type": "line"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "设备连接历史",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "axis"
+          },
+          "xAxis": {
+            "name": "时间",
+            "type": "time"
+          },
+          "yAxis": {
+            "data": [
+              "连接状态"
+            ],
+            "name": "状态",
+            "type": "category"
+          }
+        },
+        "title": "设备连接历史时间轴",
+        "type": "timeline"
+      }
+    ]
+  },
+  "error": null
+}

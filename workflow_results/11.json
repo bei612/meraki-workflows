@@ -1,0 +1,314 @@
+{
+  "workflow_number": 11,
+  "workflow_name": "网络健康全景分析",
+  "execution_time": "2025-09-23 11:02:52",
+  "success": true,
+  "result": {
+    "total_devices": 174,
+    "online_devices": 168,
+    "total_clients": 1443,
+    "total_networks": 4,
+    "health_score": 94.55172413793103,
+    "device_status_breakdown": {
+      "alerting": 2,
+      "dormant": 0,
+      "offline": 4,
+      "online": 168
+    },
+    "alert_analysis": {
+      "by_type": {
+        "ethernet_negotiation_failure": 2,
+        "unreachable": 4
+      },
+      "critical_alerts": 6,
+      "total_alerts": 6,
+      "warning_alerts": 0
+    },
+    "client_distribution": [
+      {
+        "client_count": 0,
+        "network_id": "L_851743279526457662",
+        "network_name": "WAB Demo",
+        "product_types": [
+          "appliance",
+          "sensor",
+          "switch",
+          "wireless"
+        ]
+      },
+      {
+        "client_count": 0,
+        "network_id": "L_851743279526458278",
+        "network_name": "Sammy Testing",
+        "product_types": [
+          "appliance",
+          "sensor",
+          "switch",
+          "wireless"
+        ]
+      },
+      {
+        "client_count": 0,
+        "network_id": "L_851743279526459432",
+        "network_name": "Concorida Demo",
+        "product_types": [
+          "appliance",
+          "wireless"
+        ]
+      },
+      {
+        "client_count": 1443,
+        "network_id": "N_851743279526505448",
+        "network_name": "CISS Network",
+        "product_types": [
+          "wireless"
+        ]
+      }
+    ],
+    "network_performance": {
+      "health_score": 94.55172413793103,
+      "uptime_percentage": 96.55172413793103
+    },
+    "echarts_data": [
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "center": [
+              "50%",
+              "45%"
+            ],
+            "data": [
+              {
+                "itemStyle": {
+                  "color": "#9370db"
+                },
+                "name": "Alerting",
+                "value": 2
+              },
+              {
+                "itemStyle": {
+                  "color": "#8a2be2"
+                },
+                "name": "Dormant",
+                "value": 0
+              },
+              {
+                "itemStyle": {
+                  "color": "#7b68ee"
+                },
+                "name": "Offline",
+                "value": 4
+              },
+              {
+                "itemStyle": {
+                  "color": "#6a5acd"
+                },
+                "name": "Online",
+                "value": 168
+              }
+            ],
+            "emphasis": {
+              "itemStyle": {
+                "shadowBlur": 10,
+                "shadowColor": "rgba(0, 0, 0, 0.5)",
+                "shadowOffsetX": 0
+              }
+            },
+            "name": "设备状态",
+            "radius": [
+              "30%",
+              "60%"
+            ],
+            "type": "pie"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "data": [
+              4,
+              2
+            ],
+            "itemStyle": {
+              "color": "#8a2be2"
+            },
+            "name": "告警数量",
+            "type": "bar"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "xAxis": {
+          "axisLabel": {
+            "rotate": 45
+          },
+          "data": [
+            "unreachable",
+            "ethernet_negotiation_failure"
+          ],
+          "type": "category"
+        },
+        "yAxis": {
+          "type": "value"
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "data": [
+              [
+                0,
+                0,
+                "WAB Demo"
+              ],
+              [
+                1,
+                0,
+                "Sammy Testing"
+              ],
+              [
+                2,
+                0,
+                "Concorida Demo"
+              ],
+              [
+                3,
+                1443,
+                "CISS Network"
+              ]
+            ],
+            "itemStyle": {
+              "color": "#9370db"
+            },
+            "name": "客户端分布",
+            "symbolSize": 8,
+            "type": "scatter"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "xAxis": {
+          "name": "网络索引",
+          "type": "category"
+        },
+        "yAxis": {
+          "name": "客户端数量",
+          "type": "value"
+        }
+      },
+      {
+        "legend": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "series": [
+          {
+            "axisLine": {
+              "lineStyle": {
+                "color": [
+                  [
+                    0.3,
+                    "#ff4757"
+                  ],
+                  [
+                    0.7,
+                    "#ffa502"
+                  ],
+                  [
+                    1,
+                    "#2ed573"
+                  ]
+                ],
+                "width": 20
+              }
+            },
+            "center": [
+              "50%",
+              "60%"
+            ],
+            "data": [
+              {
+                "name": "健康度",
+                "value": 94.6
+              }
+            ],
+            "detail": {
+              "color": "#ffffff",
+              "fontSize": 20,
+              "formatter": "{value}%"
+            },
+            "max": 100,
+            "min": 0,
+            "name": "健康评分",
+            "pointer": {
+              "itemStyle": {
+                "color": "#9370db"
+              }
+            },
+            "radius": "80%",
+            "splitNumber": 10,
+            "type": "gauge"
+          }
+        ],
+        "title": {
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        },
+        "tooltip": {
+          "backgroundColor": "rgba(0,0,0,0.8)",
+          "textStyle": {
+            "color": "#ffffff"
+          }
+        }
+      }
+    ]
+  },
+  "error": null
+}

@@ -1,0 +1,1091 @@
+{
+  "workflow_number": 8,
+  "workflow_name": "设备点位图",
+  "execution_time": "2025-09-23 11:02:47",
+  "success": true,
+  "result": {
+    "search_keyword": "MR44",
+    "total_matched": 140,
+    "matched_devices": [
+      {
+        "index": 1,
+        "model": "MR44",
+        "name": "UB3F-H330H-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-2C2Q-74MQ"
+      },
+      {
+        "index": 2,
+        "model": "MR44",
+        "name": "PC2F-P210-MR44-012",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-2F5C-CYJM"
+      },
+      {
+        "index": 3,
+        "model": "MR44",
+        "name": "PC1F-P138-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-2PRG-LGTV"
+      },
+      {
+        "index": 4,
+        "model": "MR44",
+        "name": "IB1F-109-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-2R6T-YJ4E"
+      },
+      {
+        "index": 5,
+        "model": "MR44",
+        "name": "LB1F-E105-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-2Z7A-CE6W"
+      },
+      {
+        "index": 6,
+        "model": "MR44",
+        "name": "LB2F-E209-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-36EM-7WQ9"
+      },
+      {
+        "index": 7,
+        "model": "MR44",
+        "name": "LB4F-E406-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-3L7B-Z8NS"
+      },
+      {
+        "index": 8,
+        "model": "MR44",
+        "name": "GHHY-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-3NER-KKXR"
+      },
+      {
+        "index": 9,
+        "model": "MR44",
+        "name": "IB1F-105-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-3PTF-6FS2"
+      },
+      {
+        "index": 10,
+        "model": "MR44",
+        "name": "LB1F-E101E-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-4EYX-HVBS"
+      },
+      {
+        "index": 11,
+        "model": "MR44",
+        "name": "UB5F-H518-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-4H5U-EY2E"
+      },
+      {
+        "index": 12,
+        "model": "MR44",
+        "name": "UB4F-H416-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-4LVZ-2BGN"
+      },
+      {
+        "index": 13,
+        "model": "MR44",
+        "name": "LB1F-E104-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-4ULD-U8BY"
+      },
+      {
+        "index": 14,
+        "model": "MR44",
+        "name": "UB1F-Corr-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-4Y34-28KL"
+      },
+      {
+        "index": 15,
+        "model": "MR44",
+        "name": "LB4F-E405-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-54RH-5ADF"
+      },
+      {
+        "index": 16,
+        "model": "MR44",
+        "name": "PC2F-P235B-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-5MQS-E6JY"
+      },
+      {
+        "index": 17,
+        "model": "MR44",
+        "name": "IB1F-101-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-5QLX-KKDD"
+      },
+      {
+        "index": 18,
+        "model": "MR44",
+        "name": "UB3F-H306-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-6438-5MW9"
+      },
+      {
+        "index": 19,
+        "model": "MR44",
+        "name": "UB5F-H517-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-6EGL-ZPFM"
+      },
+      {
+        "index": 20,
+        "model": "MR44",
+        "name": "LB3F-E308-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-6QAB-RKGQ"
+      },
+      {
+        "index": 21,
+        "model": "MR44",
+        "name": "LB1F-E106-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-6QBL-49PV"
+      },
+      {
+        "index": 22,
+        "model": "MR44",
+        "name": "LB2F-E207-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-6XR5-2Z75"
+      },
+      {
+        "index": 23,
+        "model": "MR44",
+        "name": "PC2F-P232-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-77F5-JDXQ"
+      },
+      {
+        "index": 24,
+        "model": "MR44",
+        "name": "PC2F-P201-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-78X4-LSRW"
+      },
+      {
+        "index": 25,
+        "model": "MR44",
+        "name": "LB1F-E118-MR44-013",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-7CH5-CBYL"
+      },
+      {
+        "index": 26,
+        "model": "MR44",
+        "name": "PC1F-P134-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-7P3M-MB4D"
+      },
+      {
+        "index": 27,
+        "model": "MR44",
+        "name": "LB4F-E421-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-7TVZ-6FZJ"
+      },
+      {
+        "index": 28,
+        "model": "MR44",
+        "name": "LB1F-E107-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-834H-YGE8"
+      },
+      {
+        "index": 29,
+        "model": "MR44",
+        "name": "IB2F-208-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-8AG9-X2B9"
+      },
+      {
+        "index": 30,
+        "model": "MR44",
+        "name": "PC1F-P102-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-8DZ7-XE9M"
+      },
+      {
+        "index": 31,
+        "model": "MR44",
+        "name": "UB4F-H406-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-8JT6-4MXA"
+      },
+      {
+        "index": 32,
+        "model": "MR44",
+        "name": "UB1F-H116A-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-8RWV-MMT9"
+      },
+      {
+        "index": 33,
+        "model": "MR44",
+        "name": "PC1F-Moni-MR44-016",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-923Q-KRFX"
+      },
+      {
+        "index": 34,
+        "model": "MR44",
+        "name": "LB3F-E309-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-967T-VXHC"
+      },
+      {
+        "index": 35,
+        "model": "MR44",
+        "name": "LB2F-E202-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-96ZG-X95C"
+      },
+      {
+        "index": 36,
+        "model": "MR44",
+        "name": "UBBF-Corr-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-97YQ-PUNR"
+      },
+      {
+        "index": 37,
+        "model": "MR44",
+        "name": "LB2F-E204-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-9EXY-P85F"
+      },
+      {
+        "index": 38,
+        "model": "MR44",
+        "name": "UB6F-H604-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-9JEH-B4AE"
+      },
+      {
+        "index": 39,
+        "model": "MR44",
+        "name": "PC2F-P234-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-9NCE-FSUE"
+      },
+      {
+        "index": 40,
+        "model": "MR44",
+        "name": "UB3F-H330P-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-9PW5-2DC3"
+      },
+      {
+        "index": 41,
+        "model": "MR44",
+        "name": "UB4F-H418-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-9ZZU-23JD"
+      },
+      {
+        "index": 42,
+        "model": "MR44",
+        "name": "UB6F-H605-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-ABZW-WJ8E"
+      },
+      {
+        "index": 43,
+        "model": "MR44",
+        "name": "LB2F-E216-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-ACJM-JMSQ"
+      },
+      {
+        "index": 44,
+        "model": "MR44",
+        "name": "IB2F-204-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-AJKH-7HJH"
+      },
+      {
+        "index": 45,
+        "model": "MR44",
+        "name": "LB1F-E109-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-AMQH-DN7Q"
+      },
+      {
+        "index": 46,
+        "model": "MR44",
+        "name": "UB4F-H403-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-AQMZ-DU7B"
+      },
+      {
+        "index": 47,
+        "model": "MR44",
+        "name": "LB4F-E416-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-ASGG-7JC5"
+      },
+      {
+        "index": 48,
+        "model": "MR44",
+        "name": "UB2F-H216-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-AXEN-Y8UN"
+      },
+      {
+        "index": 49,
+        "model": "MR44",
+        "name": "IB1F-124-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-B2HB-VTJF"
+      },
+      {
+        "index": 50,
+        "model": "MR44",
+        "name": "IB2F-209-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-B5FN-VCH7"
+      },
+      {
+        "index": 51,
+        "model": "MR44",
+        "name": "IB2F-211-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BC4R-4SUD"
+      },
+      {
+        "index": 52,
+        "model": "MR44",
+        "name": "LB2F-E208-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BDKJ-2Q4F"
+      },
+      {
+        "index": 53,
+        "model": "MR44",
+        "name": "LB4F-E403-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BH9B-6H8Y"
+      },
+      {
+        "index": 54,
+        "model": "MR44",
+        "name": "LB2F-Corr-MR44-012",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BSFB-7S4Q"
+      },
+      {
+        "index": 55,
+        "model": "MR44",
+        "name": "PC1F-P135-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BTJF-BV9R"
+      },
+      {
+        "index": 56,
+        "model": "MR44",
+        "name": "UB5F-H516-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-BWHH-P7B2"
+      },
+      {
+        "index": 57,
+        "model": "MR44",
+        "name": "PC2F-P231-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-CHAS-VMP5"
+      },
+      {
+        "index": 58,
+        "model": "MR44",
+        "name": "UB2F-Corr-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-CLWJ-JBRD"
+      },
+      {
+        "index": 59,
+        "model": "MR44",
+        "name": "LB3F-E316-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-DDD4-MF7U"
+      },
+      {
+        "index": 60,
+        "model": "MR44",
+        "name": "PC1F-P117-MR44-017",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-DEZW-ERT4"
+      },
+      {
+        "index": 61,
+        "model": "MR44",
+        "name": "UB6F-H601-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-DRJ2-XXY8"
+      },
+      {
+        "index": 62,
+        "model": "MR44",
+        "name": "LB1F-E101-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-E8RT-NP29"
+      },
+      {
+        "index": 63,
+        "model": "MR44",
+        "name": "LB3F-E321-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EDXP-G3S6"
+      },
+      {
+        "index": 64,
+        "model": "MR44",
+        "name": "UB2F-H206-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EEWE-GLUH"
+      },
+      {
+        "index": 65,
+        "model": "MR44",
+        "name": "UB5F-H505-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EF4F-NP4V"
+      },
+      {
+        "index": 66,
+        "model": "MR44",
+        "name": "UB2F-H203-MR44-013",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EG6A-8PN5"
+      },
+      {
+        "index": 67,
+        "model": "MR44",
+        "name": "IB2F-210-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EGZR-9ERA"
+      },
+      {
+        "index": 68,
+        "model": "MR44",
+        "name": "IB1F-111-MR44-013",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EKGK-9QCK"
+      },
+      {
+        "index": 69,
+        "model": "MR44",
+        "name": "PC1F-P132-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-EQ7N-WZEZ"
+      },
+      {
+        "index": 70,
+        "model": "MR44",
+        "name": "UB4F-H405-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-FAMV-QB2X"
+      },
+      {
+        "index": 71,
+        "model": "MR44",
+        "name": "UB2F-H201-MR44-014",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-G4TE-NSNC"
+      },
+      {
+        "index": 72,
+        "model": "MR44",
+        "name": "UB1F-H133C-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-GRED-VLUR"
+      },
+      {
+        "index": 73,
+        "model": "MR44",
+        "name": "IB1F-104-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-JBHE-EFN7"
+      },
+      {
+        "index": 74,
+        "model": "MR44",
+        "name": "UB5F-H506-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-JLHB-A62K"
+      },
+      {
+        "index": 75,
+        "model": "MR44",
+        "name": "LB3F-E305-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-JVD7-ABQ2"
+      },
+      {
+        "index": 76,
+        "model": "MR44",
+        "name": "LB2F-E203-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-JVWF-UZ63"
+      },
+      {
+        "index": 77,
+        "model": "MR44",
+        "name": "PC1F-P104-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-KB7N-G3F6"
+      },
+      {
+        "index": 78,
+        "model": "MR44",
+        "name": "LB4F-E401-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-KZAY-FEN4"
+      },
+      {
+        "index": 79,
+        "model": "MR44",
+        "name": "UB3F-H303-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-LBSZ-SNNH"
+      },
+      {
+        "index": 80,
+        "model": "MR44",
+        "name": "UB4F-H429-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-LN46-ACBJ"
+      },
+      {
+        "index": 81,
+        "model": "MR44",
+        "name": "LB1F-E108-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-LQ5K-V7R2"
+      },
+      {
+        "index": 82,
+        "model": "MR44",
+        "name": "UB6F-H603-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-LQB2-2EEN"
+      },
+      {
+        "index": 83,
+        "model": "MR44",
+        "name": "IB1F-106-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-M5QR-SCU3"
+      },
+      {
+        "index": 84,
+        "model": "MR44",
+        "name": "LB3F-E306-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-M9DF-EHKY"
+      },
+      {
+        "index": 85,
+        "model": "MR44",
+        "name": "LB4F-E404-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-MFXD-VN3C"
+      },
+      {
+        "index": 86,
+        "model": "MR44",
+        "name": "LB3F-E301-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-MLZX-NPEG"
+      },
+      {
+        "index": 87,
+        "model": "MR44",
+        "name": "IB2F-223-MR44-013",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-MPQA-UD94"
+      },
+      {
+        "index": 88,
+        "model": "MR44",
+        "name": "UB4F-H417-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-N2MV-7NMM"
+      },
+      {
+        "index": 89,
+        "model": "MR44",
+        "name": "PC1F-P103-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-N3RQ-MESQ"
+      },
+      {
+        "index": 90,
+        "model": "MR44",
+        "name": "UB1F-H133B-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-N8BB-SB29"
+      },
+      {
+        "index": 91,
+        "model": "MR44",
+        "name": "UB2F-H204-MR44-012",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-NN2U-EDFR"
+      },
+      {
+        "index": 92,
+        "model": "MR44",
+        "name": "PC2F-P201A-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-PBFE-VRLJ"
+      },
+      {
+        "index": 93,
+        "model": "MR44",
+        "name": "UBBF-Corr-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-PJPY-QSV5"
+      },
+      {
+        "index": 94,
+        "model": "MR44",
+        "name": "IB2F-207-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-PKVV-GRY3"
+      },
+      {
+        "index": 95,
+        "model": "MR44",
+        "name": "LB3F-E307-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-PMED-JU45"
+      },
+      {
+        "index": 96,
+        "model": "MR44",
+        "name": "MY1F-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-PP2Y-YPGH"
+      },
+      {
+        "index": 97,
+        "model": "MR44",
+        "name": "UB3F-H304-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Q74U-U2G6"
+      },
+      {
+        "index": 98,
+        "model": "MR44",
+        "name": "PC1F-P137-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QESB-BEB8"
+      },
+      {
+        "index": 99,
+        "model": "MR44",
+        "name": "UB3F-H305-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QPCN-QSPX"
+      },
+      {
+        "index": 100,
+        "model": "MR44",
+        "name": "IB2F-216-MR44-012",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QPNX-DYZY"
+      },
+      {
+        "index": 101,
+        "model": "MR44",
+        "name": "LB2F-E201-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QPWG-DZVS"
+      },
+      {
+        "index": 102,
+        "model": "MR44",
+        "name": "LB4F-E409-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QRZ2-ZNJU"
+      },
+      {
+        "index": 103,
+        "model": "MR44",
+        "name": "PC1F-P133-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-QU8K-FBF6"
+      },
+      {
+        "index": 104,
+        "model": "MR44",
+        "name": "UB5F-H504-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-R3FD-A38P"
+      },
+      {
+        "index": 105,
+        "model": "MR44",
+        "name": "LB2F-E206-MR44-006",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-RBKB-J9D7"
+      },
+      {
+        "index": 106,
+        "model": "MR44",
+        "name": "LB3F-E304-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-RP8N-KGQ7"
+      },
+      {
+        "index": 107,
+        "model": "MR44",
+        "name": "LB4F-E407-MR44-007",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-RSCV-FGMA"
+      },
+      {
+        "index": 108,
+        "model": "MR44",
+        "name": "IB1F-122-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-S549-HTYQ"
+      },
+      {
+        "index": 109,
+        "model": "MR44",
+        "name": "UB2F-Corr-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-SABX-XPM4"
+      },
+      {
+        "index": 110,
+        "model": "MR44",
+        "name": "UBBF-H040-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-SJ4P-3CKE"
+      },
+      {
+        "index": 111,
+        "model": "MR44",
+        "name": "PC2F-P204-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-SLFK-5SNS"
+      },
+      {
+        "index": 112,
+        "model": "MR44",
+        "name": "UB1F-H127-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-SS7F-8XMM"
+      },
+      {
+        "index": 113,
+        "model": "MR44",
+        "name": "UB4F-H404-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-TTDQ-YGY5"
+      },
+      {
+        "index": 114,
+        "model": "MR44",
+        "name": "UB2F-H218-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-U6P6-BDPM"
+      },
+      {
+        "index": 115,
+        "model": "MR44",
+        "name": "UB4F-H401-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-U7RT-LJ88"
+      },
+      {
+        "index": 116,
+        "model": "MR44",
+        "name": "UB5F-H529-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-U99F-M4MC"
+      },
+      {
+        "index": 117,
+        "model": "MR44",
+        "name": "IB2F-205-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-UBB8-XUB2"
+      },
+      {
+        "index": 118,
+        "model": "MR44",
+        "name": "UB2F-H205-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-UBEP-HEDG"
+      },
+      {
+        "index": 119,
+        "model": "MR44",
+        "name": "IB2F-204-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-V4Q7-M7XP"
+      },
+      {
+        "index": 120,
+        "model": "MR44",
+        "name": "IB1F-107-MR44-009",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-VAPK-YD4C"
+      },
+      {
+        "index": 121,
+        "model": "MR44",
+        "name": "IB1F-110-MR44-012",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-VBDY-NGQV"
+      },
+      {
+        "index": 122,
+        "model": "MR44",
+        "name": "UB1F-H117-MR44-004",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-VGZT-EEVV"
+      },
+      {
+        "index": 123,
+        "model": "MR44",
+        "name": "UB3F-H301-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-VYXW-29HN"
+      },
+      {
+        "index": 124,
+        "model": "MR44",
+        "name": "PC2F-P203-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-W24Y-PMGS"
+      },
+      {
+        "index": 125,
+        "model": "MR44",
+        "name": "LB4F-E408-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-W5XP-WXDV"
+      },
+      {
+        "index": 126,
+        "model": "MR44",
+        "name": "UB6F-H606-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-WEG7-AGY6"
+      },
+      {
+        "index": 127,
+        "model": "MR44",
+        "name": "LB2F-E221-MR44-011",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-WEZB-XJUJ"
+      },
+      {
+        "index": 128,
+        "model": "MR44",
+        "name": "LB4F-E402-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-WH84-VWLK"
+      },
+      {
+        "index": 129,
+        "model": "MR44",
+        "name": "PC1F-SodexOffice-MR44-018",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-WTLC-LL3X"
+      },
+      {
+        "index": 130,
+        "model": "MR44",
+        "name": "IB2F-224-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-XJBD-3Y9T"
+      },
+      {
+        "index": 131,
+        "model": "MR44",
+        "name": "LB2F-E205-MR44-005",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-XVMV-FRKH"
+      },
+      {
+        "index": 132,
+        "model": "MR44",
+        "name": "IB1F-116A-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Y8RB-EH4B"
+      },
+      {
+        "index": 133,
+        "model": "MR44",
+        "name": "LB3F-E302-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Y93Z-22H8"
+      },
+      {
+        "index": 134,
+        "model": "MR44",
+        "name": "UB5F-H503-MR44-002",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Y98J-YAAS"
+      },
+      {
+        "index": 135,
+        "model": "MR44",
+        "name": "LB3F-E303-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-YN2C-ZA4B"
+      },
+      {
+        "index": 136,
+        "model": "MR44",
+        "name": "PC2F-P233-MR44-008",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-YWN2-B7KZ"
+      },
+      {
+        "index": 137,
+        "model": "MR44",
+        "name": "UB5F-H501-MR44-001",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-YZ6F-N433"
+      },
+      {
+        "index": 138,
+        "model": "MR44",
+        "name": "IB1F-108-MR44-010",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Z7XN-RJYL"
+      },
+      {
+        "index": 139,
+        "model": "MR44",
+        "name": "IB2F-201-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-Z8EK-H55S"
+      },
+      {
+        "index": 140,
+        "model": "MR44",
+        "name": "PC2F-P202-MR44-003",
+        "networkId": "N_851743279526505448",
+        "serial": "Q3AL-ZVS5-BTFQ"
+      }
+    ],
+    "selected_device_locations": [
+      {
+        "floorplan_info": {},
+        "image_url": "",
+        "location": {
+          "address": "",
+          "lat": 31.244121048582006,
+          "lng": 121.58285565351153
+        },
+        "model": "MR44",
+        "name": "UB3F-H330H-MR44-010",
+        "serial": "Q3AL-2C2Q-74MQ"
+      },
+      {
+        "floorplan_info": {},
+        "image_url": "",
+        "location": {
+          "address": "",
+          "lat": 31.326217047177742,
+          "lng": 120.70811264244455
+        },
+        "model": "MR44",
+        "name": "PC2F-P210-MR44-012",
+        "serial": "Q3AL-2F5C-CYJM"
+      }
+    ],
+    "query_time": "2025-09-23 11:02:47",
+    "success": true,
+    "error_message": null,
+    "echarts_data": [
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                [
+                  121.58285565351153,
+                  31.244121048582006,
+                  "UB3F-H330H-MR44-010"
+                ],
+                [
+                  120.70811264244455,
+                  31.326217047177742,
+                  "PC2F-P210-MR44-012"
+                ]
+              ],
+              "emphasis": {
+                "itemStyle": {
+                  "borderColor": "#ffffff",
+                  "borderWidth": 3,
+                  "color": "#ff69b4",
+                  "shadowBlur": 15,
+                  "shadowColor": "rgba(138, 43, 226, 0.8)"
+                }
+              },
+              "itemStyle": {
+                "borderColor": "#ffffff",
+                "borderWidth": 2,
+                "color": "#8a2be2"
+              },
+              "name": "设备位置",
+              "symbolSize": 12,
+              "type": "scatter"
+            }
+          ],
+          "title": {
+            "left": "center",
+            "text": "设备点位分布 - MR44",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "item"
+          },
+          "xAxis": {
+            "name": "经度",
+            "type": "value"
+          },
+          "yAxis": {
+            "name": "纬度",
+            "type": "value"
+          }
+        },
+        "title": "设备点位分布图",
+        "type": "scatter"
+      }
+    ]
+  },
+  "error": null
+}

@@ -1,7 +1,7 @@
 {
   "workflow_number": 12,
   "workflow_name": "安全态势感知分析",
-  "execution_time": "2025-09-23 11:02:54",
+  "execution_time": "2025-09-23 14:48:07",
   "success": true,
   "result": {
     "firewall_rules_count": 0,
@@ -27,229 +27,245 @@
     "security_alerts": [],
     "echarts_data": [
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "bottom": "22%",
-            "data": [
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "name": "允许规则 (0)"
-                  },
-                  {
-                    "name": "拒绝规则 (0)",
-                    "value": 0
-                  }
-                ],
-                "name": "防火墙规则"
-              }
-            ],
-            "itemStyle": {
-              "color": "#9370db"
-            },
-            "label": {
-              "align": "right",
-              "position": "left",
-              "verticalAlign": "middle"
-            },
-            "leaves": {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "bottom": "22%",
+              "data": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "name": "允许规则 (0)"
+                    },
+                    {
+                      "name": "拒绝规则 (0)",
+                      "value": 0
+                    }
+                  ],
+                  "name": "防火墙规则"
+                }
+              ],
+              "itemStyle": {
+                "color": "#9370db"
+              },
               "label": {
-                "align": "left",
-                "position": "right",
+                "align": "right",
+                "position": "left",
                 "verticalAlign": "middle"
-              }
-            },
-            "left": "7%",
-            "right": "20%",
-            "symbolSize": 7,
-            "type": "tree"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        }
-      },
-      {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "radar": {
-          "center": [
-            "50%",
-            "60%"
-          ],
-          "indicator": [
-            {
-              "max": 100,
-              "name": "认证强度"
-            },
-            {
-              "max": 100,
-              "name": "加密等级"
-            },
-            {
-              "max": 100,
-              "name": "访问控制"
-            },
-            {
-              "max": 100,
-              "name": "监控覆盖"
-            },
-            {
-              "max": 100,
-              "name": "合规性"
+              },
+              "leaves": {
+                "label": {
+                  "align": "left",
+                  "position": "right",
+                  "verticalAlign": "middle"
+                }
+              },
+              "left": "7%",
+              "right": "20%",
+              "symbolSize": 7,
+              "type": "tree"
             }
           ],
-          "radius": "70%"
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          }
         },
-        "series": [
-          {
-            "data": [
+        "title": "防火墙规则结构",
+        "type": "tree"
+      },
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "radar": {
+            "center": [
+              "50%",
+              "60%"
+            ],
+            "indicator": [
               {
-                "itemStyle": {
-                  "color": "#9370db"
-                },
-                "name": "当前评分",
-                "value": [
-                  80.0,
-                  85,
-                  75,
-                  90,
-                  80
-                ]
+                "max": 100,
+                "name": "认证强度"
+              },
+              {
+                "max": 100,
+                "name": "加密等级"
+              },
+              {
+                "max": 100,
+                "name": "访问控制"
+              },
+              {
+                "max": 100,
+                "name": "监控覆盖"
+              },
+              {
+                "max": 100,
+                "name": "合规性"
               }
             ],
-            "name": "安全评分",
-            "type": "radar"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
+            "radius": "70%"
+          },
+          "series": [
+            {
+              "data": [
+                {
+                  "itemStyle": {
+                    "color": "#9370db"
+                  },
+                  "name": "当前评分",
+                  "value": [
+                    80.0,
+                    85,
+                    75,
+                    90,
+                    80
+                  ]
+                }
+              ],
+              "name": "安全评分",
+              "type": "radar"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
           }
         },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        }
+        "title": "无线安全评分",
+        "type": "radar"
       },
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [],
+              "label": {
+                "show": true
+              },
+              "name": "客户端数量",
+              "type": "heatmap"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "visualMap": {
+            "bottom": "10%",
+            "calculable": true,
+            "inRange": {
+              "color": [
+                "#e6e6fa",
+                "#9370db"
+              ]
+            },
+            "left": "center",
+            "max": 1,
+            "min": 0,
+            "orient": "horizontal"
+          },
+          "xAxis": {
+            "axisLabel": {
+              "rotate": 45
+            },
             "data": [],
-            "label": {
-              "show": true
-            },
-            "name": "客户端数量",
-            "type": "heatmap"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "visualMap": {
-          "bottom": "10%",
-          "calculable": true,
-          "inRange": {
-            "color": [
-              "#e6e6fa",
-              "#9370db"
-            ]
+            "type": "category"
           },
-          "left": "center",
-          "max": 1,
-          "min": 0,
-          "orient": "horizontal"
+          "yAxis": {
+            "data": [
+              "认证状态"
+            ],
+            "type": "category"
+          }
         },
-        "xAxis": {
-          "axisLabel": {
-            "rotate": 45
-          },
-          "data": [],
-          "type": "category"
-        },
-        "yAxis": {
-          "data": [
-            "认证状态"
-          ],
-          "type": "category"
-        }
+        "title": "客户端认证分布",
+        "type": "heatmap"
       },
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "data": [
-              0,
-              2,
-              1,
-              3
-            ],
-            "itemStyle": {
-              "color": "#8a2be2"
-            },
-            "name": "告警数量",
-            "type": "bar"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "xAxis": {
-          "data": [
-            "认证失败",
-            "异常流量",
-            "配置变更",
-            "设备异常"
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                0,
+                2,
+                1,
+                3
+              ],
+              "itemStyle": {
+                "color": "#8a2be2"
+              },
+              "name": "告警数量",
+              "type": "bar"
+            }
           ],
-          "type": "category"
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "xAxis": {
+            "data": [
+              "认证失败",
+              "异常流量",
+              "配置变更",
+              "设备异常"
+            ],
+            "type": "category"
+          },
+          "yAxis": {
+            "type": "value"
+          }
         },
-        "yAxis": {
-          "type": "value"
-        }
+        "title": "安全告警统计",
+        "type": "bar"
       }
     ]
   },

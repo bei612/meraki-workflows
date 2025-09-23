@@ -1,7 +1,7 @@
 {
   "workflow_number": 10,
   "workflow_name": "告警日志",
-  "execution_time": "2025-09-23 11:02:48",
+  "execution_time": "2025-09-23 14:47:58",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -270,10 +270,10 @@
     ],
     "network_events_sample": [],
     "alert_categories": [
-      "device_health",
-      "connectivity"
+      "connectivity",
+      "device_health"
     ],
-    "query_time": "2025-09-23 11:02:48",
+    "query_time": "2025-09-23 14:47:58",
     "success": true,
     "error_message": null,
     "echarts_data": [
@@ -285,18 +285,13 @@
             "left": "8%",
             "right": "8%"
           },
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
           "series": [
             {
               "data": [
                 [
                   0,
                   0,
-                  2
+                  4
                 ],
                 [
                   0,
@@ -311,7 +306,7 @@
                 [
                   1,
                   0,
-                  4
+                  2
                 ],
                 [
                   1,
@@ -366,8 +361,8 @@
           },
           "xAxis": {
             "data": [
-              "device_health",
-              "connectivity"
+              "connectivity",
+              "device_health"
             ],
             "splitArea": {
               "show": true

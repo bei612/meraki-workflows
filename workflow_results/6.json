@@ -1,7 +1,7 @@
 {
   "workflow_number": 6,
   "workflow_name": "设备巡检报告",
-  "execution_time": "2025-09-23 11:02:41",
+  "execution_time": "2025-09-23 14:47:51",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -12,7 +12,7 @@
         "组织告警",
         "网络事件"
       ],
-      "report_time": "2025-09-23 11:02:41",
+      "report_time": "2025-09-23 14:47:51",
       "report_type": "综合设备巡检报告"
     },
     "device_status_analysis": {
@@ -31,8 +31,8 @@
     },
     "alerts_analysis": {
       "alert_categories": [
-        "device_health",
-        "connectivity"
+        "connectivity",
+        "device_health"
       ],
       "critical_alerts": 6,
       "info_alerts": 0,
@@ -362,12 +362,6 @@
           "title": {
             "left": "center",
             "text": "系统健康状况雷达图",
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
-          "tooltip": {
-            "backgroundColor": "rgba(0,0,0,0.8)",
             "textStyle": {
               "color": "#ffffff"
             }

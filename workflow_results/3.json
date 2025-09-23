@@ -1,16 +1,16 @@
 {
   "workflow_number": 3,
   "workflow_name": "客户端统计",
-  "execution_time": "2025-09-23 11:02:40",
+  "execution_time": "2025-09-23 14:47:49",
   "success": true,
   "result": {
     "organization_name": "Concordia",
     "organization_id": "850617379619606726",
     "query_summary": {
-      "avg_clients_per_network": 360.75,
+      "avg_clients_per_network": 360.0,
       "networks_with_clients": 1,
-      "total_clients_in_org": 1443,
-      "total_heavy_usage_clients": 25,
+      "total_clients_in_org": 1440,
+      "total_heavy_usage_clients": 9,
       "total_networks": 4
     },
     "networks_breakdown": [
@@ -52,8 +52,8 @@
         "timezone": "Asia/Shanghai"
       },
       {
-        "client_count": 1443,
-        "heavy_usage_count": 25,
+        "client_count": 1440,
+        "heavy_usage_count": 9,
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network",
         "product_types": [
@@ -63,7 +63,7 @@
       }
     ],
     "client_distribution_analysis": {
-      "heavy_usage_ratio": 1.73,
+      "heavy_usage_ratio": 0.62,
       "most_active_network": "CISS Network",
       "networks_without_clients": [
         "WAB Demo",
@@ -71,7 +71,7 @@
         "Concorida Demo"
       ]
     },
-    "query_time": "2025-09-23 11:02:40",
+    "query_time": "2025-09-23 14:47:49",
     "success": true,
     "error_message": null,
     "echarts_data": [
@@ -83,18 +83,13 @@
             "left": "8%",
             "right": "8%"
           },
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
           "series": [
             {
               "data": [
                 0,
                 0,
                 0,
-                1443
+                1440
               ],
               "emphasis": {
                 "itemStyle": {
@@ -139,7 +134,7 @@
                 0,
                 0,
                 0,
-                25
+                9
               ],
               "emphasis": {
                 "itemStyle": {
@@ -190,7 +185,7 @@
           "tooltip": {
             "backgroundColor": "rgba(0,0,0,0.8)",
             "borderColor": "#ffffff",
-            "formatter": "{b0}<br/>{a0}: {c0}个<br/>{a1}: {c1}个",
+            "formatter": "{b0}: {a0} {c0}个, {a1} {c1}个",
             "textStyle": {
               "color": "#ffffff"
             },

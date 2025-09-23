@@ -1,7 +1,7 @@
 {
   "workflow_number": 9,
   "workflow_name": "丢失设备追踪",
-  "execution_time": "2025-09-23 11:02:47",
+  "execution_time": "2025-09-23 14:47:57",
   "success": true,
   "result": {
     "search_criteria": {
@@ -12,17 +12,12 @@
     "discovered_clients": [],
     "selected_client_trace": {},
     "connection_history": [],
-    "query_time": "2025-09-23 11:02:47",
+    "query_time": "2025-09-23 14:47:57",
     "success": true,
     "error_message": null,
     "echarts_data": [
       {
         "option": {
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
           "series": [
             {
               "areaStyle": {
@@ -86,7 +81,7 @@
           }
         },
         "title": "设备连接历史时间轴",
-        "type": "timeline"
+        "type": "line"
       }
     ]
   },

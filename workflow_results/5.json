@@ -1,7 +1,7 @@
 {
   "workflow_number": 5,
   "workflow_name": "许可证详情",
-  "execution_time": "2025-09-23 11:02:41",
+  "execution_time": "2025-09-23 14:47:50",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -31,17 +31,12 @@
       "status": "OK",
       "total_wireless_licenses": 178
     },
-    "query_time": "2025-09-23 11:02:41",
+    "query_time": "2025-09-23 14:47:50",
     "success": true,
     "error_message": null,
     "echarts_data": [
       {
         "option": {
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
           "series": [
             {
               "axisLabel": {
@@ -125,12 +120,6 @@
           "title": {
             "left": "center",
             "text": "许可证使用状态",
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
-          "tooltip": {
-            "backgroundColor": "rgba(0,0,0,0.8)",
             "textStyle": {
               "color": "#ffffff"
             }

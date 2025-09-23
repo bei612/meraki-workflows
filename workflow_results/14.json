@@ -1,69 +1,69 @@
 {
   "workflow_number": 14,
   "workflow_name": "容量规划分析",
-  "execution_time": "2025-09-23 11:02:58",
+  "execution_time": "2025-09-23 14:48:11",
   "success": true,
   "result": {
     "device_utilization": {
+      "LB1F-E118-MR44-013": {
+        "model": "MR44",
+        "network": "CISS Network",
+        "percentage": 0,
+        "total_bytes": 17802.423828125
+      },
       "LB2F-E203-MR44-003": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 17245.537109375
+        "total_bytes": 20625.392578125
       },
       "LB4F-E402-MR44-002": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 26627.712890625
+        "total_bytes": 24769.0361328125
       },
       "LB4F-E404-MR44-004": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 19042.47265625
+        "total_bytes": 16596.298828125
       },
       "UB1F-H133B-MR44-007": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 24456.203125
+        "total_bytes": 23643.259765625
       },
       "UB1F-H133C-MR44-008": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 50320.505859375
+        "total_bytes": 40991.5244140625
       },
       "UB2F-H218-MR44-008": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 19104.0625
+        "total_bytes": 16908.908203125
       },
       "UB2F-H227A-MR57-006": {
         "model": "MR57",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 35714.3349609375
+        "total_bytes": 31939.3544921875
       },
       "UB2F-H227C-MR57-007": {
         "model": "MR57",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 21941.4248046875
-      },
-      "UB2F-Lib-MR57-005": {
-        "model": "MR57",
-        "network": "CISS Network",
-        "percentage": 0,
-        "total_bytes": 29571.7861328125
+        "total_bytes": 24570.42578125
       },
       "UB3F-H330H-MR44-010": {
         "model": "MR44",
         "network": "CISS Network",
         "percentage": 0,
-        "total_bytes": 20062.185546875
+        "total_bytes": 18383.5517578125
       }
     },
     "client_growth_trend": [
@@ -223,7 +223,7 @@
       "by_application": {
         "Unknown": {
           "downstream": 0,
-          "percentage": 4.30641738075764,
+          "percentage": 2.6326730294713747,
           "total_bytes": 0,
           "upstream": 0
         }
@@ -252,246 +252,262 @@
     ],
     "echarts_data": [
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "axisLine": {
-              "lineStyle": {
-                "color": [
-                  [
-                    0.3,
-                    "#ff4757"
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "axisLine": {
+                "lineStyle": {
+                  "color": [
+                    [
+                      0.3,
+                      "#ff4757"
+                    ],
+                    [
+                      0.7,
+                      "#ffa502"
+                    ],
+                    [
+                      1,
+                      "#2ed573"
+                    ]
                   ],
-                  [
-                    0.7,
-                    "#ffa502"
-                  ],
-                  [
-                    1,
-                    "#2ed573"
-                  ]
-                ],
-                "width": 20
-              }
-            },
-            "center": [
-              "50%",
-              "60%"
-            ],
-            "data": [
-              {
-                "name": "设备利用率",
-                "value": 96.6
-              }
-            ],
-            "detail": {
-              "color": "#ffffff",
-              "fontSize": 20,
-              "formatter": "{value}%"
-            },
-            "max": 100,
-            "min": 0,
-            "name": "利用率",
-            "pointer": {
-              "itemStyle": {
-                "color": "#9370db"
-              }
-            },
-            "radius": "80%",
-            "splitNumber": 10,
-            "type": "gauge"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        }
-      },
-      {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "areaStyle": {
-              "opacity": 0.3
-            },
-            "data": [
-              7,
-              7,
-              7,
-              8,
-              8,
-              8,
-              8,
-              8,
-              9,
-              9,
-              9,
-              9,
-              9,
-              10
-            ],
-            "itemStyle": {
-              "color": "#9370db"
-            },
-            "name": "客户端数量",
-            "type": "line"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "xAxis": {
-          "axisLabel": {
-            "rotate": 45
-          },
-          "data": [
-            "Day 17",
-            "Day 18",
-            "Day 19",
-            "Day 20",
-            "Day 21",
-            "Day 22",
-            "Day 23",
-            "Day 24",
-            "Day 25",
-            "Day 26",
-            "Day 27",
-            "Day 28",
-            "Day 29",
-            "Day 30"
-          ],
-          "type": "category"
-        },
-        "yAxis": {
-          "name": "客户端数量",
-          "type": "value"
-        }
-      },
-      {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "data": [
-              0.0
-            ],
-            "itemStyle": {
-              "color": "#9370db"
-            },
-            "name": "下行流量(GB)",
-            "stack": "流量",
-            "type": "bar"
-          },
-          {
-            "data": [
-              0.0
-            ],
-            "itemStyle": {
-              "color": "#8a2be2"
-            },
-            "name": "上行流量(GB)",
-            "stack": "流量",
-            "type": "bar"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "xAxis": {
-          "axisLabel": {
-            "rotate": 45
-          },
-          "data": [
-            "Unknown"
-          ],
-          "type": "category"
-        },
-        "yAxis": {
-          "name": "流量(GB)",
-          "type": "value"
-        }
-      },
-      {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "center": [
-              "50%",
-              "45%"
-            ],
-            "data": [
-              {
+                  "width": 20
+                }
+              },
+              "center": [
+                "50%",
+                "60%"
+              ],
+              "data": [
+                {
+                  "name": "设备利用率",
+                  "value": 96.6
+                }
+              ],
+              "detail": {
+                "color": "#ffffff",
+                "fontSize": 20,
+                "formatter": "{value}%"
+              },
+              "max": 100,
+              "min": 0,
+              "name": "利用率",
+              "pointer": {
                 "itemStyle": {
                   "color": "#9370db"
-                },
-                "name": "Wireless",
-                "value": 178
-              }
-            ],
-            "emphasis": {
-              "itemStyle": {
-                "shadowBlur": 10,
-                "shadowColor": "rgba(0, 0, 0, 0.5)",
-                "shadowOffsetX": 0
-              }
-            },
-            "name": "许可证",
-            "radius": [
-              "30%",
-              "60%"
-            ],
-            "type": "pie"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
+                }
+              },
+              "radius": "80%",
+              "splitNumber": 10,
+              "type": "gauge"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
           }
         },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
+        "title": "设备利用率评估",
+        "type": "gauge"
+      },
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "areaStyle": {
+                "opacity": 0.3
+              },
+              "data": [
+                7,
+                7,
+                7,
+                8,
+                8,
+                8,
+                8,
+                8,
+                9,
+                9,
+                9,
+                9,
+                9,
+                10
+              ],
+              "itemStyle": {
+                "color": "#9370db"
+              },
+              "name": "客户端数量",
+              "type": "line"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "xAxis": {
+            "axisLabel": {
+              "rotate": 45
+            },
+            "data": [
+              "Day 17",
+              "Day 18",
+              "Day 19",
+              "Day 20",
+              "Day 21",
+              "Day 22",
+              "Day 23",
+              "Day 24",
+              "Day 25",
+              "Day 26",
+              "Day 27",
+              "Day 28",
+              "Day 29",
+              "Day 30"
+            ],
+            "type": "category"
+          },
+          "yAxis": {
+            "name": "客户端数量",
+            "type": "value"
           }
-        }
+        },
+        "title": "客户端增长趋势",
+        "type": "line"
+      },
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "data": [
+                0.0
+              ],
+              "itemStyle": {
+                "color": "#9370db"
+              },
+              "name": "下行流量(GB)",
+              "stack": "流量",
+              "type": "bar"
+            },
+            {
+              "data": [
+                0.0
+              ],
+              "itemStyle": {
+                "color": "#8a2be2"
+              },
+              "name": "上行流量(GB)",
+              "stack": "流量",
+              "type": "bar"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "xAxis": {
+            "axisLabel": {
+              "rotate": 45
+            },
+            "data": [
+              "Unknown"
+            ],
+            "type": "category"
+          },
+          "yAxis": {
+            "name": "流量(GB)",
+            "type": "value"
+          }
+        },
+        "title": "应用带宽使用分析",
+        "type": "bar"
+      },
+      {
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "series": [
+            {
+              "center": [
+                "50%",
+                "45%"
+              ],
+              "data": [
+                {
+                  "itemStyle": {
+                    "color": "#9370db"
+                  },
+                  "name": "Wireless",
+                  "value": 178
+                }
+              ],
+              "emphasis": {
+                "itemStyle": {
+                  "shadowBlur": 10,
+                  "shadowColor": "rgba(0, 0, 0, 0.5)",
+                  "shadowOffsetX": 0
+                }
+              },
+              "name": "许可证",
+              "radius": [
+                "30%",
+                "60%"
+              ],
+              "type": "pie"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          }
+        },
+        "title": "许可证分布规划",
+        "type": "pie"
       }
     ]
   },

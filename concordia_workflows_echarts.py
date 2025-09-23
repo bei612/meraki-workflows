@@ -480,7 +480,7 @@ class DeviceStatusWorkflow:
                     }},
                 "tooltip": {
                     "trigger": "item", 
-                    "formatter": "{a}<br/>{b}: {c}台 ({d}%)",
+                    "formatter": "{b}: {c}台 ({d}%)",
                     "backgroundColor": "rgba(0, 0, 0, 0.8)",
                     "borderColor": "#ffffff",
                     "textStyle": {
@@ -512,7 +512,7 @@ class DeviceStatusWorkflow:
                     },
                     "label": {
                         "show": True,
-                        "formatter": "{b}<br/>{c}台",
+                        "formatter": "{c}台",
                         "color": "#ffffff",
                         "fontSize": 11,
                         "position": "outside"
@@ -534,16 +534,18 @@ class DeviceStatusWorkflow:
                 "color": "#ffffff"
             }
             
+            # 将数据放入option的series中
+            pie_option["series"][0]["data"] = [
+                {"name": "在线", "value": counts.get("online", 0), "itemStyle": {"color": "#4a148c"}},
+                {"name": "离线", "value": counts.get("offline", 0), "itemStyle": {"color": "#6a1b9a"}},
+                {"name": "告警", "value": counts.get("alerting", 0), "itemStyle": {"color": "#7b1fa2"}},
+                {"name": "休眠", "value": counts.get("dormant", 0), "itemStyle": {"color": "#8e24aa"}}
+            ]
+            
             echarts_pie_data = [
                 {
                     "type": "pie",
                     "title": "状态",
-                    "data": [
-                        {"name": "在线", "value": counts.get("online", 0), "itemStyle": {"color": "#4a148c"}},
-                        {"name": "离线", "value": counts.get("offline", 0), "itemStyle": {"color": "#6a1b9a"}},
-                        {"name": "告警", "value": counts.get("alerting", 0), "itemStyle": {"color": "#7b1fa2"}},
-                        {"name": "休眠", "value": counts.get("dormant", 0), "itemStyle": {"color": "#8e24aa"}}
-                    ],
                     "option": pie_option
                 }
             ]
@@ -648,13 +650,81 @@ class APDeviceQueryWorkflow:
                     "tags": device_detail.get("tags", [])
                 })
             
-            # 生成ECharts表格和地图散点图数据格式
+            # 统计设备型号分布
+            model_counts = {}
+            for device in matched_devices_list:
+                model = device["model"]
+                model_counts[model] = model_counts.get(model, 0) + 1
+            
+            # 生成ECharts柱状图和地图散点图数据格式
             echarts_data = [
                 {
-                    "type": "table",
-                    "title": "AP设备列表",
-                    "columns": ["序号", "设备名称", "型号", "序列号", "网络ID"],
-                    "data": [[d["index"], d["name"], d["model"], d["serial"], d["network_id"]] for d in matched_devices_list]
+                    "type": "bar",
+                    "title": "搜索结果设备型号分布",
+                    "option": {
+                        "title": {
+                            "text": "搜索结果设备型号分布",
+                            "left": "center", 
+                            "textStyle": {
+                                "fontSize": 16, 
+                                "fontWeight": "bold", 
+                                "color": "#ffffff"
+                            }
+                        },
+                        "tooltip": {
+                            "trigger": "axis",
+                            "formatter": "{b}: {c}台",
+                            "backgroundColor": "rgba(0, 0, 0, 0.8)",
+                            "borderColor": "#ffffff",
+                            "textStyle": {
+                                "color": "#ffffff"
+                            }
+                        },
+                        "xAxis": {
+                            "type": "category",
+                            "data": list(model_counts.keys()),
+                            "axisLabel": {
+                                "color": "#ffffff",
+                                "fontSize": 12
+                            },
+                            "name": "设备型号",
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
+                        },
+                        "yAxis": {
+                            "type": "value",
+                            "axisLabel": {
+                                "color": "#ffffff",
+                                "fontSize": 11,
+                                "formatter": "{value}台"
+                            },
+                            "name": "设备数量",
+                            "nameTextStyle": {"color": "#ffffff", "fontSize": 12}
+                        },
+                        "series": [{
+                            "name": "设备数量",
+                            "type": "bar",
+                            "data": list(model_counts.values()),
+                            "itemStyle": {
+                                "color": {
+                                    "type": "linear",
+                                    "x": 0, "y": 0, "x2": 0, "y2": 1,
+                                    "colorStops": [
+                                        {"offset": 0, "color": "#4a148c"},
+                                        {"offset": 1, "color": "#6a1b9a"}
+                                    ]
+                                },
+                                "borderColor": "#2e2e4f",
+                                "borderWidth": 1
+                            },
+                            "label": {
+                                "show": True,
+                                "position": "top",
+                                "color": "#ffffff",
+                                "fontSize": 11,
+                                "formatter": "{c}台"
+                            }
+                        }]
+                    }
                 },
                 {
                     "type": "scatter",
@@ -670,7 +740,7 @@ class APDeviceQueryWorkflow:
                         },
                         "tooltip": {
                             "trigger": "item",
-                            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}",
+                            "formatter": "设备: {c[2]}, 经度: {c[0]}, 纬度: {c[1]}",
                             "backgroundColor": "rgba(0, 0, 0, 0.8)",
                             "borderColor": "#ffffff",
                             "textStyle": {
@@ -835,7 +905,7 @@ class ClientCountWorkflow:
                 {
                     "type": "bar",
                     "title": "各网络客户端数量统计",
-                "option": merge_theme_config({
+                "option": {
                     "title": {
                         "text": "各网络客户端数量统计", 
                         "left": "center", "textStyle": {
@@ -846,7 +916,7 @@ class ClientCountWorkflow:
                     },
                     "tooltip": {
                         "trigger": "axis",
-                        "formatter": "{b0}<br/>{a0}: {c0}个<br/>{a1}: {c1}个",
+                        "formatter": "{b0}: {a0} {c0}个, {a1} {c1}个",
                         "backgroundColor": "rgba(0, 0, 0, 0.8)",
                         "borderColor": "#ffffff",
                         "textStyle": {
@@ -893,19 +963,19 @@ class ClientCountWorkflow:
                                     "borderColor": "#2e2e4f",
                                     "borderWidth": 1
                                 },
-                                "emphasis": {
-                                    "itemStyle": {
-                                        "color": "#7b1fa2",
-                                        "shadowBlur": 8,
-                                        "shadowColor": "rgba(74, 20, 140, 0.6)"
-                                    }
-                                },
                                 "label": {
                                     "show": True,
                                     "position": "top",
                                     "formatter": "{c}",
                                     "fontSize": 11,
                                     "color": "#ffffff"
+                                },
+                                "emphasis": {
+                                    "itemStyle": {
+                                        "color": "#7b1fa2",
+                                        "shadowBlur": 8,
+                                        "shadowColor": "rgba(74, 20, 140, 0.6)"
+                                    }
                                 }
                             },
                             {
@@ -924,23 +994,23 @@ class ClientCountWorkflow:
                                     "borderColor": "#2e2e4f",
                                     "borderWidth": 1
                                 },
-                                "emphasis": {
-                                    "itemStyle": {
-                                        "color": "#9c27b0",
-                                        "shadowBlur": 8,
-                                        "shadowColor": "rgba(123, 31, 162, 0.6)"
-                                    }
-                                },
                                 "label": {
                                     "show": True,
                                     "position": "top",
                                     "formatter": "{c}",
                                     "fontSize": 11,
                                     "color": "#ffffff"
+                                },
+                                "emphasis": {
+                                    "itemStyle": {
+                                        "color": "#9c27b0",
+                                        "shadowBlur": 8,
+                                        "shadowColor": "rgba(123, 31, 162, 0.6)"
+                                    }
                                 }
                             }
                         ]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -1063,7 +1133,7 @@ class FirmwareSummaryWorkflow:
                     {
                         "type": "bar",
                         "title": "设备型号固件版本分布",
-                        "option": merge_theme_config({
+                        "option": {
                             "title": {
                                 "text": "设备型号固件版本分布", 
                                 "left": "center", "textStyle": {
@@ -1073,7 +1143,7 @@ class FirmwareSummaryWorkflow:
                     }},
                             "tooltip": {
                                 "trigger": "axis",
-                                "formatter": "{b}<br/>设备数量: {c}台",
+                                "formatter": "{b}: {c}台",
                                 "backgroundColor": "rgba(0, 0, 0, 0.8)",
                                 "borderColor": "#ffffff",
                                 "textStyle": {
@@ -1131,7 +1201,7 @@ class FirmwareSummaryWorkflow:
                                     "color": "#ffffff"
                                 }
                             }]
-                        }, get_dark_purple_theme())
+                        }
                     }
                 ]
             )
@@ -1199,7 +1269,7 @@ class LicenseDetailsWorkflow:
                 {
                     "type": "gauge",
                     "title": "许可证使用状态",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {
                             "text": "许可证使用状态", 
                             "left": "center", "textStyle": {
@@ -1263,7 +1333,7 @@ class LicenseDetailsWorkflow:
                                 "fontSize": 12
                             }
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -1392,7 +1462,7 @@ class DeviceInspectionWorkflow:
                 {
                     "type": "radar",
                     "title": "系统健康状况雷达图",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {
                             "text": "系统健康状况雷达图", 
                             "left": "center", "textStyle": {
@@ -1465,7 +1535,7 @@ class DeviceInspectionWorkflow:
                                 }
                             }]
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -1592,7 +1662,7 @@ class FloorplanAPWorkflow:
                 {
                     "type": "tree",
                     "title": "楼层AP分布树图",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {"text": "楼层AP分布", "left": "center"},
                         "tooltip": {"trigger": "item"},
                         "series": [{
@@ -1632,7 +1702,7 @@ class FloorplanAPWorkflow:
                                 }
                             }
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -1755,11 +1825,11 @@ class DeviceLocationWorkflow:
                 {
                     "type": "scatter",
                     "title": "设备点位分布图",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {"text": f"设备点位分布 - {input.search_keyword}", "left": "center"},
                         "tooltip": {
                             "trigger": "item",
-                            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}"
+                            "formatter": "设备: {c[2]}, 经度: {c[0]}, 纬度: {c[1]}"
                         },
                         "xAxis": {"type": "value", "name": "经度"},
                         "yAxis": {"type": "value", "name": "纬度"},
@@ -1787,7 +1857,7 @@ class DeviceLocationWorkflow:
                                 }
                             }
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -1989,9 +2059,9 @@ class LostDeviceTraceWorkflow:
             # 生成ECharts时间轴数据格式
             echarts_data = [
                 {
-                    "type": "timeline",
+                    "type": "line",
                     "title": "设备连接历史时间轴",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {"text": "设备连接历史", "left": "center"},
                         "tooltip": {"trigger": "axis"},
                         "xAxis": {"type": "time", "name": "时间"},
@@ -2024,7 +2094,7 @@ class LostDeviceTraceWorkflow:
                                 }
                             }
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -2135,7 +2205,7 @@ class AlertsLogWorkflow:
                 {
                     "type": "heatmap",
                     "title": "告警类型与严重程度热力图",
-                    "option": merge_theme_config({
+                    "option": {
                         "title": {"text": "告警分布热力图", "left": "center"},
                         "tooltip": {"position": "top"},
                         "grid": {"left": "8%", "right": "8%", "bottom": "15%", "containLabel": True},
@@ -2173,7 +2243,7 @@ class AlertsLogWorkflow:
                             ],
                             "label": {"show": True}
                         }]
-                    }, get_dark_purple_theme())
+                    }
                 }
             ]
             
@@ -2327,7 +2397,7 @@ class NetworkHealthAnalysisWorkflow:
                 },
                 "tooltip": {
                     "trigger": "item", 
-                    "formatter": "{a}<br/>{b}: {c}台 ({d}%)",
+                    "formatter": "{b}: {c}台 ({d}%)",
                     "backgroundColor": "rgba(0, 0, 0, 0.8)",
                     "borderColor": "#ffffff",
                     "textStyle": {
@@ -2356,7 +2426,7 @@ class NetworkHealthAnalysisWorkflow:
                 },
                 "tooltip": {
                     "trigger": "axis",
-                    "formatter": "{b}<br/>告警数量: {c}个",
+                    "formatter": "{b}: {c}个",
                     "backgroundColor": "rgba(0, 0, 0, 0.8)",
                     "borderColor": "#ffffff",
                     "textStyle": {
@@ -2381,7 +2451,7 @@ class NetworkHealthAnalysisWorkflow:
             
             chart3 = {
                 "title": {"text": "客户端网络分布", "left": "center"},
-                "tooltip": {"trigger": "item", "formatter": "网络: {c[2]}<br/>客户端: {c[1]}"},
+                "tooltip": {"trigger": "item", "formatter": "网络: {c[2]}, 客户端: {c[1]}"},
                 "xAxis": {"type": "category", "name": "网络索引"},
                 "yAxis": {"type": "value", "name": "客户端数量"},
                 "series": [{
@@ -2397,7 +2467,7 @@ class NetworkHealthAnalysisWorkflow:
             # 图表4：整体健康评分仪表盘
             chart4 = {
                 "title": {"text": "网络健康评分", "left": "center"},
-                "tooltip": {"formatter": "{a} <br/>{b}: {c}%"},
+                "tooltip": {"formatter": "{b}: {c}%"},
                 "series": [{
                     "name": "健康评分",
                     "type": "gauge",
@@ -2429,7 +2499,12 @@ class NetworkHealthAnalysisWorkflow:
                 alert_analysis=alert_analysis,
                 client_distribution=client_distribution,
                 network_performance={"health_score": health_score, "uptime_percentage": device_health_score},
-                echarts_data=[chart1, chart2, chart3, chart4]
+                echarts_data=[
+                    {"type": "pie", "title": "设备状态分布", "option": chart1},
+                    {"type": "bar", "title": "告警类型统计", "option": chart2},
+                    {"type": "scatter", "title": "客户端网络分布", "option": chart3},
+                    {"type": "gauge", "title": "网络健康评分", "option": chart4}
+                ]
             )
             
         except Exception as e:
@@ -2708,7 +2783,12 @@ class SecurityPostureWorkflow:
                 wireless_security_analysis={"score": wireless_security_score, "total_ssids": total_ssids},
                 client_auth_analysis=auth_analysis,
                 security_alerts=security_alerts,
-                echarts_data=[chart1, chart2, chart3, chart4]
+                echarts_data=[
+                    {"type": "tree", "title": "防火墙规则结构", "option": chart1},
+                    {"type": "radar", "title": "无线安全评分", "option": chart2},
+                    {"type": "heatmap", "title": "客户端认证分布", "option": chart3},
+                    {"type": "bar", "title": "安全告警统计", "option": chart4}
+                ]
             )
             
         except Exception as e:
@@ -2933,7 +3013,10 @@ class TroubleshootingWorkflow:
                 performance_metrics=performance_metrics,
                 issues_found=issues_found,
                 recommendations=recommendations,
-                echarts_data=[chart1, chart2]
+                echarts_data=[
+                    {"type": "radar", "title": "设备健康诊断", "option": chart1},
+                    {"type": "line", "title": "性能历史趋势", "option": chart2}
+                ]
             )
             
         except Exception as e:
@@ -3130,7 +3213,7 @@ class CapacityPlanningWorkflow:
             # 图表1：设备利用率仪表盘
             chart1 = {
                 "title": {"text": "设备利用率评估", "left": "center"},
-                "tooltip": {"formatter": "{a} <br/>{b}: {c}%"},
+                "tooltip": {"formatter": "{b}: {c}%"},
                 "series": [{
                     "name": "利用率",
                     "type": "gauge",
@@ -3213,7 +3296,7 @@ class CapacityPlanningWorkflow:
             
             chart4 = {
                 "title": {"text": "许可证分布规划", "left": "center"},
-                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
+                "tooltip": {"trigger": "item", "formatter": "{b}: {c} ({d}%)"},
                 "series": [{
                     "name": "许可证",
                     "type": "pie",
@@ -3232,7 +3315,12 @@ class CapacityPlanningWorkflow:
                 license_planning=license_planning,
                 capacity_forecast=capacity_forecast,
                 recommendations=recommendations,
-                echarts_data=[chart1, chart2, chart3, chart4]
+                echarts_data=[
+                    {"type": "gauge", "title": "设备利用率评估", "option": chart1},
+                    {"type": "line", "title": "客户端增长趋势", "option": chart2},
+                    {"type": "bar", "title": "应用带宽使用分析", "option": chart3},
+                    {"type": "pie", "title": "许可证分布规划", "option": chart4}
+                ]
             )
             
         except Exception as e:

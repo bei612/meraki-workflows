@@ -1,7 +1,7 @@
 {
   "workflow_number": 2,
   "workflow_name": "AP设备搜索",
-  "execution_time": "2025-09-23 11:02:36",
+  "execution_time": "2025-09-23 14:47:45",
   "success": true,
   "result": {
     "query_keyword": "MR",
@@ -134,92 +134,96 @@
       "available_selections": 174,
       "demonstration_count": 3
     },
-    "query_time": "2025-09-23 11:02:36",
+    "query_time": "2025-09-23 14:47:45",
     "success": true,
     "error_message": null,
     "echarts_data": [
       {
-        "columns": [
-          "序号",
-          "设备名称",
-          "型号",
-          "序列号",
-          "网络ID"
-        ],
-        "data": [
-          [
-            1,
-            "UB3F-H330H-MR44-010",
-            "MR44",
-            "Q3AL-2C2Q-74MQ",
-            "N_851743279526505448"
+        "option": {
+          "series": [
+            {
+              "data": [
+                10
+              ],
+              "itemStyle": {
+                "borderColor": "#2e2e4f",
+                "borderWidth": 1,
+                "color": {
+                  "colorStops": [
+                    {
+                      "color": "#4a148c",
+                      "offset": 0
+                    },
+                    {
+                      "color": "#6a1b9a",
+                      "offset": 1
+                    }
+                  ],
+                  "type": "linear",
+                  "x": 0,
+                  "x2": 0,
+                  "y": 0,
+                  "y2": 1
+                }
+              },
+              "label": {
+                "color": "#ffffff",
+                "fontSize": 11,
+                "formatter": "{c}台",
+                "position": "top",
+                "show": true
+              },
+              "name": "设备数量",
+              "type": "bar"
+            }
           ],
-          [
-            2,
-            "PC2F-P210-MR44-012",
-            "MR44",
-            "Q3AL-2F5C-CYJM",
-            "N_851743279526505448"
-          ],
-          [
-            3,
-            "PC1F-P138-MR44-004",
-            "MR44",
-            "Q3AL-2PRG-LGTV",
-            "N_851743279526505448"
-          ],
-          [
-            4,
-            "IB1F-109-MR44-011",
-            "MR44",
-            "Q3AL-2R6T-YJ4E",
-            "N_851743279526505448"
-          ],
-          [
-            5,
-            "LB1F-E105-MR44-004",
-            "MR44",
-            "Q3AL-2Z7A-CE6W",
-            "N_851743279526505448"
-          ],
-          [
-            6,
-            "LB2F-E209-MR44-009",
-            "MR44",
-            "Q3AL-36EM-7WQ9",
-            "N_851743279526505448"
-          ],
-          [
-            7,
-            "LB4F-E406-MR44-006",
-            "MR44",
-            "Q3AL-3L7B-Z8NS",
-            "N_851743279526505448"
-          ],
-          [
-            8,
-            "GHHY-MR44-001",
-            "MR44",
-            "Q3AL-3NER-KKXR",
-            "N_851743279526505448"
-          ],
-          [
-            9,
-            "IB1F-105-MR44-007",
-            "MR44",
-            "Q3AL-3PTF-6FS2",
-            "N_851743279526505448"
-          ],
-          [
-            10,
-            "LB1F-E101E-MR44-002",
-            "MR44",
-            "Q3AL-4EYX-HVBS",
-            "N_851743279526505448"
-          ]
-        ],
-        "title": "AP设备列表",
-        "type": "table"
+          "title": {
+            "left": "center",
+            "text": "搜索结果设备型号分布",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "borderColor": "#ffffff",
+            "formatter": "{b}: {c}台",
+            "textStyle": {
+              "color": "#ffffff"
+            },
+            "trigger": "axis"
+          },
+          "xAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "data": [
+              "MR44"
+            ],
+            "name": "设备型号",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "category"
+          },
+          "yAxis": {
+            "axisLabel": {
+              "color": "#ffffff",
+              "fontSize": 11,
+              "formatter": "{value}台"
+            },
+            "name": "设备数量",
+            "nameTextStyle": {
+              "color": "#ffffff",
+              "fontSize": 12
+            },
+            "type": "value"
+          }
+        },
+        "title": "搜索结果设备型号分布",
+        "type": "bar"
       },
       {
         "option": {
@@ -271,7 +275,7 @@
           "tooltip": {
             "backgroundColor": "rgba(0,0,0,0.8)",
             "borderColor": "#ffffff",
-            "formatter": "设备: {c[2]}<br/>经度: {c[0]}<br/>纬度: {c[1]}",
+            "formatter": "设备: {c[2]}, 经度: {c[0]}, 纬度: {c[1]}",
             "textStyle": {
               "color": "#ffffff"
             },

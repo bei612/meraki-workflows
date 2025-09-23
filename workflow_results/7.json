@@ -1,7 +1,7 @@
 {
   "workflow_number": 7,
   "workflow_name": "楼层AP分布",
-  "execution_time": "2025-09-23 11:02:45",
+  "execution_time": "2025-09-23 14:47:55",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -10,129 +10,124 @@
       {
         "floorplan_id": "g_851743279526446806",
         "floorplan_name": "LBBF",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_9226316845ba24372895787cdbb9392d.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f4588d503e0c57aa7798d2a580861ce0b719d84ab6559093d517695b26465383",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_9226316845ba24372895787cdbb9392d.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=5cc0e1c8207399651c0cb9973f16c9d8d43357bbaea3d767fbc62a0a76506499",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446807",
         "floorplan_name": "LB1F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_92f4299fa11c40bfaeaa0dd46cabe564.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ecb66a5180e727b3a8a558738407b4b41d8288050bc49c5d1a95360628193ba7",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_92f4299fa11c40bfaeaa0dd46cabe564.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=134641e5d25501f0d3cfd4b6a6147aeb03adb725c01058ee5c55cc8590771f45",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446808",
         "floorplan_name": "LB2F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_5c92fe9431736a5dd3dfd18465af71b5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=4a9c3cf94bff8e7d6fbd5766b625818c89a48e0670afa8f68244650183c08eda",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_5c92fe9431736a5dd3dfd18465af71b5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=bc16ede1eab92430baf689665c4dfde252b5ac36197ae58cae7283626c3ea769",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446809",
         "floorplan_name": "LB3F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6bd9cade19b9b64fc5d27a617c2fffe0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=75e25905469020d6bc8412b8208f092baf63ea3604c05c963e6bbfa89c5c315e",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6bd9cade19b9b64fc5d27a617c2fffe0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6f041665a910b869726f6b89f633f25de84e138c8903cbe7c43f1a246bf95d86",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446810",
         "floorplan_name": "LB4F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_77b31062d458f365987dedbbc432a9c5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2f00baaf1b10f72fcfd0f9e4fb07e15e93476ff4731cf5beb37aef350cb41a66",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_77b31062d458f365987dedbbc432a9c5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=cf82c2c4882a4a6ee9ae6f43e648d3f79320e9cd1df1fc05f4ccb765dcad52c7",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446820",
         "floorplan_name": "IB1F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_88e7f908a1a2da887d55b03d495703c3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=13c88ddbc3912c075548183eac4d19fcfdeaf70284e8669362b6e76c050feed5",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_88e7f908a1a2da887d55b03d495703c3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f0b2ea90ff3b58fc8fb15c7a2db4717bbe1fb159332e35e21520281e59f3138d",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446821",
         "floorplan_name": "IB2F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_61878aedafa81b291d6fc849a768edf0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1b1592e675676dcf656a1ba2708b0a12a98b35060375791adb7dda28a78b3b12",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_61878aedafa81b291d6fc849a768edf0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=266a7b2fba9ab17022537808a44cdc7721ba4b56f15ce395ffb003345c339845",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446822",
         "floorplan_name": "UBBF",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6a8a3a1ddf745d3cb0c1e0837dd45dcb.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110244Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=47e67d2f65e8258a2565f9b50a6475111dd3540326311ae41603859c6089751b",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6a8a3a1ddf745d3cb0c1e0837dd45dcb.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d53663d08e1cd30bc51d2dbb83c20a2c53a4528d5b5600d334c348a050a1e347",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446823",
         "floorplan_name": "UB1F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_7472dd58bb74e8e482ed159ac03ca0ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6dd5caa19c981e2173df77b1aa912d4696eeb8d5b68120de634033c0bcb6f0bb",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_7472dd58bb74e8e482ed159ac03ca0ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2eacd527799984123f0d537db06b9b7e1fa797614a85feef0efa63646244ffd5",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446824",
         "floorplan_name": "UB2F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_8ac1226d67beeedd0f89724132111aca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=4efa7620767dff8df3d4a16de7bb8f19d62364b60bf18c9ccc95b85c00997378",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_8ac1226d67beeedd0f89724132111aca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1b261c6cb91c1988d4de22e9342018e4f91a62124536362669e0c61f2e452d86",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446825",
         "floorplan_name": "UB3F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_5a6caa40cb52635fa16cfe6ad1f559c3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7d777524bdc4740ef73a3fc2aa2d393cdbc880b1a42d382dc126fd1f300e227d",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_5a6caa40cb52635fa16cfe6ad1f559c3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=4641d83c9f103e35cb9bfdecc765f98a0f9e6bbf80de8f4cbbd90bba39e75862",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446826",
         "floorplan_name": "UB4F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_7ee49193957c77d94c57e06ddb016f04.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ac0567167590ed6577a28566361179121ad8851c2078a5d7340315ee6b723cbe",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_7ee49193957c77d94c57e06ddb016f04.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=e4241b72d2ae6657d512ef16ee587f3a0d3e60944582cad2221a5505a07e89ce",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446827",
         "floorplan_name": "UB5F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_d6d43ca244c673222b44d452c3244367.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7ea017dcba57b36d83c75e2ccaa17cc1ca216443efc6e8d54c7b1f10993dd594",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_d6d43ca244c673222b44d452c3244367.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144754Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=b9a5e6408bd2b818198cd56b18a2fea92190afd57338761f72ee4d5999ca2329",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446828",
         "floorplan_name": "UB6F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6e154189df24fa0e3a6669684d79ff3b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=724cf2034a0e41cbe8cdf930136745897f748ad8522734cdaed237c3a03d1c20",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_6e154189df24fa0e3a6669684d79ff3b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144755Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=881705f3d5ffe2d188b6017c20a0f08afdaa69d62f815fc8cfacf1efef7149a8",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446880",
         "floorplan_name": "PC1F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_b0ff6d61a10d83a47c9da707dc17834a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=448ff0873293207b96d618950c37257b9b44a620258c8248e6df49304e2a0f29",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_b0ff6d61a10d83a47c9da707dc17834a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144755Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f6a0720f2a7a6e9ef79ab6a6fca074a7f9af0166b89d730868f96a0c5084a915",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       },
       {
         "floorplan_id": "g_851743279526446883",
         "floorplan_name": "PC2F",
-        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_ce25a33974bc064539a094fbdcde7dd7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T110245Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6babe790d306e507f2ad8015cb8247034b2eaae02f4965038be697f617acad9f",
+        "image_url": "https://meraki-cn.s3.cn-north-1.amazonaws.com.cn/assets/850617379619606726_ce25a33974bc064539a094fbdcde7dd7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXMVD7DPED7Z3HJYC%2F20250923%2Fcn-north-1%2Fs3%2Faws4_request&X-Amz-Date=20250923T144755Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7d64214dda142ea881bbd0a043127309e16b1fe10fc880ad1efbd24029a496d2",
         "network_id": "N_851743279526505448",
         "network_name": "CISS Network"
       }
     ],
     "selected_floorplan": {},
     "ap_distribution": [],
-    "query_time": "2025-09-23 11:02:45",
+    "query_time": "2025-09-23 14:47:55",
     "success": true,
     "error_message": null,
     "echarts_data": [
       {
         "option": {
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
-          },
           "series": [
             {
               "bottom": "20%",

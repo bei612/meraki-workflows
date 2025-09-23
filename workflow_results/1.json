@@ -1,7 +1,7 @@
 {
   "workflow_number": 1,
   "workflow_name": "设备状态查询",
-  "execution_time": "2025-09-23 11:02:35",
+  "execution_time": "2025-09-23 14:47:43",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -23,41 +23,11 @@
       "offline": 4,
       "online": 168
     },
-    "query_time": "2025-09-23 11:02:35",
+    "query_time": "2025-09-23 14:47:43",
     "success": true,
     "error_message": null,
     "echarts_data": [
       {
-        "data": [
-          {
-            "itemStyle": {
-              "color": "#4a148c"
-            },
-            "name": "在线",
-            "value": 168
-          },
-          {
-            "itemStyle": {
-              "color": "#6a1b9a"
-            },
-            "name": "离线",
-            "value": 4
-          },
-          {
-            "itemStyle": {
-              "color": "#7b1fa2"
-            },
-            "name": "告警",
-            "value": 2
-          },
-          {
-            "itemStyle": {
-              "color": "#8e24aa"
-            },
-            "name": "休眠",
-            "value": 0
-          }
-        ],
         "option": {
           "legend": {
             "bottom": "5%",
@@ -112,7 +82,7 @@
               "label": {
                 "color": "#ffffff",
                 "fontSize": 11,
-                "formatter": "{b}<br/>{c}台",
+                "formatter": "{c}台",
                 "position": "outside",
                 "show": true
               },
@@ -145,7 +115,7 @@
           "tooltip": {
             "backgroundColor": "rgba(0,0,0,0.8)",
             "borderColor": "#ffffff",
-            "formatter": "{a}<br/>{b}: {c}台 ({d}%)",
+            "formatter": "{b}: {c}台 ({d}%)",
             "textStyle": {
               "color": "#ffffff"
             },

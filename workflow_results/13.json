@@ -1,7 +1,7 @@
 {
   "workflow_number": 13,
   "workflow_name": "运维故障诊断",
-  "execution_time": "2025-09-23 11:02:55",
+  "execution_time": "2025-09-23 14:48:08",
   "success": true,
   "result": {
     "device_health": {
@@ -33,129 +33,137 @@
     ],
     "echarts_data": [
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "radar": {
-          "center": [
-            "50%",
-            "60%"
-          ],
-          "indicator": [
-            {
-              "max": 100,
-              "name": "可用性"
-            },
-            {
-              "max": 100,
-              "name": "可靠性"
-            },
-            {
-              "max": 100,
-              "name": "连通性"
-            },
-            {
-              "max": 100,
-              "name": "性能"
-            },
-            {
-              "max": 100,
-              "name": "告警状态"
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
             }
-          ],
-          "radius": "70%"
-        },
-        "series": [
-          {
-            "data": [
+          },
+          "radar": {
+            "center": [
+              "50%",
+              "60%"
+            ],
+            "indicator": [
               {
-                "areaStyle": {
-                  "opacity": 0.3
-                },
-                "itemStyle": {
-                  "color": "#9370db"
-                },
-                "name": "当前状态",
-                "value": [
-                  96.55172413793103,
-                  98.85057471264368,
-                  0,
-                  0,
-                  88
-                ]
+                "max": 100,
+                "name": "可用性"
+              },
+              {
+                "max": 100,
+                "name": "可靠性"
+              },
+              {
+                "max": 100,
+                "name": "连通性"
+              },
+              {
+                "max": 100,
+                "name": "性能"
+              },
+              {
+                "max": 100,
+                "name": "告警状态"
               }
             ],
-            "name": "健康评分",
-            "type": "radar"
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
+            "radius": "70%"
+          },
+          "series": [
+            {
+              "data": [
+                {
+                  "areaStyle": {
+                    "opacity": 0.3
+                  },
+                  "itemStyle": {
+                    "color": "#9370db"
+                  },
+                  "name": "当前状态",
+                  "value": [
+                    96.55172413793103,
+                    98.85057471264368,
+                    0,
+                    0,
+                    88
+                  ]
+                }
+              ],
+              "name": "健康评分",
+              "type": "radar"
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
           }
         },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        }
+        "title": "设备健康诊断",
+        "type": "radar"
       },
       {
-        "legend": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "series": [
-          {
-            "data": [],
-            "itemStyle": {
-              "color": "#9370db"
-            },
-            "name": "延迟(ms)",
-            "type": "line",
-            "yAxisIndex": 0
+        "option": {
+          "legend": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
           },
-          {
-            "data": [],
-            "itemStyle": {
-              "color": "#8a2be2"
+          "series": [
+            {
+              "data": [],
+              "itemStyle": {
+                "color": "#9370db"
+              },
+              "name": "延迟(ms)",
+              "type": "line",
+              "yAxisIndex": 0
             },
-            "name": "丢包率(%)",
-            "type": "line",
-            "yAxisIndex": 1
-          }
-        ],
-        "title": {
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "tooltip": {
-          "backgroundColor": "rgba(0,0,0,0.8)",
-          "textStyle": {
-            "color": "#ffffff"
-          }
-        },
-        "xAxis": {
-          "name": "时间点",
-          "type": "category"
-        },
-        "yAxis": [
-          {
-            "name": "延迟(ms)",
-            "position": "left",
-            "type": "value"
+            {
+              "data": [],
+              "itemStyle": {
+                "color": "#8a2be2"
+              },
+              "name": "丢包率(%)",
+              "type": "line",
+              "yAxisIndex": 1
+            }
+          ],
+          "title": {
+            "textStyle": {
+              "color": "#ffffff"
+            }
           },
-          {
-            "name": "丢包率(%)",
-            "position": "right",
-            "type": "value"
-          }
-        ]
+          "tooltip": {
+            "backgroundColor": "rgba(0,0,0,0.8)",
+            "textStyle": {
+              "color": "#ffffff"
+            }
+          },
+          "xAxis": {
+            "name": "时间点",
+            "type": "category"
+          },
+          "yAxis": [
+            {
+              "name": "延迟(ms)",
+              "position": "left",
+              "type": "value"
+            },
+            {
+              "name": "丢包率(%)",
+              "position": "right",
+              "type": "value"
+            }
+          ]
+        },
+        "title": "性能历史趋势",
+        "type": "line"
       }
     ]
   },

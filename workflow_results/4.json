@@ -1,7 +1,7 @@
 {
   "workflow_number": 4,
   "workflow_name": "固件版本汇总",
-  "execution_time": "2025-09-23 11:02:40",
+  "execution_time": "2025-09-23 14:47:49",
   "success": true,
   "result": {
     "organization_name": "Concordia",
@@ -51,7 +51,7 @@
       "models_needing_attention": [],
       "total_devices_needing_upgrade": 0
     },
-    "query_time": "2025-09-23 11:02:40",
+    "query_time": "2025-09-23 14:47:49",
     "success": true,
     "error_message": null,
     "echarts_data": [
@@ -62,11 +62,6 @@
             "containLabel": true,
             "left": "8%",
             "right": "8%"
-          },
-          "legend": {
-            "textStyle": {
-              "color": "#ffffff"
-            }
           },
           "series": [
             {
@@ -160,13 +155,15 @@
             "left": "center",
             "text": "设备型号固件版本分布",
             "textStyle": {
-              "color": "#ffffff"
+              "color": "#ffffff",
+              "fontSize": 16,
+              "fontWeight": "bold"
             }
           },
           "tooltip": {
-            "backgroundColor": "rgba(0,0,0,0.8)",
+            "backgroundColor": "rgba(0, 0, 0, 0.8)",
             "borderColor": "#ffffff",
-            "formatter": "{b}<br/>设备数量: {c}台",
+            "formatter": "{b}: {c}台",
             "textStyle": {
               "color": "#ffffff"
             },

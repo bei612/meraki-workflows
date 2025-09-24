@@ -297,6 +297,8 @@ class AlertsLogResult:
     query_time: str
     success: bool
     error_message: Optional[str] = None
+    # Markdown表格格式的关键日志
+    key_logs_markdown: Optional[str] = None
     # ECharts数据格式
     echarts_data: Optional[List[Dict[str, Any]]] = None
 
@@ -969,13 +971,6 @@ class ClientCountWorkflow:
                                     "formatter": "{c}",
                                     "fontSize": 11,
                                     "color": "#ffffff"
-                                },
-                                "emphasis": {
-                                    "itemStyle": {
-                                        "color": "#7b1fa2",
-                                        "shadowBlur": 8,
-                                        "shadowColor": "rgba(74, 20, 140, 0.6)"
-                                    }
                                 }
                             },
                             {
@@ -1000,13 +995,6 @@ class ClientCountWorkflow:
                                     "formatter": "{c}",
                                     "fontSize": 11,
                                     "color": "#ffffff"
-                                },
-                                "emphasis": {
-                                    "itemStyle": {
-                                        "color": "#9c27b0",
-                                        "shadowBlur": 8,
-                                        "shadowColor": "rgba(123, 31, 162, 0.6)"
-                                    }
                                 }
                             }
                         ]
@@ -2247,6 +2235,9 @@ class AlertsLogWorkflow:
                 }
             ]
             
+            # 生成关键日志的Markdown表格
+            key_logs_markdown = self._generate_key_logs_markdown(critical_alerts, network_events_sample)
+            
             return AlertsLogResult(
                 organization_name="Concordia",
                 organization_id=input.org_id,
@@ -2256,6 +2247,7 @@ class AlertsLogWorkflow:
                 alert_categories=alert_categories,
                 query_time=workflow.now().strftime("%Y-%m-%d %H:%M:%S"),
                 success=True,
+                key_logs_markdown=key_logs_markdown,
                 echarts_data=force_clean_text_style(echarts_data)
             )
             
@@ -2271,6 +2263,75 @@ class AlertsLogWorkflow:
                 success=False,
                 error_message=str(e)
             )
+    
+    def _generate_key_logs_markdown(self, critical_alerts: List[Dict], network_events: List[Dict]) -> str:
+        """生成关键日志的Markdown表格"""
+        
+        # 合并告警和网络事件，创建统一的日志条目
+        log_entries = []
+        
+        # 处理告警日志
+        for alert in critical_alerts[:8]:  # 取前8个告警
+            device_name = "未知设备"
+            device_serial = "N/A"
+            if alert.get("scope", {}).get("devices"):
+                device_info = alert["scope"]["devices"][0]
+                device_name = device_info.get("name", "未知设备")
+                device_serial = device_info.get("serial", "N/A")
+            
+            log_entries.append({
+                "时间": alert.get("startedAt", "").replace("T", " ").replace("Z", ""),
+                "类型": "告警",
+                "严重程度": alert.get("severity", "unknown").upper(),
+                "设备": device_name,
+                "序列号": device_serial,
+                "网络": alert.get("network", {}).get("name", "N/A"),
+                "描述": alert.get("title", "未知告警"),
+                "状态": "未解决" if not alert.get("resolvedAt") else "已解决"
+            })
+        
+        # 处理网络事件日志
+        for event in network_events[:2]:  # 取前2个网络事件
+            log_entries.append({
+                "时间": event.get("occurredAt", "").replace("T", " ").replace("Z", ""),
+                "类型": "事件",
+                "严重程度": "INFO",
+                "设备": event.get("deviceName", "N/A"),
+                "序列号": event.get("deviceSerial", "N/A"),
+                "网络": "网络事件",
+                "描述": event.get("description", "网络事件"),
+                "状态": "已记录"
+            })
+        
+        # 按时间排序，取最新的10条
+        log_entries.sort(key=lambda x: x["时间"], reverse=True)
+        log_entries = log_entries[:10]
+        
+        # 生成Markdown表格
+        markdown_table = "## 📋 关键日志记录 (最新10条)\n\n"
+        markdown_table += "| 时间 | 类型 | 严重程度 | 设备名称 | 序列号 | 网络 | 描述 | 状态 |\n"
+        markdown_table += "|------|------|----------|----------|--------|------|------|------|\n"
+        
+        for entry in log_entries:
+            # 截断过长的描述
+            description = entry["描述"]
+            if len(description) > 50:
+                description = description[:47] + "..."
+            
+            # 格式化时间显示
+            time_str = entry["时间"][:16] if entry["时间"] else "N/A"
+            
+            markdown_table += f"| {time_str} | {entry['类型']} | {entry['严重程度']} | {entry['设备']} | {entry['序列号']} | {entry['网络']} | {description} | {entry['状态']} |\n"
+        
+        # 添加统计信息
+        markdown_table += f"\n### 📊 日志统计\n"
+        markdown_table += f"- **总日志条数**: {len(log_entries)}\n"
+        markdown_table += f"- **告警数量**: {len([e for e in log_entries if e['类型'] == '告警'])}\n"
+        markdown_table += f"- **事件数量**: {len([e for e in log_entries if e['类型'] == '事件'])}\n"
+        markdown_table += f"- **严重告警**: {len([e for e in log_entries if e['严重程度'] == 'CRITICAL'])}\n"
+        markdown_table += f"- **未解决问题**: {len([e for e in log_entries if e['状态'] == '未解决'])}\n"
+        
+        return markdown_table
 
 # ==================== 复杂多Activity组合工作流 ====================
 
